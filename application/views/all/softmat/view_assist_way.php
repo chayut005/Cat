@@ -160,9 +160,13 @@
 
                 <div style="  height: 170px;    border-radius: 10px;border-style: dotted; border-color: blue;">
                   <span>
-                    <img id="show_data_way" onclick="$('#upload_img_way').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+                    <img id="show_data_way1" onclick="$('#upload_img_way1').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+                    <img id="show_data_way2" onclick="$('#upload_img_way2').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+                    <img id="show_data_way3" onclick="$('#upload_img_way3').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
                   </span>
-                  <input id="upload_img_way" onchange="show_img_way(this)" name="file_way" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+                  <input id="upload_img_way1" onchange="show_img_way1(this)" name="file_way" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+                  <input id="upload_img_way2" onchange="show_img_way2(this)" name="file_way" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+                  <input id="upload_img_way3" onchange="show_img_way3(this)" name="file_way" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
                 </div>
                 <div class="" style="  display: flex; justify-content: center; align-items: center;">
                   <button type="button" onclick="remove_img_way()" class=" btn  btn-sm  btn-warning my-2">
@@ -170,6 +174,11 @@
                     <span class="d-none d-sm-block">Remove</span>
                   </button>
                 </div>
+								<div class="" style="  display: flex; justify-content: center; align-items: center;">
+										<button onclick="op_img_way(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
+										<button onclick="op_img_way(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
+										<button onclick="op_img_way(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
+								</div>
               </div>
 
             </div>
@@ -436,6 +445,21 @@
 </div>
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 <script>
+	function op_img_way(num) {
+		if(num==1){
+			$('#show_data_way1').css('display', 'block');
+			$('#show_data_way2').css('display', 'none');
+			$('#show_data_way3').css('display', 'none');
+		}else if(num==2){
+			$('#show_data_way1').css('display', 'none');
+			$('#show_data_way2').css('display', 'block');
+			$('#show_data_way3').css('display', 'none');
+		}else if(num==3){
+			$('#show_data_way1').css('display', 'none');
+			$('#show_data_way2').css('display', 'none');
+			$('#show_data_way3').css('display', 'block');
+		}
+	}
   function edit_data_request(qu_id) {
     event.preventDefault()
     var edit_dep_issue_way = '';
@@ -807,7 +831,7 @@
     // $('#img_issue_name').attr('src', '<?php echo base_url(); ?>./themes/softmat/img/user.png')
 
     // $("#show_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
-    // $('#upload_img_way').val('')
+    // $('#upload_img_way1').val('')
     $('select[name=system_way]').val('')
     $('select[name=way_department]').val('')
     $('input[name=subject_way]').val('')
@@ -821,8 +845,12 @@
 
   function remove_img_way() {
     event.preventDefault()
-    $("#show_data_way").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
-    $('#upload_img_way').val('')
+    $("#show_data_way1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+    $("#show_data_way2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+    $("#show_data_way3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+    $('#upload_img_way1').val('')
+    $('#upload_img_way2').val('')
+    $('#upload_img_way3').val('')
   }
 
   async function cancel_quest(qu_id) {
@@ -886,16 +914,40 @@
 
   }
 
-  function show_img_way(input_img) {
+  function show_img_way1(input_img) {
     if (input_img.files && input_img.files[0]) {
       var reader = new FileReader();
       reader.onload = function(e) {
         // console.log(e)
-        $("#show_data_way").attr("src", e.target.result)
+        $("#show_data_way1").attr("src", e.target.result)
       }
       reader.readAsDataURL(input_img.files[0]);
     } else {
-      $("#show_data_way").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+      $("#show_data_way1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+    }
+  }
+	function show_img_way2(input_img) {
+    if (input_img.files && input_img.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        // console.log(e)
+        $("#show_data_way2").attr("src", e.target.result)
+      }
+      reader.readAsDataURL(input_img.files[0]);
+    } else {
+      $("#show_data_way2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+    }
+  }
+	function show_img_way3(input_img) {
+    if (input_img.files && input_img.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        // console.log(e)
+        $("#show_data_way3").attr("src", e.target.result)
+      }
+      reader.readAsDataURL(input_img.files[0]);
+    } else {
+      $("#show_data_way3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
     }
   }
 

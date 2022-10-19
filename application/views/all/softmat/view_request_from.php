@@ -314,7 +314,11 @@
     function remove_img_request1() {
         event.preventDefault()
         $("#show_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+        $("#show_data_img_request2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+        $("#show_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
         $('#upload_img_request1').val('')
+        $('#upload_img_request2').val('')
+        $('#upload_img_request3').val('')
     }
 
     function check_data_system(system_id) {
