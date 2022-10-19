@@ -229,6 +229,8 @@
                                             <div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
                                                 <span>
                                                     <img id="show_data_img_request1" onclick="$('#upload_img_request1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+                                                    <img id="show_data_img_request2" onclick="$('#upload_img_request2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+                                                    <img id="show_data_img_request3" onclick="$('#upload_img_request3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
                                                 </span>
                                                 <!-- <span>
                                                     <img id="show_data_file_request" onclick="$('#upload_file_request').click()" class=" setting_img_request column_img" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
@@ -239,6 +241,8 @@
 
 
                                                 <input id="upload_img_request1" onchange="show_img_request1(this)" name="re_img1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+                                                <input id="upload_img_request2" onchange="show_img_request2(this)" name="re_img2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+                                                <input id="upload_img_request3" onchange="show_img_request3(this)" name="re_img3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
                                                 <!-- <input id="upload_file_request" onchange="show_file_request(this)" name="re_file" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly> -->
 
                                             </div>
@@ -246,14 +250,13 @@
                                                 <button onclick="remove_img_request1()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
                                             </div>
                                             <div class="" style="  display: flex; justify-content: center; align-items: center;">
-                                                <button onclick="op_img1()" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
-                                                <button onclick="op_img1()" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
-                                                <button onclick="op_img1()" class=" btn  btn-sm  btn-warning my-2">Image 1</button>
+                                                <button onclick="op_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
+                                                <button onclick="op_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
+                                                <button onclick="op_img(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
                                             </div>
                                             <!-- <div class="column2" style="  display: flex; justify-content: center; align-items: center;">
                                             <button onclick="remove_file_request()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
                                         </div> -->
-
                                         </div>
                                     </div>
                                     <input type="hidden" name="action" value="<?php echo base64_encode('request'); ?>">
@@ -261,11 +264,6 @@
                                         <button onclick="clear_data_re()" id="clear_form_re" type="reset" class="btn  btn-sm  btn-primary">Clear</button>
                                         <button type="submit" onclick="send_data_request()" class="btn  btn-sm  btn-success">Send</button>
                                     </div>
-
-
-
-
-
                                 </div>
 
                             </div>
@@ -284,6 +282,21 @@
 <!-- ------------------------------------------------------------------------------------------------------------------------ -->
 
 <script>
+    function op_img(num) {
+		if(num==1){
+			$('#show_data_img_request1').css('display', 'block');
+			$('#show_data_img_request2').css('display', 'none');
+			$('#show_data_img_request3').css('display', 'none');
+		}else if(num==2){
+			$('#show_data_img_request1').css('display', 'none');
+			$('#show_data_img_request2').css('display', 'block');
+			$('#show_data_img_request3').css('display', 'none');
+		}else if(num==3){
+			$('#show_data_img_request1').css('display', 'none');
+			$('#show_data_img_request2').css('display', 'none');
+			$('#show_data_img_request3').css('display', 'block');
+		}
+	}
     function clear_data_re() {
         $('#support_name').html('<span>xxxxx</span>')
         $('#img_support_name').attr('src', '<?php echo base_url(); ?>./themes/softmat/img/user.png')
@@ -646,6 +659,30 @@
             reader.readAsDataURL(input_img.files[0]);
         } else {
             $("#show_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+        }
+    }
+	function show_img_request2(input_img) {
+        if (input_img.files && input_img.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // console.log(e)
+                $("#show_data_img_request2").attr("src", e.target.result)
+            }
+            reader.readAsDataURL(input_img.files[0]);
+        } else {
+            $("#show_data_img_request2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+        }
+    }
+	function show_img_request3(input_img) {
+        if (input_img.files && input_img.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // console.log(e)
+                $("#show_data_img_request3").attr("src", e.target.result)
+            }
+            reader.readAsDataURL(input_img.files[0]);
+        } else {
+            $("#show_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
         }
     }
 
