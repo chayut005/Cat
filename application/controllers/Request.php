@@ -90,11 +90,47 @@ class Request extends CI_Controller
 				$data['priority_id'] = '';
 
 
-				if (!empty($_FILES["re_img1"]["name"])) {
-					if ($_FILES['re_img1']['size'] <= '4000000') {
-						$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
-						if ($check_type !== null && $check_type !== '') {
-							$this->form_validation->set_rules('re_priority', 'Priority', 'required');
+
+				$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
+				if ($check_type !== null && $check_type !== '') {
+					$this->form_validation->set_rules('re_priority', 'Priority', 'required');
+
+					$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+					if ($this->form_validation->run() == FALSE) {
+						echo json_encode(validation_errors());
+						exit;
+					} else {
+						$re_priority = $this->input->post('re_priority');
+						// --------------------------------------------priority_time-------------------------------------------------
+
+						$myArray = explode(' ', $re_priority);
+						$priority_id = $myArray[0];
+						$priority_time =  $myArray[1];
+
+						// --------------------------------------------end_priority_time---------------------------------------------
+
+						// --------------------------------------------department_time-----------------------------------------------
+
+						$time_dep = $this->assist_backend->time_department($data['re_department']);
+
+						// --------------------------------------------end_department_time-------------------------------------------
+
+						// --------------------------------------------specified_time------------------------------------------------
+
+						$date = date("Y-m-d H:i:s");
+						$data['priority_id'] = $priority_id;
+						$data['date_create'] =  $date;
+						$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+						$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
+						$data['time_receive'] =  $time_receive;
+						$data['specified_time'] =  $specified_time;
+
+						// --------------------------------------------end_specified_time--------------------------------------------
+
+						$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
+						if ($check_system !== null && $check_system !== '') {
+							$this->form_validation->set_rules('re_line', 'Line', 'required');
 
 							$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 
@@ -102,208 +138,59 @@ class Request extends CI_Controller
 								echo json_encode(validation_errors());
 								exit;
 							} else {
-								$re_priority = $this->input->post('re_priority');
-								// --------------------------------------------priority_time-------------------------------------------------
-
-								$myArray = explode(' ', $re_priority);
-								$priority_id = $myArray[0];
-								$priority_time =  $myArray[1];
-
-								// --------------------------------------------end_priority_time---------------------------------------------
-
-								// --------------------------------------------department_time-----------------------------------------------
-
-								$time_dep = $this->assist_backend->time_department($data['re_department']);
-
-								// --------------------------------------------end_department_time-------------------------------------------
-
-								// --------------------------------------------specified_time------------------------------------------------
-
-								$date = date("Y-m-d H:i:s");
-								$data['priority_id'] = $priority_id;
-								$data['date_create'] =  $date;
-								$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-								$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
-								$data['time_receive'] =  $time_receive;
-								$data['specified_time'] =  $specified_time;
-
-								// --------------------------------------------end_specified_time--------------------------------------------
-
-								$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-								if ($check_system !== null && $check_system !== '') {
-									$this->form_validation->set_rules('re_line', 'Line', 'required');
-
-									$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
-
-									if ($this->form_validation->run() == FALSE) {
-										echo json_encode(validation_errors());
-										exit;
-									} else {
-										$data['re_line'] = $this->input->post('re_line');
-									}
-								}
-								$tempFileLogo = $_FILES['re_img1']['tmp_name'];
-								$FileLogo = $_FILES['re_img1']['name'];
-								$sending_data_request = $this->assist_backend->sending_data_request($FileLogo, $tempFileLogo, $data);
-								echo json_encode($sending_data_request);
-								exit;
-							}
-						} else {
-							$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
-							if ($time_request !== null && $time_request !== '') {
-
-								// --------------------------------------------request_time--------------------------------------------------
-
-								$time_request_dep =  $time_request[0]['set_timer_request_dep'];
-
-
-								// $data['all_m_re'] =  $all_m_re;
-
-								// --------------------------------------------end_request_time----------------------------------------------
-
-								// --------------------------------------------department_time-----------------------------------------------
-
-								$time_dep = $this->assist_backend->time_department($data['re_department']);
-
-								// $data['all_m_dep'] =  $all_m_dep;
-								// --------------------------------------------end_department_time-------------------------------------------
-
-								// --------------------------------------------specified_time------------------------------------------------
-								$date = date("Y-m-d H:i:s");
-								$data['date_create'] =  $date;
-								$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-								$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
-								$data['time_receive'] =  $time_receive;
-								$data['specified_time'] =  $specified_time;
-
-								// --------------------------------------------end_specified_time--------------------------------------------
-
-								$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-								if ($check_system !== null && $check_system !== '') {
-									$this->form_validation->set_rules('re_line', 'Line', 'required');
-
-									$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
-
-									if ($this->form_validation->run() == FALSE) {
-										echo json_encode(validation_errors());
-										exit;
-									} else {
-										$data['re_line'] = $this->input->post('re_line');
-									}
-								}
-								$tempFileLogo = $_FILES['re_img1']['tmp_name'];
-								$FileLogo = $_FILES['re_img1']['name'];
-								$sending_data_request = $this->assist_backend->sending_data_request($FileLogo, $tempFileLogo, $data);
-								echo json_encode($sending_data_request);
-								exit;
+								$data['re_line'] = $this->input->post('re_line');
 							}
 						}
-					} else {
-						echo json_encode('<p>image ของคุณขนาดเกิน 4000000 </p>');
+						$sending_request =  $this->assist_backend->sending_request($data);
+						echo json_encode($sending_request);
 						exit;
 					}
 				} else {
-					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
-					if ($check_type !== null && $check_type !== '') {
-						$this->form_validation->set_rules('re_priority', 'Priority', 'required');
+					$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
+					if ($time_request !== null && $time_request !== '') {
 
-						$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+						// --------------------------------------------request_time--------------------------------------------------
 
-						if ($this->form_validation->run() == FALSE) {
-							echo json_encode(validation_errors());
-							exit;
-						} else {
-							$re_priority = $this->input->post('re_priority');
-							// --------------------------------------------priority_time-------------------------------------------------
+						$time_request_dep =  $time_request[0]['set_timer_request_dep'];
 
-							$myArray = explode(' ', $re_priority);
-							$priority_id = $myArray[0];
-							$priority_time =  $myArray[1];
 
-							// --------------------------------------------end_priority_time---------------------------------------------
+						// $data['all_m_re'] =  $all_m_re;
 
-							// --------------------------------------------department_time-----------------------------------------------
+						// --------------------------------------------end_request_time----------------------------------------------
 
-							$time_dep = $this->assist_backend->time_department($data['re_department']);
+						// --------------------------------------------department_time-----------------------------------------------
 
-							// --------------------------------------------end_department_time-------------------------------------------
+						$time_dep = $this->assist_backend->time_department($data['re_department']);
 
-							// --------------------------------------------specified_time------------------------------------------------
+						// $data['all_m_dep'] =  $all_m_dep;
+						// --------------------------------------------end_department_time-------------------------------------------
 
-							$date = date("Y-m-d H:i:s");
-							$data['priority_id'] = $priority_id;
-							$data['date_create'] =  $date;
-							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
-							$data['time_receive'] =  $time_receive;
-							$data['specified_time'] =  $specified_time;
+						// --------------------------------------------specified_time------------------------------------------------
+						$date = date("Y-m-d H:i:s");
+						$data['date_create'] =  $date;
+						$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+						$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
+						$data['time_receive'] =  $time_receive;
+						$data['specified_time'] =  $specified_time;
 
-							// --------------------------------------------end_specified_time--------------------------------------------
+						// --------------------------------------------end_specified_time--------------------------------------------
 
-							$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-							if ($check_system !== null && $check_system !== '') {
-								$this->form_validation->set_rules('re_line', 'Line', 'required');
+						$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
+						if ($check_system !== null && $check_system !== '') {
+							$this->form_validation->set_rules('re_line', 'Line', 'required');
 
-								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+							$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 
-								if ($this->form_validation->run() == FALSE) {
-									echo json_encode(validation_errors());
-									exit;
-								} else {
-									$data['re_line'] = $this->input->post('re_line');
-								}
+							if ($this->form_validation->run() == FALSE) {
+								echo json_encode(validation_errors());
+								exit;
+							} else {
+								$data['re_line'] = $this->input->post('re_line');
 							}
-							$sending_request =  $this->assist_backend->sending_request($data);
-							echo json_encode($sending_request);
-							exit;
 						}
-					} else {
-						$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
-						if ($time_request !== null && $time_request !== '') {
-
-							// --------------------------------------------request_time--------------------------------------------------
-
-							$time_request_dep =  $time_request[0]['set_timer_request_dep'];
-
-
-							// $data['all_m_re'] =  $all_m_re;
-
-							// --------------------------------------------end_request_time----------------------------------------------
-
-							// --------------------------------------------department_time-----------------------------------------------
-
-							$time_dep = $this->assist_backend->time_department($data['re_department']);
-
-							// $data['all_m_dep'] =  $all_m_dep;
-							// --------------------------------------------end_department_time-------------------------------------------
-
-							// --------------------------------------------specified_time------------------------------------------------
-							$date = date("Y-m-d H:i:s");
-							$data['date_create'] =  $date;
-							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
-							$data['time_receive'] =  $time_receive;
-							$data['specified_time'] =  $specified_time;
-
-							// --------------------------------------------end_specified_time--------------------------------------------
-
-							$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-							if ($check_system !== null && $check_system !== '') {
-								$this->form_validation->set_rules('re_line', 'Line', 'required');
-
-								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
-
-								if ($this->form_validation->run() == FALSE) {
-									echo json_encode(validation_errors());
-									exit;
-								} else {
-									$data['re_line'] = $this->input->post('re_line');
-								}
-							}
-							$sending_request =  $this->assist_backend->sending_request($data);
-							echo json_encode($sending_request);
-							exit;
-						}
+						$sending_request =  $this->assist_backend->sending_request($data);
+						echo json_encode($sending_request);
+						exit;
 					}
 				}
 			}

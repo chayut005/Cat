@@ -47,6 +47,39 @@ class Set_time extends CI_Controller
 		$this->template->write_view('page_footer', 'all/' . $this->theme . '/view_footer.php');
 		$this->template->render();
 	}
+	public function Set_type()
+	{
+		$checkSess = $this->assist_backend->CheckSession();
+		$setTitle = strtoupper(str_replace('_', ' ', $this->router->fetch_method()));
+		$this->template->write('page_title', ' CAT | ' . $setTitle . '');
+		$this->template->write_view('page_menu', 'all/' . $this->theme . '/view_menu.php');
+		$this->template->write_view('page_header', 'all/' . $this->theme . '/view_header.php');
+		$this->template->write_view('page_content', 'all/' . $this->theme . '/view_manage_type.php');
+		$this->template->write_view('page_footer', 'all/' . $this->theme . '/view_footer.php');
+		$this->template->render();
+	}
+	public function Set_category()
+	{
+		$checkSess = $this->assist_backend->CheckSession();
+		$setTitle = strtoupper(str_replace('_', ' ', $this->router->fetch_method()));
+		$this->template->write('page_title', ' CAT | ' . $setTitle . '');
+		$this->template->write_view('page_menu', 'all/' . $this->theme . '/view_menu.php');
+		$this->template->write_view('page_header', 'all/' . $this->theme . '/view_header.php');
+		$this->template->write_view('page_content', 'all/' . $this->theme . '/view_manage_category.php');
+		$this->template->write_view('page_footer', 'all/' . $this->theme . '/view_footer.php');
+		$this->template->render();
+	}
+	public function Set_system()
+	{
+		$checkSess = $this->assist_backend->CheckSession();
+		$setTitle = strtoupper(str_replace('_', ' ', $this->router->fetch_method()));
+		$this->template->write('page_title', ' CAT | ' . $setTitle . '');
+		$this->template->write_view('page_menu', 'all/' . $this->theme . '/view_menu.php');
+		$this->template->write_view('page_header', 'all/' . $this->theme . '/view_header.php');
+		$this->template->write_view('page_content', 'all/' . $this->theme . '/view_manage_system.php');
+		$this->template->write_view('page_footer', 'all/' . $this->theme . '/view_footer.php');
+		$this->template->render();
+	}
 	public function data_priority_d()
 	{
 
@@ -326,5 +359,14 @@ class Set_time extends CI_Controller
 				echo json_encode($create_priority);
 			}
 		}
+	}
+	public function data_type()
+	{
+		// $pri_id = $_POST['pri_id'];
+		// $dep_id = $_POST['dep_id'];
+
+		$this->assist_backend->checksession();
+		$data_type = $this->assist_backend->data_type();
+		echo json_encode($data_type);
 	}
 }
