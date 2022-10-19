@@ -58,7 +58,59 @@ class GET_API extends CI_Controller
 	// 		echo json_encode($department_data_re_all);
 	// 		exit;
 	// 	}
-	// }get_data_category get_data_system check_data_type
+	// }get_data_category get_data_system check_data_type  
+	public function data_type_table()
+	{
+		$data_main_type = $this->assist_backend->data_main_type();
+		$this->assist_backend->checksession();
+		$dep_id = $this->session->userdata('sessDep');
+		$data_type = $this->assist_backend->data_type($dep_id);
+		$i = 0;
+		foreach ($data_main_type as $ta) {
+			$data_html = '';
+			if ($ta['del_flag'] !== '1' && $ta['status_type'] !== '0') {
+				$data_html = '<i  onclick="use_type(' . $ta['type_id'] . ',' . $dep_id . ')" class="bx bx-checkbox" ></i>';
+			} else {
+				$data_html = '<i style="cursor: no-drop;" class="bx bx-checkbox" ></i>';
+			}
+
+			foreach ($data_type as $ta_dep) {
+				if ($ta['type_id'] == $ta_dep['type_id']) {
+					$data_html = '<i class="bx bx-check"></i>';
+				}
+			}
+			$data_main_type[$i]['check_show'] = $data_html;
+			$i++;
+		}
+		$table = array("data" => $data_main_type);
+		echo json_encode($table);
+		exit;
+	}
+	public function data_main_type()
+	{
+		$data_main_type = $this->assist_backend->data_main_type();
+		$this->assist_backend->checksession();
+		$i = 0;
+		foreach ($data_main_type as $ta) {
+
+			$data_html = '';
+			if ($ta['del_flag'] !== '1') {
+				if ($ta['status_type'] === '1') {
+					$data_html .= '<a onclick="edit_type_main(' . $ta['type_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-edit" ></i></a>';
+				}
+				$data_html .= '<a onclick="button_delete_type(' . $ta['type_id'] . ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>';
+			} else {
+				$data_html = '<a onclick="button_re_type(' . $ta['type_id'] . ')"><i class="bx bx-redo bx-flip-horizontal" ></i></a>';
+			}
+
+
+			$data_main_type[$i]['button_show'] = $data_html;
+			$i++;
+		}
+		$table = array('data' => $data_main_type);
+		echo json_encode($table);
+		exit;
+	}
 	public function check_data_system()
 	{
 		$dep_issue_id = $_POST['dep_issue_id'];
@@ -388,7 +440,7 @@ class GET_API extends CI_Controller
 		$st = $_POST['st'];
 		$lt = $_POST['lt'];
 		$dep = $_POST['dep'];
-		$get_report_cat = $this->assist_backend->get_report_cat($dep,$st,$lt);
+		$get_report_cat = $this->assist_backend->get_report_cat($dep, $st, $lt);
 
 
 		echo json_encode($get_report_cat);

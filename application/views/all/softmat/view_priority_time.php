@@ -155,7 +155,7 @@
                         <tr>
                             <th style="text-align:center;">No</th>
                             <th style="text-align:center;">Priorioty Name</th>
-                            <th style="text-align:center;">Ststus</th>
+                            <th style="text-align:center;">Status</th>
                             <th style="text-align:center;">Use</th>
                         </tr>
                     </thead>

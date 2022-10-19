@@ -362,11 +362,83 @@ class Set_time extends CI_Controller
 	}
 	public function data_type()
 	{
-		// $pri_id = $_POST['pri_id'];
+		// $pri_id = $_POST['pri_id']; disable_type
 		// $dep_id = $_POST['dep_id'];
-
+		$dep_id =  $this->session->userdata('sessDep');
 		$this->assist_backend->checksession();
-		$data_type = $this->assist_backend->data_type();
+		$data_type = $this->assist_backend->data_type($dep_id);
 		echo json_encode($data_type);
+	}
+	public function disable_type()
+	{
+		$type_id = $_POST['type_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId'));
+		$result = $this->assist_backend->disable_type($type_id);
+		if ($result == true) {
+			$reply_disable = "";
+			$reply_disable = array('reply' => $result, 'html' => 'Disable สำเร็จ', 'html_eng' => 'Disable Success');
+			echo json_encode($reply_disable);
+			exit;
+		} else if ($result == false) {
+			$reply_disable = "";
+			$reply_disable = array('reply' => $result, 'html' => 'ไม่สามารถ Disable ได้', 'html_eng' => 'Can"t Disable');
+			echo json_encode($reply_disable);
+			exit;
+		}
+	}
+	public function enable_type()
+	{
+		$type_id = $_POST['type_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); delete_type
+		$result = $this->assist_backend->enable_type($type_id);
+		if ($result == true) {
+			$reply_enable = "";
+			$reply_enable = array('reply' => $result, 'html' => 'Enable สำเร็จ', 'html_eng' => 'Enable Success');
+			echo json_encode($reply_enable);
+			exit;
+		} else if ($result == false) {
+			$reply_enable = "";
+			$reply_enable = array('reply' => $result, 'html' => 'ไม่สามารถ Enable ได้', 'html_eng' => 'Can"t Enable');
+			echo json_encode($reply_enable);
+			exit;
+		}
+	}
+	public function delete_type()
+	{
+		$type_id = $_POST['type_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); 
+		$result = $this->assist_backend->delete_type($type_id);
+		if ($result == true) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'Delete สำเร็จ', 'html_eng' => 'Delete Success');
+			echo json_encode($reply_delete);
+			exit;
+		} else if ($result == false) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'ไม่สามารถ Delete ได้', 'html_eng' => 'Can"t Delete');
+			echo json_encode($reply_delete);
+			exit;
+		}
+	}
+	public function re_type()
+	{
+		$type_id = $_POST['type_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId'));
+		$result = $this->assist_backend->re_type($type_id);
+		if ($result == true) {
+			$reply_re = "";
+			$reply_re = array('reply' => $result, 'html' => 'Enable สำเร็จ', 'html_eng' => 'Enable Success');
+			echo json_encode($reply_re);
+			exit;
+		} else if ($result == false) {
+			$reply_re = "";
+			$reply_re = array('reply' => $result, 'html' => 'ไม่สามารถ Enable ได้', 'html_eng' => 'Can"t Enable');
+			echo json_encode($reply_re);
+			exit;
+		}
 	}
 }

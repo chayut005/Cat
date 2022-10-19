@@ -62,14 +62,80 @@ class Assist_backend extends CI_Model
 
 
 
-
-
-
-
-
-	public function data_type()
+	public function re_type($type_id)
 	{
-		$sqlLoad = "SELECT ltl.*,lt.type_name FROM list_type_list AS ltl LEFT JOIN list_type AS lt ON lt.type_id = ltl.type_id WHERE lt.status_type<>0 AND lt.del_flag<>1 AND ltl.dep_id = '1'";
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('status_type', '1');
+		$this->db->set('del_flag', '0');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->set('update_by', $sid);
+		$this->db->where('type_id', $type_id);
+		$exc_user = $this->db->update('list_type');
+
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function delete_type($type_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('status_type', '0');
+		$this->db->set('del_flag', '1');
+		$this->db->set('date_delete', 'NOW()', FALSE);
+		$this->db->set('del_by', $sid);
+		$this->db->where('type_id', $type_id);
+		$exc_user = $this->db->update('list_type');
+
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function enable_type($type_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('update_by', $sid);
+		$this->db->set('status_type', '1');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->where('type_id', $type_id);
+		$exc_user = $this->db->update('list_type');
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function disable_type($type_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('update_by', $sid);
+		$this->db->set('status_type', '0');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->where('type_id', $type_id);
+		$exc_user = $this->db->update('list_type');
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function data_main_type()
+	{
+		$sqlLoad = "SELECT * FROM list_type";
+		$excLoad = $this->db->query($sqlLoad);
+		$recLoad = $excLoad->result_array();
+		if ($excLoad->num_rows() != 0) {
+			return $recLoad;
+		} else {
+			return null;
+		}
+	}
+	public function data_type($dep_id)
+	{
+		$sqlLoad = "SELECT ltl.*,lt.type_name FROM list_type_list AS ltl LEFT JOIN list_type AS lt ON lt.type_id = ltl.type_id WHERE lt.status_type<>0 AND lt.del_flag<>1 AND ltl.dep_id = '$dep_id'";
 		$excLoad = $this->db->query($sqlLoad);
 		$recLoad = $excLoad->result_array();
 		if ($excLoad->num_rows() != 0) {
@@ -1127,7 +1193,7 @@ class Assist_backend extends CI_Model
 		$send_data_request = $this->db->insert('list_quest');
 		$id =  $this->db->insert_id();
 
-		return $id ;
+		return $id;
 		exit;
 	}
 	public function time_request($dep_sup_id, $type_sup_id)
