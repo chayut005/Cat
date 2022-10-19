@@ -34,11 +34,6 @@
         margin-left: auto;
         margin-right: auto;
     }
-    .column_img{
-        float: left;
-        width: 33.33%;
-
-    }
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
     <!-- <h1>FORM REQUEST</h1> -->
