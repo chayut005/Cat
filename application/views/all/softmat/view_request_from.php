@@ -229,8 +229,8 @@
                                             <div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
                                                 <span>
                                                     <img id="show_data_img_request1" onclick="$('#upload_img_request1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
-                                                    <img id="show_data_img_request2" onclick="$('#upload_img_request2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
-                                                    <img id="show_data_img_request3" onclick="$('#upload_img_request3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+                                                    <img id="show_data_img_request2" onclick="$('#upload_img_request2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+                                                    <img id="show_data_img_request3" onclick="$('#upload_img_request3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
                                                 </span>
                                                 <!-- <span>
                                                     <img id="show_data_file_request" onclick="$('#upload_file_request').click()" class=" setting_img_request column_img" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
