@@ -681,4 +681,76 @@ class Set_time extends CI_Controller
 		}
 		echo json_encode($datatable);
 	}
+	public function delete_category()
+	{
+		$cat_id = $_POST['cat_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); delete_system
+		$result = $this->assist_backend->delete_category($cat_id);
+		if ($result == true) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'Delete สำเร็จ', 'html_eng' => 'Delete Success');
+			echo json_encode($reply_delete);
+			exit;
+		} else if ($result == false) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'ไม่สามารถ Delete ได้', 'html_eng' => 'Can"t Delete');
+			echo json_encode($reply_delete);
+			exit;
+		}
+	}
+	public function re_category()
+	{
+		$cat_id = $_POST['cat_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId'));
+		$result = $this->assist_backend->re_category($cat_id);
+		if ($result == true) {
+			$reply_re = "";
+			$reply_re = array('reply' => $result, 'html' => 'Enable สำเร็จ', 'html_eng' => 'Enable Success');
+			echo json_encode($reply_re);
+			exit;
+		} else if ($result == false) {
+			$reply_re = "";
+			$reply_re = array('reply' => $result, 'html' => 'ไม่สามารถ Enable ได้', 'html_eng' => 'Can"t Enable');
+			echo json_encode($reply_re);
+			exit;
+		}
+	}
+	public function delete_system()
+	{
+		$system_id = $_POST['system_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); re_system
+		$result = $this->assist_backend->delete_system($system_id);
+		if ($result == true) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'Delete สำเร็จ', 'html_eng' => 'Delete Success');
+			echo json_encode($reply_delete);
+			exit;
+		} else if ($result == false) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'ไม่สามารถ Delete ได้', 'html_eng' => 'Can"t Delete');
+			echo json_encode($reply_delete);
+			exit;
+		}
+	}
+	public function re_system()
+	{
+		$system_id = $_POST['system_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId'));
+		$result = $this->assist_backend->re_system($system_id);
+		if ($result == true) {
+			$reply_re = "";
+			$reply_re = array('reply' => $result, 'html' => 'Enable สำเร็จ', 'html_eng' => 'Enable Success');
+			echo json_encode($reply_re);
+			exit;
+		} else if ($result == false) {
+			$reply_re = "";
+			$reply_re = array('reply' => $result, 'html' => 'ไม่สามารถ Enable ได้', 'html_eng' => 'Can"t Enable');
+			echo json_encode($reply_re);
+			exit;
+		}
+	}
 }

@@ -47,10 +47,70 @@ class Assist_backend extends CI_Model
 
 
 
+	public function re_system($system_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('status_system', '1');
+		$this->db->set('del_flag', '0');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->set('update_by', $sid);
+		$this->db->where('system_id', $system_id);
+		$exc_user = $this->db->update('list_system');
 
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function delete_system($system_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('status_system', '0');
+		$this->db->set('del_flag', '1');
+		$this->db->set('date_delete', 'NOW()', FALSE);
+		$this->db->set('del_by', $sid);
+		$this->db->where('system_id', $system_id);
+		$exc_user = $this->db->update('list_system');
 
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function re_category($cat_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('status_cat', '1');
+		$this->db->set('del_flag', '0');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->set('update_by', $sid);
+		$this->db->where('cat_id', $cat_id);
+		$exc_user = $this->db->update('list_category');
 
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function delete_category($cat_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('status_cat', '0');
+		$this->db->set('del_flag', '1');
+		$this->db->set('date_delete', 'NOW()', FALSE);
+		$this->db->set('del_by', $sid);
+		$this->db->where('cat_id', $cat_id);
+		$exc_user = $this->db->update('list_category');
 
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
 	public function enable_system($system_id)
 	{
 		$sid = $this->session->userdata('sessUsr');

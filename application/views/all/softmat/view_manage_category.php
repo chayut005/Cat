@@ -177,6 +177,86 @@
 </div>
 <!-- ------------------------------------------------------------------------------------------------------------------------ -->
 <script>
+    function button_re_cat(cat_id) {
+        event.preventDefault();
+        Swal.fire({
+            title: "ต้องการ Re หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Send!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(user_id)
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/re_category',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        cat_id: cat_id
+                    },
+                    success: function(reply_re) {
+                        // console.log(data['reply'])
+                        if (reply_re['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
+                                icon: 'success',
+                            })
+                            data_category_use()
+                        } else if (reply_re['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
+                                icon: 'warning',
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    function button_delete_cat(cat_id) {
+        event.preventDefault();
+        Swal.fire({
+            title: "ต้องการ Delete หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Save!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(user_id)
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/delete_category',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        cat_id: cat_id
+                    },
+                    success: function(reply_delete) {
+                        // console.log(data['reply'])
+                        if (reply_delete['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'success',
+                            })
+                            data_category_use()
+                        } else if (reply_delete['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'warning',
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
     function button_enable_category(cat_id) {
         event.preventDefault();
         Swal.fire({

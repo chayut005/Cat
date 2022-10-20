@@ -167,7 +167,87 @@
 </div>
 <!-- ------------------------------------------------------------------------------------------------------------------------ -->
 <script>
-     function button_disable_system(system_id) {
+    function button_re_system(system_id) {
+        event.preventDefault();
+        Swal.fire({
+            title: "ต้องการ Re หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Save!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(user_id)
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/re_system',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        system_id: system_id
+                    },
+                    success: function(reply_re) {
+                        // console.log(data['reply'])
+                        if (reply_re['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
+                                icon: 'success',
+                            })
+                            data_system_use()
+                        } else if (reply_re['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
+                                icon: 'warning',
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    function button_delete_system(system_id) {
+        event.preventDefault();
+        Swal.fire({
+            title: "ต้องการ Delete หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Save!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(user_id)
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/delete_system',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        system_id: system_id
+                    },
+                    success: function(reply_delete) {
+                        // console.log(data['reply'])
+                        if (reply_delete['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'success',
+                            })
+                            data_system_use()
+                        } else if (reply_delete['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'warning',
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    function button_disable_system(system_id) {
         event.preventDefault();
         Swal.fire({
             title: "ต้องการ Disable หรือไม่ ?",
@@ -207,7 +287,8 @@
             }
         })
     }
-       function button_enable_system(system_id) {
+
+    function button_enable_system(system_id) {
         event.preventDefault();
         Swal.fire({
             title: "ต้องการ Enable หรือไม่ ?",
@@ -247,6 +328,7 @@
             }
         })
     }
+
     function use_system(system_id, dep_id) {
         // alert(type_id + '==' + dep_id)
         event.preventDefault()
