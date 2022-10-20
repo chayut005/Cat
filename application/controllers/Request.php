@@ -59,22 +59,15 @@ class Request extends CI_Controller
 			// $this->form_validation->set_rules('re_line', 'Line', 'trim');
 			$this->form_validation->set_rules('re_detail', 'Detail', 'trim|required|min_length[3]|max_length[128]');
 
-
-
-
 			$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 			$this->form_validation->set_message('min_length', '%s ต้องมีมากว่า 3 ตัว');
 			$this->form_validation->set_message('max_length', '%s ต้องมีไม่เกิน 128 ตัว');
-
-
 			$this->form_validation->set_message('is_natural_no_zero', 'กรุณาทำการตรวจสอบ %s ด้วย');
 
 			if ($this->form_validation->run() == FALSE) {
 				echo json_encode(validation_errors());
 				exit;
 			} else {
-
-
 				$data['re_department_issue'] = $this->input->post('re_department_issue');
 				$data['re_issue'] = $this->input->post('re_issue');
 				$data['re_department'] = $this->input->post('re_department');
@@ -90,230 +83,248 @@ class Request extends CI_Controller
 				$data['priority_id'] = '';
 
 
+				if (empty($_FILES["re_img1"]["name"]) && empty($_FILES["re_img2"]["name"]) && empty($_FILES["re_img3"]["name"])) {
+					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
+					if ($check_type !== null && $check_type !== '') {
+						$this->form_validation->set_rules('re_priority', 'Priority', 'required');
 
-				if (!empty($_FILES["re_img1"]["name"])) {
-					if ($_FILES['re_img1']['size'] <= '4000000') {
-						$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
-						if ($check_type !== null && $check_type !== '') {
-							$this->form_validation->set_rules('re_priority', 'Priority', 'required');
+						$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 
-							$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
-							$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
-							if ($check_type !== null && $check_type !== '') {
-								$this->form_validation->set_rules('re_priority', 'Priority', 'required');
+						if ($this->form_validation->run() == FALSE) {
+							echo json_encode(validation_errors());
+							exit;
+						} else {
+							$re_priority = $this->input->post('re_priority');
+							// --------------------------------------------priority_time-------------------------------------------------
 
+							$myArray = explode(' ', $re_priority);
+							$priority_id = $myArray[0];
+							$priority_time =  $myArray[1];
+
+							// --------------------------------------------end_priority_time---------------------------------------------
+
+							// --------------------------------------------department_time-----------------------------------------------
+
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
+
+							// --------------------------------------------end_department_time-------------------------------------------
+
+							// --------------------------------------------specified_time------------------------------------------------
+
+							$date = date("Y-m-d H:i:s");
+							$data['priority_id'] = $priority_id;
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
+
+							// --------------------------------------------end_specified_time--------------------------------------------
+
+							$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('re_line', 'Line', 'required');
+
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 
 								if ($this->form_validation->run() == FALSE) {
 									echo json_encode(validation_errors());
 									exit;
 								} else {
-									$re_priority = $this->input->post('re_priority');
-									// --------------------------------------------priority_time-------------------------------------------------
-
-									$myArray = explode(' ', $re_priority);
-									$priority_id = $myArray[0];
-									$priority_time =  $myArray[1];
-
-									// --------------------------------------------end_priority_time---------------------------------------------
-
-									// --------------------------------------------department_time-----------------------------------------------
-
-									$time_dep = $this->assist_backend->time_department($data['re_department']);
-
-									// --------------------------------------------end_department_time-------------------------------------------
-
-									// --------------------------------------------specified_time------------------------------------------------
-
-									$date = date("Y-m-d H:i:s");
-									$data['priority_id'] = $priority_id;
-									$data['date_create'] =  $date;
-									$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-									$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
-									$data['time_receive'] =  $time_receive;
-									$data['specified_time'] =  $specified_time;
-
-									// --------------------------------------------end_specified_time--------------------------------------------
-
-									$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-									if ($check_system !== null && $check_system !== '') {
-										$this->form_validation->set_rules('re_line', 'Line', 'required');
-
-										$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
-
-										if ($this->form_validation->run() == FALSE) {
-											echo json_encode(validation_errors());
-											exit;
-										} else {
-											$data['re_line'] = $this->input->post('re_line');
-										}
-									}
-									$tempFileLogo = $_FILES['re_img1']['tmp_name'];
-									$FileLogo = $_FILES['re_img1']['name'];
-									$sending_data_request = $this->assist_backend->sending_data_request($FileLogo, $tempFileLogo, $data);
-									echo json_encode($sending_data_request);
-									exit;
-								}
-							} else {
-								$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
-								if ($time_request !== null && $time_request !== '') {
-
-									// --------------------------------------------request_time--------------------------------------------------
-
-									$time_request_dep =  $time_request[0]['set_timer_request_dep'];
-
-
-									// $data['all_m_re'] =  $all_m_re;
-
-									// --------------------------------------------end_request_time----------------------------------------------
-
-									// --------------------------------------------department_time-----------------------------------------------
-
-									$time_dep = $this->assist_backend->time_department($data['re_department']);
-
-									// $data['all_m_dep'] =  $all_m_dep;
-									// --------------------------------------------end_department_time-------------------------------------------
-
-									// --------------------------------------------specified_time------------------------------------------------
-									$date = date("Y-m-d H:i:s");
-									$data['date_create'] =  $date;
-									$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-									$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
-									$data['time_receive'] =  $time_receive;
-									$data['specified_time'] =  $specified_time;
-
-									// --------------------------------------------end_specified_time--------------------------------------------
-
-									$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-									if ($check_system !== null && $check_system !== '') {
-										$this->form_validation->set_rules('re_line', 'Line', 'required');
-
-										$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
-
-										if ($this->form_validation->run() == FALSE) {
-											echo json_encode(validation_errors());
-											exit;
-										} else {
-											$data['re_line'] = $this->input->post('re_line');
-										}
-									}
-									$tempFileLogo = $_FILES['re_img1']['tmp_name'];
-									$FileLogo = $_FILES['re_img1']['name'];
-									$sending_data_request = $this->assist_backend->sending_data_request($FileLogo, $tempFileLogo, $data);
-									echo json_encode($sending_data_request);
-									exit;
+									$data['re_line'] = $this->input->post('re_line');
 								}
 							}
-						} else {
-							echo json_encode('<p>image ของคุณขนาดเกิน 4000000 </p>');
+							$sending_request =  $this->assist_backend->sending_request($data);
+							echo json_encode($sending_request);
 							exit;
 						}
 					} else {
-						$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
-						if ($check_type !== null && $check_type !== '') {
-							$this->form_validation->set_rules('re_priority', 'Priority', 'required');
+						$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
+						if ($time_request !== null && $time_request !== '') {
 
-							$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+							// --------------------------------------------request_time--------------------------------------------------
 
-							if ($this->form_validation->run() == FALSE) {
-								echo json_encode(validation_errors());
-								exit;
-							} else {
-								$re_priority = $this->input->post('re_priority');
-								// --------------------------------------------priority_time-------------------------------------------------
+							$time_request_dep =  $time_request[0]['set_timer_request_dep'];
 
-								$myArray = explode(' ', $re_priority);
-								$priority_id = $myArray[0];
-								$priority_time =  $myArray[1];
 
-								// --------------------------------------------end_priority_time---------------------------------------------
+							// $data['all_m_re'] =  $all_m_re;
 
-								// --------------------------------------------department_time-----------------------------------------------
+							// --------------------------------------------end_request_time----------------------------------------------
 
-								$time_dep = $this->assist_backend->time_department($data['re_department']);
+							// --------------------------------------------department_time-----------------------------------------------
 
-								// --------------------------------------------end_department_time-------------------------------------------
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
 
-								// --------------------------------------------specified_time------------------------------------------------
+							// $data['all_m_dep'] =  $all_m_dep;
+							// --------------------------------------------end_department_time-------------------------------------------
 
-								$date = date("Y-m-d H:i:s");
-								$data['priority_id'] = $priority_id;
-								$data['date_create'] =  $date;
-								$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-								$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
-								$data['time_receive'] =  $time_receive;
-								$data['specified_time'] =  $specified_time;
+							// --------------------------------------------specified_time------------------------------------------------
+							$date = date("Y-m-d H:i:s");
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
 
-								// --------------------------------------------end_specified_time--------------------------------------------
+							// --------------------------------------------end_specified_time--------------------------------------------
 
-								$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-								if ($check_system !== null && $check_system !== '') {
-									$this->form_validation->set_rules('re_line', 'Line', 'required');
+							$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('re_line', 'Line', 'required');
 
-									$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 
-									if ($this->form_validation->run() == FALSE) {
-										echo json_encode(validation_errors());
-										exit;
-									} else {
-										$data['re_line'] = $this->input->post('re_line');
-									}
+								if ($this->form_validation->run() == FALSE) {
+									echo json_encode(validation_errors());
+									exit;
+								} else {
+									$data['re_line'] = $this->input->post('re_line');
 								}
-								$sending_request =  $this->assist_backend->sending_request($data);
-								echo json_encode($sending_request);
-								exit;
 							}
+							$sending_request =  $this->assist_backend->sending_request($data);
+							echo json_encode($sending_request);
+							exit;
+						}
+					}
+				}else{
+					if ($_FILES['re_img1']['size'] > '4000000') {
+						echo json_encode('<p>image 1 ของคุณขนาดเกิน 4000000 </p>');
+						exit;
+					}
+					if ($_FILES['re_img2']['size'] > '4000000') {
+						echo json_encode('<p>image 2 ของคุณขนาดเกิน 4000000 </p>');
+						exit;
+					}
+					if ($_FILES['re_img3']['size'] > '4000000') {
+						echo json_encode('<p>image 3 ของคุณขนาดเกิน 4000000 </p>');
+						exit;
+					}
+					$arr_img = array();
+					if (!empty($_FILES["re_img1"]["name"])) {
+						array_push($arr_img, array(
+							'tempFileLogo' => $_FILES['re_img1']['tmp_name'],
+							'FileLogo' => $_FILES['re_img1']['name']
+						));
+					}
+					if (!empty($_FILES["re_img2"]["name"])) {
+						array_push($arr_img, array(
+							'tempFileLogo' => $_FILES['re_img2']['tmp_name'],
+							'FileLogo' => $_FILES['re_img2']['name']
+						));
+					}
+					if (!empty($_FILES["re_img3"]["name"])) {
+						array_push($arr_img, array(
+							'tempFileLogo' => $_FILES['re_img3']['tmp_name'],
+							'FileLogo' => $_FILES['re_img3']['name']
+						));
+					}
+					$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
+					if ($check_type !== null && $check_type !== '') {
+						$this->form_validation->set_rules('re_priority', 'Priority', 'required');
+
+
+						if ($this->form_validation->run() == FALSE) {
+							echo json_encode(validation_errors());
+							exit;
 						} else {
-							$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
-							if ($time_request !== null && $time_request !== '') {
+							$re_priority = $this->input->post('re_priority');
+							// --------------------------------------------priority_time-------------------------------------------------
 
-								// --------------------------------------------request_time--------------------------------------------------
+							$myArray = explode(' ', $re_priority);
+							$priority_id = $myArray[0];
+							$priority_time =  $myArray[1];
 
-								$time_request_dep =  $time_request[0]['set_timer_request_dep'];
+							// --------------------------------------------end_priority_time---------------------------------------------
 
+							// --------------------------------------------department_time-----------------------------------------------
 
-								// $data['all_m_re'] =  $all_m_re;
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
 
-								// --------------------------------------------end_request_time----------------------------------------------
+							// --------------------------------------------end_department_time-------------------------------------------
 
-								// --------------------------------------------department_time-----------------------------------------------
+							// --------------------------------------------specified_time------------------------------------------------
 
-								$time_dep = $this->assist_backend->time_department($data['re_department']);
+							$date = date("Y-m-d H:i:s");
+							$data['priority_id'] = $priority_id;
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
 
-								// $data['all_m_dep'] =  $all_m_dep;
-								// --------------------------------------------end_department_time-------------------------------------------
+							// --------------------------------------------end_specified_time--------------------------------------------
 
-								// --------------------------------------------specified_time------------------------------------------------
-								$date = date("Y-m-d H:i:s");
-								$data['date_create'] =  $date;
-								$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
-								$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
-								$data['time_receive'] =  $time_receive;
-								$data['specified_time'] =  $specified_time;
+							$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('re_line', 'Line', 'required');
 
-								// --------------------------------------------end_specified_time--------------------------------------------
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 
-								$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
-								if ($check_system !== null && $check_system !== '') {
-									$this->form_validation->set_rules('re_line', 'Line', 'required');
-
-									$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
-
-									if ($this->form_validation->run() == FALSE) {
-										echo json_encode(validation_errors());
-										exit;
-									} else {
-										$data['re_line'] = $this->input->post('re_line');
-									}
+								if ($this->form_validation->run() == FALSE) {
+									echo json_encode(validation_errors());
+									exit;
+								} else {
+									$data['re_line'] = $this->input->post('re_line');
 								}
-								$sending_request =  $this->assist_backend->sending_request($data);
-								echo json_encode($sending_request);
-								exit;
 							}
+							// $tempFileLogo = $_FILES['re_img1']['tmp_name'];
+							// $FileLogo = $_FILES['re_img1']['name'];
+							$sending_data_request = $this->assist_backend->sending_data_request($arr_img, $data);
+							echo json_encode($sending_data_request);
+							exit;
+						}
+					} else {
+						$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
+						if ($time_request !== null && $time_request !== '') {
+
+							// --------------------------------------------request_time--------------------------------------------------
+
+							$time_request_dep =  $time_request[0]['set_timer_request_dep'];
+
+
+							// $data['all_m_re'] =  $all_m_re;
+
+							// --------------------------------------------end_request_time----------------------------------------------
+
+							// --------------------------------------------department_time-----------------------------------------------
+
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
+
+							// $data['all_m_dep'] =  $all_m_dep;
+							// --------------------------------------------end_department_time-------------------------------------------
+
+							// --------------------------------------------specified_time------------------------------------------------
+							$date = date("Y-m-d H:i:s");
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
+
+							// --------------------------------------------end_specified_time--------------------------------------------
+
+							$check_system = $this->assist_backend->check_system($data['re_department_issue'], $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('re_line', 'Line', 'required');
+
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+								if ($this->form_validation->run() == FALSE) {
+									echo json_encode(validation_errors());
+									exit;
+								} else {
+									$data['re_line'] = $this->input->post('re_line');
+								}
+							}
+							// $tempFileLogo = $_FILES['re_img1']['tmp_name'];
+							// $FileLogo = $_FILES['re_img1']['name'];
+							$sending_data_request = $this->assist_backend->sending_data_request($arr_img, $data);
+							echo json_encode($sending_data_request);
+							exit;
 						}
 					}
 				}
-				// 	}
-				// }
 			}
 		}
 	}
@@ -499,14 +510,9 @@ class Request extends CI_Controller
 			$this->form_validation->set_rules('subject_way', 'Subject', 'trim|required|min_length[3]|max_length[128]');
 			$this->form_validation->set_rules('detail_way', 'Detail', 'trim|required|min_length[3]|max_length[128]');
 
-
-
-
 			$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
 			$this->form_validation->set_message('min_length', '%s ต้องมีมากว่า 3 ตัว');
 			$this->form_validation->set_message('max_length', '%s ต้องมีไม่เกิน 128 ตัว');
-
-
 			$this->form_validation->set_message('is_natural_no_zero', 'กรุณาทำการตรวจสอบ %s ด้วย');
 
 			if ($this->form_validation->run() == FALSE) {
@@ -845,7 +851,6 @@ class Request extends CI_Controller
 	{
 		$this->form_validation->set_rules('detail_support', 'Detail Support', 'trim|required');
 
-
 		$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณากรอกข้อมูล  ');
 		$this->form_validation->set_message('min_length', '%s ต้องมีมากว่า 3 ตัว');
 		$this->form_validation->set_message('max_length', '%s ต้องมีไม่เกิน 128 ตัว');
@@ -859,10 +864,46 @@ class Request extends CI_Controller
 			$data['detail_sup'] = $this->input->post('detail_support');
 			$data['qu_id'] = $this->input->post('qu_id_quest');
 
-
-			$result = $this->assist_backend->reply_finish($data);
-			echo json_encode($result);
-			exit;
+			if (empty($_FILES["tplre_img1"]["name"]) && empty($_FILES["tplre_img2"]["name"]) && empty($_FILES["tplre_img3"]["name"])) {
+				$result = $this->assist_backend->reply_finish($data);
+				echo json_encode($result);
+				exit;
+			} else {
+				if ($_FILES['tplre_img1']['size'] > '4000000') {
+					echo json_encode('<p>image 1 ของคุณขนาดเกิน 4000000 </p>');
+					exit;
+				}
+				if ($_FILES['tplre_img2']['size'] > '4000000') {
+					echo json_encode('<p>image 2 ของคุณขนาดเกิน 4000000 </p>');
+					exit;
+				}
+				if ($_FILES['tplre_img3']['size'] > '4000000') {
+					echo json_encode('<p>image 3 ของคุณขนาดเกิน 4000000 </p>');
+					exit;
+				}
+				$arr_img = array();
+				if (!empty($_FILES["tplre_img1"]["name"])) {
+					array_push($arr_img, array(
+						'tempFileLogo' => $_FILES['tplre_img1']['tmp_name'],
+						'FileLogo' => $_FILES['tplre_img1']['name']
+					));
+				}
+				if (!empty($_FILES["tplre_img2"]["name"])) {
+					array_push($arr_img, array(
+						'tempFileLogo' => $_FILES['tplre_img2']['tmp_name'],
+						'FileLogo' => $_FILES['tplre_img2']['name']
+					));
+				}
+				if (!empty($_FILES["tplre_img3"]["name"])) {
+					array_push($arr_img, array(
+						'tempFileLogo' => $_FILES['tplre_img3']['tmp_name'],
+						'FileLogo' => $_FILES['tplre_img3']['name']
+					));
+				}
+				$reply_data_request_way = $this->assist_backend->reply_data_request_way($arr_img, $data);
+				echo json_encode($reply_data_request_way);
+				exit;
+			}
 		}
 	}
 }
