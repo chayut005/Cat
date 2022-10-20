@@ -58,18 +58,20 @@
 
 
                             <div class="nav-align-top mb-4">
-                                <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+                                <ul class="nav nav-pills mb-3" role="tablist">
                                     <li class="nav-item">
                                         <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-card" aria-controls="navs-pills-justified-card" aria-selected="true">
-                                            <i class="tf-icons bx bx-card"></i> Card
+                                            Card
                                         </button>
                                     </li>
                                     <li class="nav-item">
                                         <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-table" aria-controls="navs-pills-justified-table" aria-selected="false">
-                                            <i class="tf-icons bx bx-table"></i> Table
+                                            Table
                                         </button>
                                     </li>
+
                                 </ul>
+
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="navs-pills-justified-card" role="tabpanel">
                                         <div uk-slider="center: true">
@@ -439,7 +441,7 @@
                     // alert(val_re.dep_name) <i class='bx bx-edit'></i> <i class='bx bxs-trash' ></i>
                     // html_re = ''<img src="" alt="profile-picture" title="Someone Famous" />
 
-                    html_re += '<li>'
+                    html_re += '<li  style="    padding-bottom: 20px;">'
                     html_re += '<div style="cursor: -webkit-grab; cursor: grab;" class="box-container">'
                     html_re += '<div  class="card card2">'
                     html_re += '<div class="card-body">'

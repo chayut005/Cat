@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
-	data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/" data-template="vertical-menu-template-free">
 
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 	<title><?php echo $page_title; ?></title>
 	<meta name="description" content="" />
 	<!-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> -->
@@ -62,22 +60,16 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
     } */
-
 	</style>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link
-		href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-		rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>vendor/fonts/boxicons.css" />
-	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>vendor/css/core.css"
-		class="template-customizer-core-css" />
-	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>vendor/css/theme-default.css"
-		class="template-customizer-theme-css" />
+	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>vendor/css/core.css" class="template-customizer-core-css" />
+	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>vendor/css/theme-default.css" class="template-customizer-theme-css" />
 	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>demo.css" />
-	<link rel="stylesheet"
-		href="<?php echo base_url() . $css_url; ?>vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>vendor/libs/apex-charts/apex-charts.css" />
 	<link rel="stylesheet" href="<?php echo base_url() . $css_url; ?>family=Prompt.css" />
 
@@ -143,7 +135,6 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
-
 	</style>
 	<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
@@ -151,8 +142,7 @@
 
 	<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-	<div class="modal fade  bd-example-modal-xl" id="modal_data_quest_show" aria-hidden="true" data-bs-backdrop="static"
-		aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+	<div class="modal fade  bd-example-modal-xl" id="modal_data_quest_show" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered  modal-xl">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -187,36 +177,31 @@
 
 							<div class="col-lg-12 col-md-12 col-sm-12">
 								<div class="nav-align-top mb-4">
-									<ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+									<ul class="nav nav-pills mb-3" role="tablist">
 										<li class="nav-item">
-											<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-												data-bs-target="#navs-pills-justified-data2" aria-controls="navs-pills-justified-data2"
-												aria-selected="true">
-												<i class="tf-icons bx bx-data"></i> Data
+											<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-data2" aria-controls="navs-pills-justified-data2" aria-selected="true">
+												Data
 											</button>
 										</li>
 										<li class="nav-item">
-											<button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-												data-bs-target="#navs-pills-justified-file2" aria-controls="navs-pills-justified-file2"
-												aria-selected="false">
-												<i class="tf-icons bx bx-file"></i> File
+											<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-file2" aria-controls="navs-pills-justified-file2" aria-selected="false">
+												File
 											</button>
 										</li>
 										<li class="nav-item">
-											<button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-												data-bs-target="#navs-pills-justified-other" aria-controls="navs-pills-justified-other"
-												aria-selected="false">
-												<i class="tf-icons bx bx-message-square"></i> Other
+											<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-other" aria-controls="navs-pills-justified-other" aria-selected="false">
+												Other
 											</button>
 										</li>
+
 									</ul>
+
 									<div class="tab-content">
 										<div class="tab-pane fade show active" id="navs-pills-justified-data2" role="tabpanel">
 											<div class="row">
 												<div class="col-lg-12 col-sm-12">
 													<div class="column">
-														<img id="img_sender_name_u" class="setting_img_u"
-															src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
+														<img id="img_sender_name_u" class="setting_img_u" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 														<div style="text-align: center;margin-top:5px">
 															<h6>
 																<span id="sender_name_b">
@@ -234,8 +219,7 @@
                             <i class='bx bx-right-arrow bx-fade-right'></i>
                           </div> -->
 													<div class="column">
-														<img id="img_recipient_name_u" class="setting_img_u"
-															src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
+														<img id="img_recipient_name_u" class="setting_img_u" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 														<div style="text-align: center; margin-top:5px">
 															<h6>
 																<span id="recipient_name_b">
@@ -277,8 +261,7 @@
 
 																	<div class=" input-group-sm">
 																		<label>Support By:</label>
-																		<select onchange="img_and_name(value)" id="support_by" name="support_by_quest"
-																			class="form-control" required>
+																		<select onchange="img_and_name(value)" id="support_by" name="support_by_quest" class="form-control" required>
 																			<option selected value="">--- Support ---</option>
 																		</select>
 																	</div>
@@ -343,8 +326,7 @@
 																	<div class="  input-group-sm ">
 																		<div class=" input-group-outline input-group-sm">
 																			<label>Detail:</label>
-																			<textarea disabled id="detail_q" cols="30" rows="2" class="form-control"
-																				placeholder="Detail........" required></textarea>
+																			<textarea disabled id="detail_q" cols="30" rows="2" class="form-control" placeholder="Detail........" required></textarea>
 																		</div>
 																	</div>
 																</div>
@@ -361,8 +343,7 @@
 													<div class="col-lg-12 col-sm-12">
 														<div style=" height: 130px;" class="my-3">
 															<span>
-																<img class=" setting_all_request"
-																	src="<?php echo base_url(); ?>./themes/softmat/img/225901-200.png" alt="user">
+																<img class=" setting_all_request" src="<?php echo base_url(); ?>./themes/softmat/img/225901-200.png" alt="user">
 																<!-- <img id="show_data_file_request" onclick="$('#upload_file_request').click()" class=" setting_img_request" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user"> -->
 															</span>
 														</div>
@@ -386,23 +367,13 @@
 														<div class="  input-group-sm ">
 															<div class=" input-group-outline input-group-sm">
 																<label>Detail Support:</label>
-																<textarea cols="30" rows="6" name="detail_support" class="form-control"
-																	placeholder="Detail........" required></textarea>
+																<textarea cols="30" rows="6" name="detail_support" class="form-control" placeholder="Detail........" required></textarea>
 																<div class="col-lg-12 col-sm-12 my-2">
-																	<div
-																		style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
+																	<div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
 																		<span>
-																			<img id="tplshow_data_img_request1" onclick="$('#tplupload_img_request1').click()"
-																				class=" setting_img_request "
-																				src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
-																			<img id="tplshow_data_img_request2" onclick="$('#tplupload_img_request2').click()"
-																				class=" setting_img_request "
-																				src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user"
-																				style="display: none;">
-																			<img id="tplshow_data_img_request3" onclick="$('#tplupload_img_request3').click()"
-																				class=" setting_img_request "
-																				src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user"
-																				style="display: none;">
+																			<img id="tplshow_data_img_request1" onclick="$('#tplupload_img_request1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+																			<img id="tplshow_data_img_request2" onclick="$('#tplupload_img_request2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+																			<img id="tplshow_data_img_request3" onclick="$('#tplupload_img_request3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
 																		</span>
 																		<!-- <span>
                                                     <img id="show_data_file_request" onclick="$('#upload_file_request').click()" class=" setting_img_request column_img" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
@@ -412,32 +383,19 @@
                                                 </span> -->
 
 
-																		<input id="tplupload_img_request1" onchange="tplshow_img_request1(this)"
-																			name="tplre_img1" type="file"
-																			accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-																			hidden readonly>
-																		<input id="tplupload_img_request2" onchange="tplshow_img_request2(this)"
-																			name="tplre_img2" type="file"
-																			accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-																			hidden readonly>
-																		<input id="tplupload_img_request3" onchange="tplshow_img_request3(this)"
-																			name="tplre_img3" type="file"
-																			accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-																			hidden readonly>
+																		<input id="tplupload_img_request1" onchange="tplshow_img_request1(this)" name="tplre_img1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+																		<input id="tplupload_img_request2" onchange="tplshow_img_request2(this)" name="tplre_img2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+																		<input id="tplupload_img_request3" onchange="tplshow_img_request3(this)" name="tplre_img3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
 																		<!-- <input id="upload_file_request" onchange="show_file_request(this)" name="re_file" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly> -->
 
 																	</div>
 																	<div class="" style="  display: flex; justify-content: center; align-items: center;">
-																		<button onclick="remove_img_request1()"
-																			class=" btn  btn-sm  btn-warning my-2">Remove</button>
+																		<button onclick="remove_img_request1()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
 																	</div>
 																	<div class="" style="  display: flex; justify-content: center; align-items: center;">
-																		<button onclick="tplop_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2"
-																			style="margin-right: 5px;">Image 1</button>
-																		<button onclick="tplop_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2"
-																			style="margin-right: 5px;">Image 2</button>
-																		<button onclick="tplop_img(3)" type="button"
-																			class=" btn  btn-sm  btn-warning my-2">Image 3</button>
+																		<button onclick="tplop_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
+																		<button onclick="tplop_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
+																		<button onclick="tplop_img(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
 																	</div>
 																	<!-- <div class="column2" style="  display: flex; justify-content: center; align-items: center;">
                                             <button onclick="remove_file_request()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
@@ -521,11 +479,13 @@
 				var imgType = input_img.files[0]['type'];
 				var chk = imgType.split("/");
 				var reader = new FileReader();
-				reader.onload = function (e) {
+				reader.onload = function(e) {
 					// console.log(e)
-					if(chk[0]!="application"){
+					if (chk[0] != "application") {
 						$("#tplshow_data_img_request1").attr("src", e.target.result)
-					}else{$("#tplshow_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")}
+					} else {
+						$("#tplshow_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+					}
 				}
 				reader.readAsDataURL(input_img.files[0]);
 			} else {
@@ -538,11 +498,13 @@
 				var imgType = input_img.files[0]['type'];
 				var chk = imgType.split("/");
 				var reader = new FileReader();
-				reader.onload = function (e) {
+				reader.onload = function(e) {
 					// console.log(e)
-					if(chk[0]!="application"){
+					if (chk[0] != "application") {
 						$("#tplshow_data_img_request2").attr("src", e.target.result)
-					}else{$("#tplshow_data_img_request2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")}
+					} else {
+						$("#tplshow_data_img_request2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+					}
 				}
 				reader.readAsDataURL(input_img.files[0]);
 			} else {
@@ -555,11 +517,13 @@
 				var imgType = input_img.files[0]['type'];
 				var chk = imgType.split("/");
 				var reader = new FileReader();
-				reader.onload = function (e) {
+				reader.onload = function(e) {
 					// console.log(e)
-					if(chk[0]!="application"){
+					if (chk[0] != "application") {
 						$("#tplshow_data_img_request3").attr("src", e.target.result)
-					}else{$("#tplshow_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")}
+					} else {
+						$("#tplshow_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+					}
 				}
 				reader.readAsDataURL(input_img.files[0]);
 			} else {
@@ -602,7 +566,7 @@
 							qu_id: qu_id,
 							detail_r: text
 						},
-						success: function (reply_cancel) {
+						success: function(reply_cancel) {
 							// console.log(reply_cancel)
 							if (reply_cancel['reply'] !== true && reply_cancel['reply'] !== false) {
 								Swal.fire({
@@ -642,8 +606,8 @@
 				data: {
 					qu_id: qu_id
 				},
-				success: function (data_quest) {
-					$.each(data_quest, function (key_q, val_q) {
+				success: function(data_quest) {
+					$.each(data_quest, function(key_q, val_q) {
 						// alert(val_q.support_by_id )
 						if (val_q.support_by_id !== '' || val_q.support_by_id !== null) {
 							$.ajax({
@@ -653,15 +617,15 @@
 								data: {
 									user_id: val_q.support_by_id
 								},
-								beforeSend: function () {
+								beforeSend: function() {
 									$("#img_name_u_alert").attr("src",
 										"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 								},
-								complete: function () {
+								complete: function() {
 									$("#img_name_u_alert").attr('style', 'display');
 								},
-								success: function (data_user) {
-									$.each(data_user, function (key_user, val_user) {
+								success: function(data_user) {
+									$.each(data_user, function(key_user, val_user) {
 										if (val_user.path_img_user !== null && val_user.path_img_user !== '') {
 											Swal.fire({
 												html: '<p><div><img id="img_name_u_alert" class="setting_img_u_alert" src="<?php echo base_url(); ?>' +
@@ -702,8 +666,8 @@
 				data: {
 					qu_id: qu_id
 				},
-				success: function (data_quest) {
-					$.each(data_quest, function (key_q, val_q) {
+				success: function(data_quest) {
+					$.each(data_quest, function(key_q, val_q) {
 						if (val_q.issue_text === '' || val_q.issue_text === null) {
 							$.ajax({
 								type: 'POST',
@@ -712,15 +676,15 @@
 								data: {
 									user_id: val_q.issue_by_id
 								},
-								beforeSend: function () {
+								beforeSend: function() {
 									$("#img_name_u_alert").attr("src",
 										"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 								},
-								complete: function () {
+								complete: function() {
 									$("#img_name_u_alert").attr('style', 'display');
 								},
-								success: function (data_user) {
-									$.each(data_user, function (key_user, val_user) {
+								success: function(data_user) {
+									$.each(data_user, function(key_user, val_user) {
 										if (val_user.path_img_user !== null && val_user.path_img_user !== '') {
 											Swal.fire({
 												html: '<p><div><img id="img_name_u_alert" class="setting_img_u_alert" src="<?php echo base_url(); ?>' +
@@ -768,7 +732,7 @@
 						type: "POST",
 						dataType: 'json',
 						data: $('#form_quest_manage_quest').serialize(),
-						success: function (data_accept) {
+						success: function(data_accept) {
 							// alert()
 							console.log(data_accept)
 							if (data_accept !== true && data_accept !== false) {
@@ -814,7 +778,7 @@
 						type: "POST",
 						dataType: 'json',
 						data: $('#form_quest_manage_quest').serialize(),
-						success: function (data_finish) {
+						success: function(data_finish) {
 							// alert()
 							// console.log(data_finish)
 							if (data_finish !== true && data_finish !== false) {
@@ -891,9 +855,9 @@
 					data: {
 						qu_id: qu_id
 					},
-					success: function (timer_quest) {
+					success: function(timer_quest) {
 						// console.log(timer_quest)
-						$.each(timer_quest, function (key_u, val_u) {
+						$.each(timer_quest, function(key_u, val_u) {
 							if (val_u.over_accept_flag === '1') {
 								$("#time_accept2").css("color", "red");
 							} else if (val_u.over_accept_flag === '2') {
@@ -925,16 +889,16 @@
 					data: {
 						user_id: user_id
 					},
-					beforeSend: function () {
+					beforeSend: function() {
 						$("#img_recipient_name_u").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 					},
-					complete: function () {
+					complete: function() {
 						$("#img_recipient_name_u").attr('style', 'display');
 					},
-					success: function (data_user) {
+					success: function(data_user) {
 						// console.log(data_user)
 
-						$.each(data_user, function (key_u, val_u) {
+						$.each(data_user, function(key_u, val_u) {
 							if (val_u.path_img_user !== '' && val_u.path_img_user !== null) {
 								$("#img_recipient_name_u").attr("src", "<?php echo base_url(); ?>" + val_u.path_img_user + "")
 								$('#recipient_name_b').html('<span>' + val_u.employee + '</span>')
@@ -964,8 +928,8 @@
 				data: {
 					qu_id: qu_id
 				},
-				success: function (data_quest) {
-					$.each(data_quest, function (key_q, val_q) {
+				success: function(data_quest) {
+					$.each(data_quest, function(key_q, val_q) {
 
 						// alert(val_q.support_by_id +'==='+ <?php echo $this->session->userdata('sessUsrId') ?>)
 
@@ -1062,12 +1026,12 @@
 								data: {
 									dep_id: val_q.dep_support_id,
 								},
-								success: function (reply_cat) {
+								success: function(reply_cat) {
 									// console.log(reply_cat)
 									if (reply_cat !== null && reply_cat !== '') {
 										html_category = '';
 										html_category += '<option selected value="">--- Category ---</option>';
-										$.each(reply_cat, function (key_cat, val_cat) {
+										$.each(reply_cat, function(key_cat, val_cat) {
 											html_category += '<option  value="' + val_cat.cat_id + '">' + val_cat.cat_name +
 												'</option>'
 										})
@@ -1100,12 +1064,12 @@
 								data: {
 									dep_id: val_q.dep_support_id,
 								},
-								success: function (reply_cat) {
+								success: function(reply_cat) {
 									// console.log(reply_cat)
 									if (reply_cat !== null && reply_cat !== '') {
 										html_category = '';
 										html_category += '<option selected value="">--- Category ---</option>';
-										$.each(reply_cat, function (key_cat, val_cat) {
+										$.each(reply_cat, function(key_cat, val_cat) {
 											// alert(val_cat.cat_id +'==='+ val_q.cat_id)
 											if (val_cat.cat_id === val_q.cat_id) {
 												check_category = 'selected';
@@ -1141,13 +1105,13 @@
 							data: {
 								dep_id: val_q.dep_support_id,
 							},
-							success: function (reply_support) {
+							success: function(reply_support) {
 								// console.log(reply_support)
 								if (reply_support !== null && reply_support !== '') {
 									var html_support_by = '';
 									var html_check = '';
 									html_support_by += '<option selected value="">--- Support ---</option>';
-									$.each(reply_support, function (key_support, val_support) {
+									$.each(reply_support, function(key_support, val_support) {
 										if (val_support.user_id === val_q.support_by_id) {
 											html_check = 'selected';
 										}
@@ -1174,19 +1138,19 @@
 								data: {
 									user_id: val_q.issue_by_id
 								},
-								beforeSend: function () {
+								beforeSend: function() {
 									$("#img_sender_name_u").attr("src",
 										"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 									// $("#img_recipient_name_u").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 								},
-								complete: function () {
+								complete: function() {
 									$("#img_sender_name_u").attr('style', 'display');
 									// $("#img_recipient_name_u").attr('style', 'display');
 								},
-								success: function (data_user) {
+								success: function(data_user) {
 									// console.log(data_user)
 
-									$.each(data_user, function (key_u, val_u) {
+									$.each(data_user, function(key_u, val_u) {
 										if (val_u.employee !== '' && val_u.employee !== null) {
 											$('#issue_by').val(val_u.f_name + ' ' + val_u.l_name + '(' + val_u.employee +
 												')')
@@ -1215,17 +1179,17 @@
 							data: {
 								user_id: val_q.support_by_id
 							},
-							beforeSend: function () {
+							beforeSend: function() {
 								$("#img_recipient_name_u").attr("src",
 									"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 							},
-							complete: function () {
+							complete: function() {
 								$("#img_recipient_name_u").attr('style', 'display');
 							},
-							success: function (data_user) {
+							success: function(data_user) {
 								// console.log(data_user)
 
-								$.each(data_user, function (key_u, val_u) {
+								$.each(data_user, function(key_u, val_u) {
 									if (val_u.path_img_user !== '' && val_u.path_img_user !== null) {
 										$("#img_recipient_name_u").attr("src", "<?php echo base_url(); ?>" + val_u
 											.path_img_user + "")
@@ -1254,7 +1218,7 @@
 
 		}
 
-		$(document).ready(function () {
+		$(document).ready(function() {
 			show_img_user()
 		})
 
@@ -1267,20 +1231,20 @@
 				data: {
 					user_id: $('#id_user_id').val()
 				},
-				beforeSend: function () {
+				beforeSend: function() {
 					$("#img_hearder").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 					$("#img_hearder2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 					$("#img_edit_user_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 
 				},
-				complete: function () {
+				complete: function() {
 					$("#img_hearder").attr('style', 'display');
 					$("#img_hearder2").attr('style', 'display');
 					$("#img_edit_user_name").attr('style', 'display');
 				},
-				success: function (data_user) {
+				success: function(data_user) {
 					$('#upload_imgprofile').val('')
-					$.each(data_user, function (key_user, val_user) {
+					$.each(data_user, function(key_user, val_user) {
 						// console.log(val_user.path_img_user)
 						if (val_user.path_img_user !== null && val_user.path_img_user !== '') {
 							$('#img_hearder').attr('src', '<?php echo base_url(); ?>' + val_user.path_img_user)
@@ -1332,7 +1296,7 @@
 							qu_id: qu_id,
 							detail_c: text
 						},
-						success: function (reply_cancel) {
+						success: function(reply_cancel) {
 							// console.log(reply_cancel)
 							if (reply_cancel['reply'] !== true && reply_cancel['reply'] !== false) {
 								Swal.fire({
@@ -1359,5 +1323,4 @@
 
 
 		}
-
 	</script>

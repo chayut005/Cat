@@ -47,9 +47,9 @@
 
 
                     <div class="nav-align-top mb-4">
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-pills mb-3" role="tablist">
                             <li class="nav-item">
-                                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-Type_ususe" aria-controls="navs-top-Type_ususe" aria-selected="true">
+                                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-Type_ususe" aria-controls="#navs-top-Type_ususe" aria-selected="true">
                                     Type Use
                                 </button>
                             </li>
@@ -58,10 +58,11 @@
                                     Type
                                 </button>
                             </li>
-
                         </ul>
+
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="navs-top-Type_ususe" role="tabpanel">
+
                                 <div class="row">
                                     <div style="margin-bottom: 10px;" class="col-lg-12 col-sm-12">
 
@@ -74,22 +75,57 @@
                                     </div>
 
                                 </div>
+                                <div class="nav-align-top mb-4">
+                                    <ul class="nav nav-pills mb-3" role="tablist">
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-card" aria-controls="navs-pills-card" aria-selected="true">
+                                                Card
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-table" aria-controls="navs-pills-table" aria-selected="false">
+                                                Table
+                                            </button>
+                                        </li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="navs-pills-card" role="tabpanel">
+                                            <div class="tab-pane fade show active" id="navs-pills-justified-card" role="tabpanel">
+                                                <div uk-slider="center: true">
+                                                    <div class="uk-position-relative " tabindex="-1">
+                                                        <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-2@m   uk-child-width-1-4@l   uk-grid" id="html_re">
 
 
-                                <div class="tab-pane fade show active" id="navs-pills-justified-card" role="tabpanel">
-                                    <div uk-slider="center: true">
-                                        <div class="uk-position-relative " tabindex="-1">
-                                            <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-2@m   uk-child-width-1-4@l   uk-grid" id="html_re">
 
-
-
-                                            </ul>
-                                            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-                                            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                                                        </ul>
+                                                        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                                                        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                                                    </div>
+                                                    <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+                                        <div class="tab-pane fade" id="navs-pills-table" role="tabpanel">
+                                            <table id="table_type_use" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:center;">No</th>
+                                                        <th style="text-align:center;">Department</th>
+                                                        <th style="text-align:center;">Type</th>
+                                                        <th style="text-align:center;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
                                 </div>
+
+
+
                             </div>
                             <div class="tab-pane fade" id="navs-top-Type" role="tabpanel">
                                 <table id="main_type" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
@@ -145,9 +181,55 @@
 </div>
 <!-- ------------------------------------------------------------------------------------------------------------------------ -->
 <script>
-    function use_type(type_id,dep_id){
-        alert(type_id,dep_id)
+    function use_type(type_id, dep_id) {
+        // alert(type_id + '==' + dep_id)
+        event.preventDefault()
+        Swal.fire({
+            title: "ต้องการ  Save Type?",
+            text: "หรือไม่",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Save!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(pri_id + '==>' + dep_id)
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '<?php echo base_url(); ?>set_time/save_type',
+                    data: {
+                        type_id: type_id,
+                        dep_id: dep_id
+                    },
+                    success: function(reply_save_type) {
+                        console.log(reply_save_type)
+                        if (reply_save_type !== true && reply_save_type !== false) {
+                            Swal.fire({
+                                html: "<p>" + reply_save_type + "</p>",
+                                icon: 'warning',
+                            })
+
+                        } else if (reply_save_type === true) {
+                            Swal.fire({
+                                html: "<p>Save Type</p><p>Success</p>",
+                                icon: 'success',
+                            })
+                            $('#modal_check_pri_dep').modal('hide')
+                        } else if (reply_save_type === false) {
+                            Swal.fire({
+                                html: "<p>Save  Type</p><p>Error</p>",
+                                icon: 'Error',
+                            })
+                        }
+                    }
+                })
+            }
+        })
+
     }
+
     function button_re_type(type_id) {
         event.preventDefault();
         Swal.fire({
@@ -311,9 +393,102 @@
     }
 
     function button_delete_type_dep(dep_id, type_id) {
-        event.preventDefault()
-        alert(dep_id + '==' + type_id)
+        event.preventDefault();
+
+        // alert(type_id + '==>' + dep_id)
+        Swal.fire({
+            title: "ต้องการ Delete หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Save!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(user_id)
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/delete_type_use',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        type_id: type_id,
+                        dep_id: dep_id
+
+                    },
+                    success: function(reply_delete) {
+                        // console.log(data['reply'])
+                        if (reply_delete['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'success',
+                            })
+                        } else if (reply_delete['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'warning',
+                            })
+                        }
+                    }
+                })
+            }
+        })
     }
+    $(document).ready(function() {
+
+        var cnt = 1;
+        var table = $('#table_type_use').DataTable({
+            // lengthChange: false,
+            // buttons: ['copy', 'excel', 'pdf', 'colvis'],form_update_time_pri data_priority_check_add
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 'All'],
+            ],
+
+            scrollX: true,
+            ajax: {
+                url: '<?php echo base_url(); ?>set_time/data_type_use_table',
+                type: 'post',
+                dataType: 'json',
+                // data: function(data) {
+                //     data.start_date = $('#start_date').val();
+                //     data.end_date = $('#end_date').val()
+                // }
+            },
+            columns: [{
+                    data: "type_id",
+                    "render": function(data, type, row) {
+                        return cnt++;
+                    }
+                },
+                {
+                    data: "dep_name"
+                },
+                {
+                    data: "type_name"
+                },
+                {
+                    data: 'type_id',
+                    "render": function(data, type, row, meta) {
+                        if (type === 'display') {
+                            data = '<a onclick="button_delete_type_dep(' + row.dep_id + ',' + data + ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>'
+                        }
+                        return data;
+                    }
+                }
+                // {
+                //     data: 'button_show',
+                // }
+            ]
+        });
+        setInterval(function() {
+            table.ajax.reload(null, false);
+            cnt = 1;
+            // table.clear().draw();
+        }, 1000);
+        // data_request_table()
+        //     .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
     setInterval(data_request_table, 1000)
 
     function data_request_table() {
@@ -325,13 +500,13 @@
             dataType: 'json',
             url: '<?php echo base_url(); ?>set_time/data_type',
             success: function(re_data) {
-                console.log(re_data)
+                // console.log(re_data)
 
                 $.each(re_data, function(key_re, val_re) {
                     // alert(val_re.dep_name) <i class='bx bx-edit'></i> <i class='bx bxs-trash' ></i>
                     // html_re = ''<img src="" alt="profile-picture" title="Someone Famous" />
 
-                    html_re += '<li>'
+                    html_re += '<li style="    padding-bottom: 20px;">'
                     html_re += '<div style="cursor: -webkit-grab; cursor: grab;" class="box-container">'
                     html_re += '<div  class="card card2">'
                     html_re += '<div class="card-body">'

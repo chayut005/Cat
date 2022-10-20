@@ -35,9 +35,9 @@
 
 
             <div class="nav-align-top mb-4">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-pills mb-3" role="tablist">
                     <li class="nav-item">
-                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-manage" aria-controls="navs-top-manage" aria-selected="true">
+                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-manage" aria-controls="#navs-top-manage" aria-selected="true">
                             Manage
                         </button>
                     </li>
@@ -46,7 +46,10 @@
                             Report
                         </button>
                     </li>
+
+
                 </ul>
+
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="navs-top-manage" role="tabpanel">
                         <div class="row">
@@ -295,14 +298,14 @@
                     if (val.over_accept_flag == 0) {
                         over1 = 'Normal';
                     } else {
-                        over1 = 'Over';
+                        over1 = 'Delay';
                         totalOverAcc++;
                     }
                     var over2 = '';
                     if (val.over_success_flag == 0) {
                         over2 = 'Normal';
                     } else {
-                        over2 = 'Over';
+                        over2 = 'Delay';
                         totalOverSuc++;
                     }
                     quest_html += '<tr>' +

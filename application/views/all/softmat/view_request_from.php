@@ -34,12 +34,10 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
-
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
 	<!-- <h1>FORM REQUEST</h1> -->
-	<img style=" min-width: 170px; width: 30%; min-height: 16px;  max-height: 30px;"
-		src="<?php echo base_url(); ?>./themes/softmat/img/f_re.png" alt="user">
+	<img style=" min-width: 170px; width: 30%; min-height: 16px;  max-height: 30px;" src="<?php echo base_url(); ?>./themes/softmat/img/f_re.png" alt="user">
 
 	<div class="row">
 		<div class="col-lg-12 mb-12 sm-12 my-1">
@@ -51,22 +49,20 @@
 					<div class="col-lg-12 col-mb-12 col-sm-12 my-1">
 
 						<div class="nav-align-top mb-4">
-							<ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+							<ul class="nav nav-pills mb-3" role="tablist">
 								<li class="nav-item">
-									<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-										data-bs-target="#navs-pills-justified-data"
-										aria-controls="navs-pills-justified-data" aria-selected="true">
-										<i class="tf-icons bx bx-data"></i> Data
+									<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-data" aria-controls="navs-pills-justified-data" aria-selected="true">
+										Data
 									</button>
 								</li>
 								<li class="nav-item">
-									<button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-										data-bs-target="#navs-pills-justified-file"
-										aria-controls="navs-pills-justified-file" aria-selected="false">
-										<i class="tf-icons bx bx-file"></i> Add File
+									<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-file" aria-controls="navs-pills-justified-file" aria-selected="false">
+										Add File
 									</button>
 								</li>
+
 							</ul>
+
 							<div class="tab-content">
 								<div class="tab-pane fade show active" id="navs-pills-justified-data" role="tabpanel">
 
@@ -81,9 +77,7 @@
 														</span>
 													</h6>
 												</div>
-												<img id="img_issue_name" class="setting_img_re_quest"
-													src="<?php echo base_url(); ?>./themes/softmat/img/user.png"
-													alt="user">
+												<img id="img_issue_name" class="setting_img_re_quest" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 												<div style="text-align: center; margin-top:5px">
 													<h6>
 														<span id="issue_name">
@@ -108,9 +102,7 @@
 														</span>
 													</h6>
 												</div>
-												<img id="img_support_name" class="setting_img_re_quest"
-													src="<?php echo base_url(); ?>./themes/softmat/img/user.png"
-													alt="user">
+												<img id="img_support_name" class="setting_img_re_quest" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 												<div style="text-align: center;margin-top:5px">
 													<h6>
 														<span id="support_name">
@@ -128,8 +120,7 @@
 										<div class="col-lg-6 col-mb-6 col-sm-6 my-1">
 											<div class=" input-group-outline input-group-sm">
 												<label>Department Issue:</label>
-												<select selected onchange="open_issue(value)" id="html_issue_dep"
-													name="re_department_issue" class="form-control" required>
+												<select selected onchange="open_issue(value)" id="html_issue_dep" name="re_department_issue" class="form-control" required>
 													<option value="">--- Department ---</option>
 												</select>
 
@@ -139,8 +130,7 @@
 											<div id="html_issue_by_box">
 												<label>Issue By:</label>
 												<div class=" input-group-outline input-group input-group-sm">
-													<select onchange="issue_by(value)" disabled id="html_issue_by"
-														name="re_issue" class="form-control" required>
+													<select onchange="issue_by(value)" disabled id="html_issue_by" name="re_issue" class="form-control" required>
 														<option selected value="">--- Issue ---</option>
 													</select>
 
@@ -152,8 +142,7 @@
 										<div class="col-lg-6 col-mb-6 col-sm-6 my-1">
 											<div class=" input-group-outline input-group-sm">
 												<label>Department Sup:</label>
-												<select selected onchange="open_support(value)" id="html_support_dep"
-													name="re_department" class="form-control" required>
+												<select selected onchange="open_support(value)" id="html_support_dep" name="re_department" class="form-control" required>
 													<option value="">--- Department ---</option>
 												</select>
 
@@ -161,8 +150,7 @@
 
 											<div class=" input-group-outline input-group-sm">
 												<label>Support By:</label>
-												<select onchange="support_by(value)" disabled id="html_support_by"
-													name="re_support" class="form-control" required>
+												<select onchange="support_by(value)" disabled id="html_support_by" name="re_support" class="form-control" required>
 													<option selected value="">--- Support ---</option>
 												</select>
 
@@ -172,9 +160,7 @@
 										<div class="col-lg-6 col-mb-6 col-sm-6 ">
 											<div class=" input-group-outline input-group-sm">
 												<label>Type:</label>
-												<select disabled onchange="check_data_type(value)" id="html_type"
-													name="re_type" class="form-control selectpicker"
-													data-live-search="true" required>
+												<select disabled onchange="check_data_type(value)" id="html_type" name="re_type" class="form-control selectpicker" data-live-search="true" required>
 													<option selected value="">--- Type ---</option>
 												</select>
 
@@ -184,9 +170,7 @@
 										<div class="col-lg-6 col-mb-6 col-sm-6 ">
 											<div class=" input-group-outline input-group-sm">
 												<label>System:</label>
-												<select disabled onchange="check_data_system(value)" id="html_system"
-													name="re_system" class="form-control selectpicker"
-													data-live-search="true" required>
+												<select disabled onchange="check_data_system(value)" id="html_system" name="re_system" class="form-control selectpicker" data-live-search="true" required>
 													<option selected value="">--- System ---</option>
 												</select>
 
@@ -196,8 +180,7 @@
 										<div id="col_priority_type" class="col-lg-12 col-mb-12 col-sm-12">
 											<div class=" input-group-outline input-group-sm">
 												<label>Category:</label>
-												<select disabled id="html_category" name="re_category"
-													class="form-control" required>
+												<select disabled id="html_category" name="re_category" class="form-control" required>
 													<option selected value="">--- Category ---</option>
 												</select>
 
@@ -212,8 +195,7 @@
 										<div id="col_line_system" class="col-lg-12 col-sm-12 ">
 											<div class=" input-group-outline input-group-sm">
 												<label>Subject:</label>
-												<input type="text" class="form-control" placeholder="Enter Subject"
-													name="re_subject" required>
+												<input type="text" class="form-control" placeholder="Enter Subject" name="re_subject" required>
 
 											</div>
 										</div>
@@ -225,8 +207,7 @@
 										<div class="col-lg-12 col-sm-12 ">
 											<div class=" input-group-outline input-group-sm">
 												<label>Detail:</label>
-												<textarea name="re_detail" id="" cols="30" rows="3" class="form-control"
-													placeholder="Detail........" required></textarea>
+												<textarea name="re_detail" id="" cols="30" rows="3" class="form-control" placeholder="Detail........" required></textarea>
 
 											</div>
 										</div>
@@ -242,24 +223,11 @@
 
 
 										<div class="col-lg-12 col-sm-12 my-2">
-											<div
-												style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
+											<div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
 												<span>
-													<img id="show_data_img_request1"
-														onclick="$('#upload_img_request1').click()"
-														class=" setting_img_request "
-														src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-														alt="user">
-													<img id="show_data_img_request2"
-														onclick="$('#upload_img_request2').click()"
-														class=" setting_img_request "
-														src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-														alt="user" style="display: none;">
-													<img id="show_data_img_request3"
-														onclick="$('#upload_img_request3').click()"
-														class=" setting_img_request "
-														src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-														alt="user" style="display: none;">
+													<img id="show_data_img_request1" onclick="$('#upload_img_request1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+													<img id="show_data_img_request2" onclick="$('#upload_img_request2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+													<img id="show_data_img_request3" onclick="$('#upload_img_request3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
 												</span>
 												<!-- <span>
                                                     <img id="show_data_file_request" onclick="$('#upload_file_request').click()" class=" setting_img_request column_img" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
@@ -269,36 +237,19 @@
                                                 </span> -->
 
 
-												<input id="upload_img_request1" onchange="show_img_request1(this)"
-													name="re_img1" type="file"
-													accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-													hidden readonly>
-												<input id="upload_img_request2" onchange="show_img_request2(this)"
-													name="re_img2" type="file"
-													accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-													hidden readonly>
-												<input id="upload_img_request3" onchange="show_img_request3(this)"
-													name="re_img3" type="file"
-													accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-													hidden readonly>
+												<input id="upload_img_request1" onchange="show_img_request1(this)" name="re_img1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+												<input id="upload_img_request2" onchange="show_img_request2(this)" name="re_img2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+												<input id="upload_img_request3" onchange="show_img_request3(this)" name="re_img3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
 												<!-- <input id="upload_file_request" onchange="show_file_request(this)" name="re_file" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly> -->
 
 											</div>
-											<div class=""
-												style="  display: flex; justify-content: center; align-items: center;">
-												<button onclick="remove_img_request1()"
-													class=" btn  btn-sm  btn-warning my-2">Remove</button>
+											<div class="" style="  display: flex; justify-content: center; align-items: center;">
+												<button onclick="remove_img_request1()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
 											</div>
-											<div class=""
-												style="  display: flex; justify-content: center; align-items: center;">
-												<button onclick="op_img(1)" type="button"
-													class=" btn  btn-sm  btn-warning my-2"
-													style="margin-right: 5px;">Image 1</button>
-												<button onclick="op_img(2)" type="button"
-													class=" btn  btn-sm  btn-warning my-2"
-													style="margin-right: 5px;">Image 2</button>
-												<button onclick="op_img(3)" type="button"
-													class=" btn  btn-sm  btn-warning my-2">Image 3</button>
+											<div class="" style="  display: flex; justify-content: center; align-items: center;">
+												<button onclick="op_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
+												<button onclick="op_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
+												<button onclick="op_img(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
 											</div>
 											<!-- <div class="column2" style="  display: flex; justify-content: center; align-items: center;">
                                             <button onclick="remove_file_request()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
@@ -307,10 +258,8 @@
 									</div>
 									<input type="hidden" name="action" value="<?php echo base64_encode('request'); ?>">
 									<div style=" float:right;" class="margin_top_fig ">
-										<button onclick="clear_data_re()" id="clear_form_re" type="reset"
-											class="btn  btn-sm  btn-primary">Clear</button>
-										<button type="submit" onclick="send_data_request()"
-											class="btn  btn-sm  btn-success">Send</button>
+										<button onclick="clear_data_re()" id="clear_form_re" type="reset" class="btn  btn-sm  btn-primary">Clear</button>
+										<button type="submit" onclick="send_data_request()" class="btn  btn-sm  btn-success">Send</button>
 									</div>
 								</div>
 
@@ -389,7 +338,7 @@
 					dep_issue_id: dep_issue_id,
 					system_id: system_id
 				},
-				success: function (reply_check) {
+				success: function(reply_check) {
 					// console.log(reply_check)
 					if (reply_check !== null && reply_check !== '') {
 						$("#col_line_system").removeClass("col-lg-12").addClass("col-lg-6");
@@ -398,7 +347,7 @@
 						html_line += '<label>Line:</label>';
 						html_line += '<select id="html_line" name="re_line" class="form-control" required>';
 						html_line += '<option selected value="">--- line ---</option>';
-						$.each(reply_check, function (key_lp, val_lp) {
+						$.each(reply_check, function(key_lp, val_lp) {
 							html_line += '<option  value="' + val_lp.lp_id + '">' + val_lp.lp_name +
 								'</option>'
 						})
@@ -433,7 +382,7 @@
 					dep_sup_id: dep_sup_id,
 					type_id: type_id
 				},
-				success: function (reply_check) {
+				success: function(reply_check) {
 					// console.log(reply_check)
 					if (reply_check !== null && reply_check !== '') {
 						$("#col_priority_type").removeClass("col-lg-12 col-mb-12 col-sm-12").addClass(
@@ -444,7 +393,7 @@
 						html_priority +=
 							'<select id="html_priority" name="re_priority" class="form-control" required>';
 						html_priority += '<option selected value="">--- Priority ---</option>';
-						$.each(reply_check, function (key_pri, val_pri) {
+						$.each(reply_check, function(key_pri, val_pri) {
 							html_priority += '<option  value="' + val_pri.pri_id + ' ' + val_pri
 								.time_priority + '">' + val_pri.pri_name + '</option>'
 						})
@@ -481,16 +430,16 @@
 				data: {
 					user_id: user_id
 				},
-				beforeSend: function () {
+				beforeSend: function() {
 					$("#img_support_name").attr("src",
 						"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 
 				},
-				complete: function () {
+				complete: function() {
 					$("#img_support_name").attr('style', 'display');
 				},
-				success: function (data_user) {
-					$.each(data_user, function (key_user, val_user) {
+				success: function(data_user) {
+					$.each(data_user, function(key_user, val_user) {
 						$('#img_support_name').attr('src', '<?php echo base_url(); ?>' + val_user
 							.path_img_user)
 						$('#support_name').html('<span>' + val_user.employee + '</span>')
@@ -517,16 +466,16 @@
 				data: {
 					user_id: user_id
 				},
-				beforeSend: function () {
+				beforeSend: function() {
 					$("#img_issue_name").attr("src",
 						"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
 
 				},
-				complete: function () {
+				complete: function() {
 					$("#img_issue_name").attr('style', 'display');
 				},
-				success: function (data_user) {
-					$.each(data_user, function (key_user, val_user) {
+				success: function(data_user) {
+					$.each(data_user, function(key_user, val_user) {
 						$('#img_issue_name').attr('src', '<?php echo base_url(); ?>' + val_user
 							.path_img_user)
 						$('#issue_name').html('<span>' + val_user.employee + '</span>')
@@ -561,13 +510,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_support) {
+				success: function(reply_support) {
 					// console.log(reply_support)
 					if (reply_support !== null && reply_support !== '') {
 						$("#html_support_by").removeAttr("disabled")
 						html_support_by = '';
 						html_support_by += '<option selected value="">--- Support ---</option>';
-						$.each(reply_support, function (key_support, val_support) {
+						$.each(reply_support, function(key_support, val_support) {
 							html_support_by += '<option  value="' + val_support.user_id + '">' +
 								val_support.f_name + ' ' + val_support.l_name + ' (' + val_support
 								.employee + ')</option>'
@@ -600,13 +549,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_type) {
+				success: function(reply_type) {
 					// console.log(reply_type)
 					if (reply_type !== null && reply_type !== '') {
 						$("#html_type").removeAttr("disabled")
 						html_type = '';
 						html_type += '<option selected value="">--- Type ---</option>';
-						$.each(reply_type, function (key_type, val_type) {
+						$.each(reply_type, function(key_type, val_type) {
 							html_type += '<option  value="' + val_type.type_id + '">' + val_type
 								.type_name + '</option>'
 						})
@@ -638,13 +587,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_cat) {
+				success: function(reply_cat) {
 					// console.log(reply_cat)
 					if (reply_cat !== null && reply_cat !== '') {
 						$("#html_category").removeAttr("disabled")
 						html_category = '';
 						html_category += '<option selected value="">--- Category ---</option>';
-						$.each(reply_cat, function (key_cat, val_cat) {
+						$.each(reply_cat, function(key_cat, val_cat) {
 							html_category += '<option  value="' + val_cat.cat_id + '">' + val_cat
 								.cat_name + '</option>'
 						})
@@ -676,13 +625,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_sys) {
+				success: function(reply_sys) {
 					// console.log(reply_sys)
 					if (reply_sys !== null && reply_sys !== '') {
 						$("#html_system").removeAttr("disabled")
 						html_system = '';
 						html_system += '<option selected value="">--- System ---</option>';
-						$.each(reply_sys, function (key_sys, val_sys) {
+						$.each(reply_sys, function(key_sys, val_sys) {
 							// alert(val_sys.system_id)
 							html_system += '<option  value="' + val_sys.system_id + '">' + val_sys
 								.system_name + '</option>'
@@ -724,11 +673,13 @@
 			var imgType = input_img.files[0]['type'];
 			var chk = imgType.split("/");
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
-				if(chk[0]!="application"){
+				if (chk[0] != "application") {
 					$("#show_data_img_request1").attr("src", e.target.result)
-				}else{$("#show_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")}
+				} else {
+					$("#show_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+				}
 			}
 			reader.readAsDataURL(input_img.files[0]);
 		} else {
@@ -741,11 +692,13 @@
 			var imgType = input_img.files[0]['type'];
 			var chk = imgType.split("/");
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
-				if(chk[0]!="application"){
+				if (chk[0] != "application") {
 					$("#show_data_img_request2").attr("src", e.target.result)
-				}else{$("#show_data_img_request2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")}
+				} else {
+					$("#show_data_img_request2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+				}
 			}
 			reader.readAsDataURL(input_img.files[0]);
 		} else {
@@ -758,11 +711,13 @@
 			var imgType = input_img.files[0]['type'];
 			var chk = imgType.split("/");
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
-				if(chk[0]!="application"){
+				if (chk[0] != "application") {
 					$("#show_data_img_request3").attr("src", e.target.result)
-				}else{$("#show_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")}
+				} else {
+					$("#show_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+				}
 			}
 			reader.readAsDataURL(input_img.files[0]);
 		} else {
@@ -785,7 +740,7 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_issue) {
+				success: function(reply_issue) {
 					// console.log(reply_issue)
 					if (reply_issue !== null && reply_issue !== '') {
 						$("#html_issue_by").removeAttr("disabled")
@@ -797,7 +752,7 @@
 						html_issue_by += '<option selected value="">--- Issue ---</option>'
 
 						// html_issue_by += '<option selected value="">--- Issue ---</option>';
-						$.each(reply_issue, function (key_issue, val_issue) {
+						$.each(reply_issue, function(key_issue, val_issue) {
 							html_issue_by += '<option  value="' + val_issue.user_id + '">' + val_issue
 								.f_name + ' ' + val_issue.l_name + ' (' + val_issue.employee +
 								')</option>'
@@ -860,7 +815,7 @@
 					cache: false,
 					processData: false,
 					contentType: false,
-					success: function (reply_request) {
+					success: function(reply_request) {
 						console.log(reply_request)
 						if (reply_request !== true && reply_request !== false) {
 							Swal.fire({
@@ -890,7 +845,7 @@
 
 	}
 
-	$(document).ready(function () {
+	$(document).ready(function() {
 		department_issue()
 		department_support()
 	})
@@ -905,10 +860,10 @@
 			data: {
 				dep_id: dep_support
 			},
-			success: function (department_data) {
+			success: function(department_data) {
 				html_issue_dep = '';
 				html_issue_dep += '<option selected value="">--- Department ---</option>';
-				$.each(department_data, function (key_dep, val_dep) {
+				$.each(department_data, function(key_dep, val_dep) {
 					html_issue_dep += '<option  value="' + val_dep.dep_id + '">' + val_dep.dep_name +
 						'</option>'
 				})
@@ -928,10 +883,10 @@
 			data: {
 				dep_id: dep_issue
 			},
-			success: function (department_data) {
+			success: function(department_data) {
 				html_support_dep = '';
 				html_support_dep += '<option selected value="">--- Department ---</option>';
-				$.each(department_data, function (key_dep, val_dep) {
+				$.each(department_data, function(key_dep, val_dep) {
 					html_support_dep += '<option  value="' + val_dep.dep_id + '">' + val_dep.dep_name +
 						'</option>'
 				})
@@ -940,5 +895,4 @@
 			}
 		})
 	}
-
 </script>

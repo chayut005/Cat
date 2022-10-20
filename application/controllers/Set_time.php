@@ -441,4 +441,43 @@ class Set_time extends CI_Controller
 			exit;
 		}
 	}
+	public function data_type_use_table()
+	{
+		// $pri_id = $_POST['pri_id']; disable_type
+		// $dep_id = $_POST['dep_id'];
+		$dep_id =  $this->session->userdata('sessDep');
+		$this->assist_backend->checksession();
+		$data_type = $this->assist_backend->data_type($dep_id);
+		$table = array('data' => $data_type);
+		echo json_encode($table);
+	}
+	public function delete_type_use()
+	{
+		$type_id = $_POST['type_id'];
+		$dep_id = $_POST['dep_id'];
+
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); 
+		$result = $this->assist_backend->delete_type_use($type_id, $dep_id);
+		if ($result == true) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'Delete สำเร็จ', 'html_eng' => 'Delete Success');
+			echo json_encode($reply_delete);
+			exit;
+		} else if ($result == false) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'ไม่สามารถ Delete ได้', 'html_eng' => 'Can"t Delete');
+			echo json_encode($reply_delete);
+			exit;
+		}
+	}
+	public function save_type()
+	{
+		$type_id = $_POST['type_id'];
+		$dep_id = $_POST['dep_id'];
+
+		$this->assist_backend->checksession();
+		$save_type = $this->assist_backend->save_type($type_id, $dep_id);
+		echo json_encode($save_type);
+	}
 }

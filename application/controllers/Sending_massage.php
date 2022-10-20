@@ -95,8 +95,8 @@ class Sending_massage extends CI_Controller
 								$this->email->subject($quest['subject']);
 								$this->email->message($html_massage);
 								if ($this->email->send()) {
-									// $update_flag_issue = $this->assist_backend->update_flag_issue($quest['qu_id']);
-									echo json_encode('suc');
+									$update_flag_issue = $this->assist_backend->update_flag_issue($quest['qu_id']);
+									// echo json_encode('suc');
 								}
 							}
 						} else {

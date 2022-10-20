@@ -60,8 +60,26 @@ class Assist_backend extends CI_Model
 
 
 
+	public function save_type($type_id, $dep_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('date_create', 'NOW()', FALSE);
+		$this->db->set('create_by', $sid);
+		$this->db->set('type_id', $type_id);
+		$this->db->set('dep_id', $dep_id);
+		$type = $this->db->insert('list_type_list');
+		return $type;
+		exit;
+	}
+	public function delete_type_use($type_id, $dep_id)
+	{
+		$arr_id = array('type_id' => $type_id, 'dep_id' => $dep_id);
 
-
+		$this->db->where($arr_id);
+		$delete = $this->db->delete('list_type_list');
+		return $delete;
+		exit;
+	}
 	public function re_type($type_id)
 	{
 		$sid = $this->session->userdata('sessUsr');
@@ -135,7 +153,7 @@ class Assist_backend extends CI_Model
 	}
 	public function data_type($dep_id)
 	{
-		$sqlLoad = "SELECT ltl.*,lt.type_name FROM list_type_list AS ltl LEFT JOIN list_type AS lt ON lt.type_id = ltl.type_id WHERE lt.status_type<>0 AND lt.del_flag<>1 AND ltl.dep_id = '$dep_id'";
+		$sqlLoad = "SELECT ltl.*,lt.type_name,ld.dep_name FROM list_type_list AS ltl LEFT JOIN list_type AS lt ON lt.type_id = ltl.type_id LEFT JOIN list_department AS ld ON ld.dep_id = ltl.dep_id WHERE lt.status_type<>0 AND lt.del_flag<>1 AND ld.status_dep<>0 AND ld.del_flag<>1 AND ltl.dep_id = '$dep_id'";
 		$excLoad = $this->db->query($sqlLoad);
 		$recLoad = $excLoad->result_array();
 		if ($excLoad->num_rows() != 0) {
@@ -695,7 +713,7 @@ class Assist_backend extends CI_Model
 	}
 	public function sending_data_request_way($arr_img, $data)
 	{
-		foreach($arr_img as $rimg){
+		foreach ($arr_img as $rimg) {
 			$today = date("Y-m-dHis");
 			$month = date("m");
 			$year = date("Y");
