@@ -48,20 +48,138 @@ class Assist_backend extends CI_Model
 
 
 
+	public function enable_system($system_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('update_by', $sid);
+		$this->db->set('status_system', '1');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->where('system_id', $system_id);
+		$exc_user = $this->db->update('list_system');
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function disable_system($system_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('update_by', $sid);
+		$this->db->set('status_system', '0');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->where('system_id', $system_id);
+		$exc_user = $this->db->update('list_system');
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function save_system($system_id, $dep_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('date_create', 'NOW()', FALSE);
+		$this->db->set('create_by', $sid);
+		$this->db->set('system_id', $system_id);
+		$this->db->set('dep_id', $dep_id);
+		$type = $this->db->insert('list_system_list');
+		return $type;
+		exit;
+	}
+	public function delete_system_use($system_id, $dep_id)
+	{
+		$arr_id = array('system_id' => $system_id, 'dep_id' => $dep_id);
 
+		$this->db->where($arr_id);
+		$delete = $this->db->delete('list_system_list');
+		return $delete;
+		exit;
+	}
+	public function data_main_system()
+	{
+		$sqlLoad = "SELECT * FROM list_system";
+		$excLoad = $this->db->query($sqlLoad);
+		$recLoad = $excLoad->result_array();
+		if ($excLoad->num_rows() != 0) {
+			return $recLoad;
+		} else {
+			return null;
+		}
+	}
+	public function data_system($dep_id)
+	{
+		$sqlLoad = "SELECT lsl.*,ls.system_name,ld.dep_name FROM list_system_list AS lsl LEFT JOIN list_system AS ls ON ls.system_id = lsl.system_id LEFT JOIN list_department AS ld ON ld.dep_id = lsl.dep_id WHERE ls.status_system<>0 AND ls.del_flag<>1 AND ld.status_dep<>0 AND ld.del_flag<>1 AND lsl.dep_id = '$dep_id' ";
+		$excLoad = $this->db->query($sqlLoad);
+		$recLoad = $excLoad->result_array();
+		if ($excLoad->num_rows() != 0) {
+			return $recLoad;
+		} else {
+			return null;
+		}
+	}
+	public function enable_category($cat_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('update_by', $sid);
+		$this->db->set('status_cat', '1');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->where('cat_id', $cat_id);
+		$exc_user = $this->db->update('list_category');
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function disable_category($cat_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('update_by', $sid);
+		$this->db->set('status_cat', '0');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->where('cat_id', $cat_id);
+		$exc_user = $this->db->update('list_category');
+		if ($exc_user) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function save_category($cat_id, $dep_id)
+	{
+		$sid = $this->session->userdata('sessUsr');
+		$this->db->set('date_create', 'NOW()', FALSE);
+		$this->db->set('create_by', $sid);
+		$this->db->set('cat_id', $cat_id);
+		$this->db->set('dep_id', $dep_id);
+		$type = $this->db->insert('list_category_list');
+		return $type;
+		exit;
+	}
+	public function delete_cat_use($cat_id, $dep_id)
+	{
+		$arr_id = array('cat_id' => $cat_id, 'dep_id' => $dep_id);
 
-
-
-
-
-
-
-
-
-
+		$this->db->where($arr_id);
+		$delete = $this->db->delete('list_category_list');
+		return $delete;
+		exit;
+	}
+	public function data_main_category()
+	{
+		$sqlLoad = "SELECT * FROM list_category";
+		$excLoad = $this->db->query($sqlLoad);
+		$recLoad = $excLoad->result_array();
+		if ($excLoad->num_rows() != 0) {
+			return $recLoad;
+		} else {
+			return null;
+		}
+	}
 	public function data_category($dep_id)
 	{
-		$sqlLoad = "SELECT lcl.*,lc.cat_name,ld.dep_name FROM list_category_list AS lcl LEFT JOIN list_department AS ld ON ld.dep_id = lcl.dep_id LEFT JOIN list_category AS lc ON lc.cat_id = lcl.cat_id WHERE ld.status_dep<>0 AND ld.del_flag<>1 AND lcl.dep_id = '$dep_id' ";
+		$sqlLoad = "SELECT lcl.*,lc.cat_name,ld.dep_name FROM list_category_list AS lcl LEFT JOIN list_category AS lc ON lc.cat_id = lcl.cat_id LEFT JOIN list_department AS ld ON ld.dep_id = lcl.dep_id WHERE lc.status_cat<>0 AND lc.del_flag<>1 AND ld.status_dep<>0 AND ld.del_flag<>1 AND lcl.dep_id = '$dep_id' ";
 		$excLoad = $this->db->query($sqlLoad);
 		$recLoad = $excLoad->result_array();
 		if ($excLoad->num_rows() != 0) {
@@ -2392,7 +2510,7 @@ class Assist_backend extends CI_Model
 		$password = base64_encode(trim($pass));
 		$username = trim($username);
 
-		$sqlSel = "SELECT lu.*,lg.order_g,lg.g_name FROM `list_user` AS lu LEFT JOIN list_group AS lg ON lg.g_id = lu.g_id WHERE lu.employee = '$username' AND lu.pass = '$password'";
+		$sqlSel = "SELECT lu.*,lg.order_g,lg.g_name,ld.dep_name FROM `list_user` AS lu LEFT JOIN list_group AS lg ON lg.g_id = lu.g_id LEFT JOIN list_department AS ld ON ld.dep_id = lu.dep_id WHERE lu.employee = '$username' AND lu.pass = '$password'";
 		$query = $this->db->query($sqlSel);
 		$result = $query->result_array();
 		// return $username;

@@ -129,7 +129,7 @@
                                 <div class=" input-group-sm">
                                     <label>Department:</label>
                                     <select onchange="report_tabCatSta()" id="show_department_report" name="show_department_report" class="form-control" required>
-                                        <option selected value="<?php echo $this->session->userdata('sessDep') ?>">--- System ---</option>
+                                        <option selected value="<?php echo $this->session->userdata('sessDep') ?> <?php echo $this->session->userdata('sessDepN') ?>">--- System ---</option>
                                     </select>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                                 <thead>
                                     <tr>
                                         <th style="background-color: #002060; color:#ffffff;    border: 1px solid lightgray; font-size: 38px;" rowspan="2" colspan="4">TBKK</th>
-                                        <th colspan="11">Report</th>
+                                        <th colspan="11">Report (<span id="name_department"></span>)</th>
                                     </tr>
                                     <tr>
                                         <th colspan="11">Category Status</th>
@@ -215,7 +215,7 @@
 
 <script>
     function export_excel_report() {
-        alert('fgjhfthj')
+        // alert('fgjhfthj')
         var html = document.getElementById("report_excel").outerHTML;
         var blob = new Blob([html], {
             type: "application/vnd.ms-excel"
@@ -231,6 +231,9 @@
         var st = $('#start_date_report').val()
         var lt = $('#end_date_report').val()
         var dep = $('#show_department_report').val()
+        // alert(dep)
+        var myarray = dep.split(" ")
+        $('#name_department').html('<span>'+ myarray[1] +'</span>')
         $('#dayStartToEnd').html(' <th colspan="7" >' + st + '</th> <th>To</th><th colspan="7" >' + lt + '</th>')
         // alert(st + '==' + lt + '==' + dep)
 
@@ -241,7 +244,7 @@
             data: {
                 st: st,
                 lt: lt,
-                dep: dep
+                dep: myarray[0]
             },
             success: function(data_report) {
                 console.log(data_report)
@@ -348,7 +351,7 @@
                         if (val.dep_id === dep_id) {
 
                         }
-                        option_department += '<option  value="' + val.dep_id + '">' + val.dep_name + '</option>'
+                        option_department += '<option  value="' + val.dep_id + ' ' + val.dep_name + '">' + val.dep_name + '</option>'
                     })
                     $("#show_department_report").html(option_department)
                 }

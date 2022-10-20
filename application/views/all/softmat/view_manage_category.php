@@ -130,11 +130,11 @@
                                     </div>
 
                                 </div>
-                                <table id="main_type" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
+                                <table id="main_category" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
                                     <thead>
                                         <tr>
                                             <th style="text-align:center;">No</th>
-                                            <th style="text-align:center;">Type</th>
+                                            <th style="text-align:center;">Category</th>
                                             <th style="text-align:center;">Ststus</th>
                                             <th style="text-align:center;">Action</th>
                                         </tr>
@@ -150,8 +150,330 @@
         </div>
     </div>
 </div>
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+<div class="modal fade" id="modal_use_Category" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="modalCenterTitle">SELECT CATEGORY</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="data_insert_category" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;">No</th>
+                            <th style="text-align:center;">Category</th>
+                            <th style="text-align:center;">Status</th>
+                            <th style="text-align:center;">Use</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
 <script>
+    function button_enable_category(cat_id) {
+        event.preventDefault();
+        Swal.fire({
+            title: "ต้องการ Enable หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Send!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/enable_category',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        cat_id: cat_id
+                    },
+                    success: function(reply_enable) {
+                        // console.log(data['reply'])
+                        if (reply_enable['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_enable['html'] + "</p><p>" + reply_enable['html_eng'] + "</p>",
+                                icon: 'success',
+
+                            })
+                            data_category_use()
+                        } else if (reply_enable['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_enable['html'] + "</p><p>" + reply_enable['html_eng'] + "</p>",
+                                icon: 'warning',
+
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    function button_disable_category(cat_id) {
+        event.preventDefault();
+        Swal.fire({
+            title: "ต้องการ Disable หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Send!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/disable_category',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        cat_id: cat_id
+                    },
+                    success: function(reply_disable) {
+                        // console.log(data['reply'])
+                        if (reply_disable['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_disable['html'] + "</p><p>" + reply_disable['html_eng'] + "</p>",
+                                icon: 'success',
+
+                            })
+                            data_category_use()
+                        } else if (reply_disable['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_disable['html'] + "</p><p>" + reply_disable['html_eng'] + "</p>",
+                                icon: 'warning',
+
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    function use_category(cat_id, dep_id) {
+        // alert(type_id + '==' + dep_id)
+        event.preventDefault()
+        Swal.fire({
+            title: "ต้องการ  Save Category?",
+            text: "หรือไม่",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Save!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(pri_id + '==>' + dep_id)
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '<?php echo base_url(); ?>set_time/save_category',
+                    data: {
+                        cat_id: cat_id,
+                        dep_id: dep_id
+                    },
+                    success: function(reply_save_category) {
+                        console.log(reply_save_category)
+                        if (reply_save_category !== true && reply_save_category !== false) {
+                            Swal.fire({
+                                html: "<p>" + reply_save_category + "</p>",
+                                icon: 'warning',
+                            })
+
+                        } else if (reply_save_category === true) {
+                            Swal.fire({
+                                html: "<p>Save Type</p><p>Success</p>",
+                                icon: 'success',
+                            })
+                            data_category_use()
+                            $('#modal_use_Category').modal('hide')
+                        } else if (reply_save_category === false) {
+                            Swal.fire({
+                                html: "<p>Save  Type</p><p>Error</p>",
+                                icon: 'Error',
+                            })
+                        }
+                    }
+                })
+            }
+        })
+
+    }
+
+    function button_delete_category_dep(dep_id, cat_id) {
+        event.preventDefault();
+
+        // alert(type_id + '==>' + dep_id)
+        Swal.fire({
+            title: "ต้องการ Delete หรือไม่ ?",
+            text: "ยืนยัน",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#35D735',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Save!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // alert(user_id)
+                $.ajax({
+                    url: '<?php echo base_url(); ?>set_time/delete_cat_use',
+                    type: "POST",
+                    dataType: 'json',
+                    data: {
+                        cat_id: cat_id,
+                        dep_id: dep_id
+
+                    },
+                    success: function(reply_delete) {
+                        // console.log(data['reply'])
+                        if (reply_delete['reply'] === true) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'success',
+                            })
+                            data_category_use()
+                        } else if (reply_delete['reply'] === false) {
+                            Swal.fire({
+                                html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
+                                icon: 'warning',
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+    $(document).ready(function() {
+
+        var cnt = 1;
+        var table = $('#data_insert_category').DataTable({
+            // lengthChange: false,
+            // buttons: ['copy', 'excel', 'pdf', 'colvis'],form_update_time_pri data_priority_check_add
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 'All'],
+            ],
+
+            scrollX: true,
+            ajax: {
+                url: '<?php echo base_url(); ?>GET_API/data_category_table',
+                type: 'post',
+                dataType: 'json',
+                // data: function(data) {
+                //     data.start_date = $('#start_date').val();
+                //     data.end_date = $('#end_date').val()
+                // }
+            },
+            columns: [{
+                    data: "cat_id",
+                    "render": function(data, type, row) {
+                        return cnt++;
+                    }
+                },
+                {
+                    data: "cat_name"
+                },
+                {
+                    data: 'cat_id',
+                    "render": function(data, type, row, meta) {
+                        if (type === 'display') {
+                            if (row.del_flag !== '1') {
+                                if (row.status_cat === '1') {
+                                    data = '<span class="spinner-grow text-success" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span>'
+                                } else if (row.status_cat === '0') {
+                                    data = '<span class="spinner-grow text-warning" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span>'
+                                }
+                            } else {
+                                data = '<span class="spinner-grow text-dark" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span>'
+                            }
+
+                        }
+                        return data;
+                    }
+                },
+                {
+                    data: 'check_show'
+                }
+                // {
+                //     data: 'button_show',
+                // }
+            ]
+        });
+        setInterval(function() {
+            table.ajax.reload(null, false);
+            cnt = 1;
+            // table.clear().draw();
+        }, 1000);
+        // table.buttons().container()
+        //     .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
     // setInterval(data_category_use, 1000)table_category_use
+    $(document).ready(function() {
+
+        var cnt = 1;
+        var table = $('#main_category').DataTable({
+            // lengthChange: false,
+            // buttons: ['copy', 'excel', 'pdf', 'colvis'],form_update_time_pri data_priority_check_add
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 'All'],
+            ],
+
+            scrollX: true,
+            ajax: {
+                url: '<?php echo base_url(); ?>GET_API/data_main_category',
+                type: 'post',
+                dataType: 'json',
+                // data: function(data) {
+                //     data.start_date = $('#start_date').val();
+                //     data.end_date = $('#end_date').val()
+                // }
+            },
+            columns: [{
+                    data: "cat_id",
+                    "render": function(data, type, row) {
+                        return cnt++;
+                    }
+                },
+                {
+                    data: "cat_name"
+                },
+                {
+                    data: 'cat_id',
+                    "render": function(data, type, row, meta) {
+                        if (type === 'display') {
+                            if (row.status_cat === '1') {
+                                data = '<div class="form-check form-switch mb-2"><input onclick="button_disable_category(' + data + ')"  class="form-check-input" type="checkbox" checked id="flexSwitchCheckDefault"></div>'
+                            } else if (row.status_cat === '0') {
+                                data = '<div class="form-check form-switch mb-2"><input onclick="button_enable_category(' + data + ')"  class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"></div>'
+                            }
+                        }
+                        return data;
+                    }
+                },
+                {
+                    data: 'button_show'
+
+                }
+            ]
+        });
+        setInterval(function() {
+            table.ajax.reload(null, false);
+            cnt = 1;
+            // table.clear().draw();
+        }, 1000);
+        // table.buttons().container()
+        //     .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
     $(document).ready(function() {
         data_category_use()
         var cnt = 1;
@@ -189,7 +511,7 @@
                     data: 'cat_id',
                     "render": function(data, type, row, meta) {
                         if (type === 'display') {
-                            data = '<a onclick="button_delete_type_dep(' + row.dep_id + ',' + data + ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>'
+                            data = '<a onclick="button_delete_category_dep(' + row.dep_id + ',' + data + ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>'
                         }
                         return data;
                     }
@@ -207,6 +529,7 @@
         // data_request_table()
         //     .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
+
     function data_category_use() {
 
         var html_re = '';

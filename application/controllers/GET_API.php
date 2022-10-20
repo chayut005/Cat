@@ -59,6 +59,110 @@ class GET_API extends CI_Controller
 	// 		exit;
 	// 	}
 	// }get_data_category get_data_system check_data_type  
+	public function data_system_table()
+	{
+		$data_main_system = $this->assist_backend->data_main_system();
+		$this->assist_backend->checksession();
+		$dep_id = $this->session->userdata('sessDep');
+		$data_system = $this->assist_backend->data_system($dep_id);
+		$i = 0;
+		foreach ($data_main_system as $ta) {
+			$data_html = '';
+			if ($ta['del_flag'] !== '1' && $ta['status_system'] !== '0') {
+				$data_html = '<i  onclick="use_system(' . $ta['system_id'] . ',' . $dep_id . ')" class="bx bx-checkbox" ></i>';
+			} else {
+				$data_html = '<i style="cursor: no-drop;" class="bx bx-checkbox" ></i>';
+			}
+
+			foreach ($data_system as $ta_dep) {
+				if ($ta['system_id'] == $ta_dep['system_id']) {
+					$data_html = '<i class="bx bx-check"></i>';
+				}
+			}
+			$data_main_system[$i]['check_show'] = $data_html;
+			$i++;
+		}
+		$table = array("data" => $data_main_system);
+		echo json_encode($table);
+		exit;
+	}
+	public function data_main_system()
+	{
+		$data_main_system = $this->assist_backend->data_main_system();
+		$this->assist_backend->checksession();
+		$i = 0;
+		foreach ($data_main_system as $ta) {
+
+			$data_html = '';
+			if ($ta['del_flag'] !== '1') {
+				if ($ta['status_system'] === '1') {
+					$data_html .= '<a onclick="edit_category_main(' . $ta['system_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-edit" ></i></a>';
+				}
+				$data_html .= '<a onclick="button_delete_category(' . $ta['system_id'] . ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>';
+			} else {
+				$data_html = '<a onclick="button_re_category(' . $ta['system_id'] . ')"><i class="bx bx-redo bx-flip-horizontal" ></i></a>';
+			}
+
+
+			$data_main_system[$i]['button_show'] = $data_html;
+			$i++;
+		}
+		$table = array('data' => $data_main_system);
+		echo json_encode($table);
+		exit;
+	}
+	public function data_category_table()
+	{
+		$data_main_category = $this->assist_backend->data_main_category();
+		$this->assist_backend->checksession();
+		$dep_id = $this->session->userdata('sessDep');
+		$data_category = $this->assist_backend->data_category($dep_id);
+		$i = 0;
+		foreach ($data_main_category as $ta) {
+			$data_html = '';
+			if ($ta['del_flag'] !== '1' && $ta['status_cat'] !== '0') {
+				$data_html = '<i  onclick="use_category(' . $ta['cat_id'] . ',' . $dep_id . ')" class="bx bx-checkbox" ></i>';
+			} else {
+				$data_html = '<i style="cursor: no-drop;" class="bx bx-checkbox" ></i>';
+			}
+
+			foreach ($data_category as $ta_dep) {
+				if ($ta['cat_id'] == $ta_dep['cat_id']) {
+					$data_html = '<i class="bx bx-check"></i>';
+				}
+			}
+			$data_main_category[$i]['check_show'] = $data_html;
+			$i++;
+		}
+		$table = array("data" => $data_main_category);
+		echo json_encode($table);
+		exit;
+	}
+	public function data_main_category()
+	{
+		$data_main_category = $this->assist_backend->data_main_category();
+		$this->assist_backend->checksession();
+		$i = 0;
+		foreach ($data_main_category as $ta) {
+
+			$data_html = '';
+			if ($ta['del_flag'] !== '1') {
+				if ($ta['status_cat'] === '1') {
+					$data_html .= '<a onclick="edit_category_main(' . $ta['cat_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-edit" ></i></a>';
+				}
+				$data_html .= '<a onclick="button_delete_category(' . $ta['cat_id'] . ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>';
+			} else {
+				$data_html = '<a onclick="button_re_category(' . $ta['cat_id'] . ')"><i class="bx bx-redo bx-flip-horizontal" ></i></a>';
+			}
+
+
+			$data_main_category[$i]['button_show'] = $data_html;
+			$i++;
+		}
+		$table = array('data' => $data_main_category);
+		echo json_encode($table);
+		exit;
+	}
 	public function data_type_table()
 	{
 		$data_main_type = $this->assist_backend->data_main_type();
@@ -111,6 +215,7 @@ class GET_API extends CI_Controller
 		echo json_encode($table);
 		exit;
 	}
+
 	public function check_data_system()
 	{
 		$dep_issue_id = $_POST['dep_issue_id'];

@@ -82,13 +82,13 @@ class Login extends CI_Controller
 				echo 'error_pass';
 				exit;
 			} else if ($check['action'] == 'suc_pass') {
-				$arrData = array('sessemail' => $check[0]['email'],'sessDep' => $check[0]['dep_id'],'sessGname' => $check[0]['g_name'],'sessFname' => $check[0]['f_name'], 'sessLname' => $check[0]['l_name'], 'sessUsr' => $check[0]['employee'], 'sessUsrId' => $check[0]['user_id'],'sess_order' =>$check[0]['order_g'], 'sessGroup' => $check[0]['g_id'], 'loggedIn' => "OK");
+				$arrData = array('sessemail' => $check[0]['email'],'sessDepN' => $check[0]['dep_name'],'sessDep' => $check[0]['dep_id'],'sessGname' => $check[0]['g_name'],'sessFname' => $check[0]['f_name'], 'sessLname' => $check[0]['l_name'], 'sessUsr' => $check[0]['employee'], 'sessUsrId' => $check[0]['user_id'],'sess_order' =>$check[0]['order_g'], 'sessGroup' => $check[0]['g_id'], 'loggedIn' => "OK");
 				$this->session->set_userdata($arrData);
 				$this->assist_backend->checksession();
 				echo 'suc_pass';
 				exit;
 			} else {
-				$arrData = array('sessemail' => $check[0]['email'],'sessDep' => $check[0]['dep_id'],'sessGname' => $check[0]['g_name'],'sessFname' => $check[0]['f_name'], 'sessLname' => $check[0]['l_name'], 'sessUsr' => $check[0]['employee'], 'sessUsrId' => $check[0]['user_id'],'sess_order' =>$check[0]['order_g'], 'sessGroup' => $check[0]['g_id'], 'loggedIn' => "OK");
+				$arrData = array('sessemail' => $check[0]['email'],'sessDepN' => $check[0]['dep_name'],'sessDep' => $check[0]['dep_id'],'sessGname' => $check[0]['g_name'],'sessFname' => $check[0]['f_name'], 'sessLname' => $check[0]['l_name'], 'sessUsr' => $check[0]['employee'], 'sessUsrId' => $check[0]['user_id'],'sess_order' =>$check[0]['order_g'], 'sessGroup' => $check[0]['g_id'], 'loggedIn' => "OK");
 				$this->session->set_userdata($arrData);
 				$this->assist_backend->checksession();
 				echo 'suc_pass_menu';

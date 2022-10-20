@@ -491,12 +491,194 @@ class Set_time extends CI_Controller
 	}
 	public function data_category_use_table()
 	{
-		// $pri_id = $_POST['pri_id']; disable_type
+		// $pri_id = $_POST['pri_id']; data_system_use_table
 		// $dep_id = $_POST['dep_id'];
 		$dep_id =  $this->session->userdata('sessDep');
 		$this->assist_backend->checksession();
 		$data_category = $this->assist_backend->data_category($dep_id);
 		$table = array('data' => $data_category);
 		echo json_encode($table);
+	}
+	public function delete_cat_use()
+	{
+		$cat_id = $_POST['cat_id'];
+		$dep_id = $_POST['dep_id'];
+
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); 
+		$result = $this->assist_backend->delete_cat_use($cat_id, $dep_id);
+		if ($result == true) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'Delete สำเร็จ', 'html_eng' => 'Delete Success');
+			echo json_encode($reply_delete);
+			exit;
+		} else if ($result == false) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'ไม่สามารถ Delete ได้', 'html_eng' => 'Can"t Delete');
+			echo json_encode($reply_delete);
+			exit;
+		}
+	}
+	public function save_category()
+	{
+		$cat_id = $_POST['cat_id'];
+		$dep_id = $_POST['dep_id'];
+
+		$this->assist_backend->checksession();
+		$save_category = $this->assist_backend->save_category($cat_id, $dep_id);
+		echo json_encode($save_category);
+	}
+	public function disable_category()
+	{
+		$cat_id = $_POST['cat_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId'));
+		$result = $this->assist_backend->disable_category($cat_id);
+		if ($result == true) {
+			$reply_disable = "";
+			$reply_disable = array('reply' => $result, 'html' => 'Disable สำเร็จ', 'html_eng' => 'Disable Success');
+			echo json_encode($reply_disable);
+			exit;
+		} else if ($result == false) {
+			$reply_disable = "";
+			$reply_disable = array('reply' => $result, 'html' => 'ไม่สามารถ Disable ได้', 'html_eng' => 'Can"t Disable');
+			echo json_encode($reply_disable);
+			exit;
+		}
+	}
+	public function enable_category()
+	{
+		$cat_id = $_POST['cat_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); delete_type
+		$result = $this->assist_backend->enable_category($cat_id);
+		if ($result == true) {
+			$reply_enable = "";
+			$reply_enable = array('reply' => $result, 'html' => 'Enable สำเร็จ', 'html_eng' => 'Enable Success');
+			echo json_encode($reply_enable);
+			exit;
+		} else if ($result == false) {
+			$reply_enable = "";
+			$reply_enable = array('reply' => $result, 'html' => 'ไม่สามารถ Enable ได้', 'html_eng' => 'Can"t Enable');
+			echo json_encode($reply_enable);
+			exit;
+		}
+	}
+	public function data_system()
+	{
+		// $pri_id = $_POST['pri_id']; disable_type
+		// $dep_id = $_POST['dep_id'];
+		$dep_id =  $this->session->userdata('sessDep');
+		$this->assist_backend->checksession();
+		$data_system = $this->assist_backend->data_system($dep_id);
+		echo json_encode($data_system);
+	}
+	public function data_system_use_table()
+	{
+		// $pri_id = $_POST['pri_id']; data_system_use_table
+		// $dep_id = $_POST['dep_id'];
+		$dep_id =  $this->session->userdata('sessDep');
+		$this->assist_backend->checksession();
+		$data_system = $this->assist_backend->data_system($dep_id);
+		$table = array('data' => $data_system);
+		echo json_encode($table);
+	}
+	public function delete_system_use()
+	{
+		$system_id = $_POST['system_id'];
+		$dep_id = $_POST['dep_id'];
+
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); 
+		$result = $this->assist_backend->delete_system_use($system_id, $dep_id);
+		if ($result == true) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'Delete สำเร็จ', 'html_eng' => 'Delete Success');
+			echo json_encode($reply_delete);
+			exit;
+		} else if ($result == false) {
+			$reply_delete = "";
+			$reply_delete = array('reply' => $result, 'html' => 'ไม่สามารถ Delete ได้', 'html_eng' => 'Can"t Delete');
+			echo json_encode($reply_delete);
+			exit;
+		}
+	}
+	public function save_system()
+	{
+		$system_id = $_POST['system_id'];
+		$dep_id = $_POST['dep_id'];
+
+		$this->assist_backend->checksession();
+		$save_system = $this->assist_backend->save_system($system_id, $dep_id);
+		echo json_encode($save_system);
+	}
+	public function disable_system()
+	{
+		$system_id = $_POST['system_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId'));
+		$result = $this->assist_backend->disable_system($system_id);
+		if ($result == true) {
+			$reply_disable = "";
+			$reply_disable = array('reply' => $result, 'html' => 'Disable สำเร็จ', 'html_eng' => 'Disable Success');
+			echo json_encode($reply_disable);
+			exit;
+		} else if ($result == false) {
+			$reply_disable = "";
+			$reply_disable = array('reply' => $result, 'html' => 'ไม่สามารถ Disable ได้', 'html_eng' => 'Can"t Disable');
+			echo json_encode($reply_disable);
+			exit;
+		}
+	}
+	public function enable_system()
+	{
+		$system_id = $_POST['system_id'];
+		$checkSess = $this->assist_backend->CheckSession();
+		// $this->connect_db->CheckPermission($this->session->userdata('sessUsrId')); delete_type
+		$result = $this->assist_backend->enable_system($system_id);
+		if ($result == true) {
+			$reply_enable = "";
+			$reply_enable = array('reply' => $result, 'html' => 'Enable สำเร็จ', 'html_eng' => 'Enable Success');
+			echo json_encode($reply_enable);
+			exit;
+		} else if ($result == false) {
+			$reply_enable = "";
+			$reply_enable = array('reply' => $result, 'html' => 'ไม่สามารถ Enable ได้', 'html_eng' => 'Can"t Enable');
+			echo json_encode($reply_enable);
+			exit;
+		}
+	}
+	public function data_card_priority() 
+	{
+
+		$dep = $this->session->userdata('sessDep');
+		$this->assist_backend->checksession();
+		$datatable = $this->assist_backend->get_data_priority_d($dep);
+
+		$i = 0;
+		foreach ($datatable as $data_time) {
+			$data_e = '';
+			$h_e = '';
+			$m_e = '';
+
+			$all_to_m = $data_time['time_priority'] / 60;
+			$myArray_dep = explode('.', $all_to_m);
+			$h_e = $myArray_dep[0];
+			$m_e = $data_time['time_priority'] - ($h_e * 60);
+
+			if ($h_e < '24') {
+				$data_e = '0';
+			} else {
+				$aa = $h_e / 24;
+				$myArray_d = explode('.', $aa);
+				$data_e =  $myArray_d[0];
+				$h_e =  $myArray_dep[0] - ($data_e * 24);
+			}
+			$datatable[$i]['date_e'] = $data_e;
+			$datatable[$i]['h_e'] = $h_e;
+			$datatable[$i]['m_e'] = $m_e;
+			$i++;
+		}
+		echo json_encode($datatable);
 	}
 }

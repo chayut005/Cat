@@ -1,3 +1,28 @@
+<style>
+    .box-container .card2 {
+        position: relative;
+        min-width: 230px;
+        /* height: 400px; */
+        border-radius: 10px;
+        overflow: hidden;
+        background: #f5f6fa;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+    .box-container .card2 .content {
+        margin-top: 10px;
+        text-align: center;
+        padding: 0 30px;
+        color: #2d3436;
+        transition: margin-top 0.5s ease;
+    }
+
+
+
+    /*%% End container %%*/
+</style>
 <div class="container-xxl flex-grow-1 container-p-y">
     <!-- <h1>MANAGE QUEST</h1> -->
     <img style=" min-width: 170px; width: 30%; min-height: 16px;  max-height: 30px;" src="<?php echo base_url(); ?>./themes/softmat/img/mpr.png" alt="user">
@@ -9,36 +34,29 @@
 
 
 
+
                     <div class="nav-align-top mb-4">
                         <ul class="nav nav-pills mb-3" role="tablist">
                             <li class="nav-item">
-                                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-time_pri" aria-controls="#navs-top-time_pri" aria-selected="true">
-                                    Time
+                                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-priority_use" aria-controls="#navs-top-priority_use" aria-selected="true">
+                                    Priority Use
                                 </button>
                             </li>
                             <li class="nav-item">
-                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-manage_pri" aria-controls="navs-top-manage_pri" aria-selected="false">
-                                    Priority Main
+                                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-Priority" aria-controls="navs-top-Priority" aria-selected="false">
+                                    Priority
                                 </button>
                             </li>
                         </ul>
+
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="navs-top-time_pri" role="tabpanel">
+                            <div class="tab-pane fade show active" id="navs-top-priority_use" role="tabpanel">
 
                                 <div class="row">
                                     <div style="margin-bottom: 10px;" class="col-lg-12 col-sm-12">
 
-
-                                        <div id="show_department_data" style="float: left; margin-bottom:5px;" class=" input-group-outline  input-group-sm">
-                                            <!-- <label>Department:</label> -->
-
-                                            <input id="search_department" type="hidden" value="All">
-                                        </div>
-
-
-
-
                                         <div style="float: right;" class=" input-group-outline" style="margin-bottom:1rem">
+
                                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_check_pri_dep">
                                                 <i style="    margin-bottom: 3%;" class='bx  bx-list-check'></i> <i style="    margin-bottom: 3%;" class='bx bx-plus-medical bx-flashing'></i>
                                             </button>
@@ -46,38 +64,67 @@
                                     </div>
 
                                 </div>
-                                <table id="data_priority" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
-                                    <thead>
-                                        <tr>
-                                            <th style="text-align:center;">No</th>
-                                            <th style="text-align:center;">Department</th>
-                                            <th style="text-align:center;">Priorioty</th>
-                                            <th style="text-align:center;">Priorioty Time</th>
-                                            <th style="text-align:center;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                                <div class="nav-align-top mb-4">
+                                    <ul class="nav nav-pills mb-3" role="tablist">
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-card" aria-controls="navs-pills-card" aria-selected="true">
+                                                Card
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-table" aria-controls="navs-pills-table" aria-selected="false">
+                                                Table
+                                            </button>
+                                        </li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="navs-pills-card" role="tabpanel">
+                                            <div class="tab-pane fade show active" id="navs-pills-justified-card" role="tabpanel">
+                                                <div uk-slider="center: true">
+                                                    <div class="uk-position-relative " tabindex="-1">
+                                                        <ul class="uk-slider-items uk-child-width-1-2@s uk-child-width-1-2@m   uk-child-width-1-4@l   uk-grid" id="html_re">
+
+
+
+                                                        </ul>
+                                                        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+                                                        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                                                    </div>
+                                                    <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="navs-pills-table" role="tabpanel">
+                                            <table id="data_priority" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:center;">No</th>
+                                                        <th style="text-align:center;">Department</th>
+                                                        <th style="text-align:center;">Priorioty</th>
+                                                        <th style="text-align:center;">Priorioty Time</th>
+                                                        <th style="text-align:center;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
                             </div>
-                            <div class="tab-pane fade" id="navs-top-manage_pri" role="tabpanel">
+                            <div class="tab-pane fade" id="navs-top-Priority" role="tabpanel">
                                 <div class="row">
                                     <div style="margin-bottom: 10px;" class="col-lg-12 col-sm-12">
 
-
-                                        <div id="show_department_data" style="float: left; margin-bottom:5px;" class=" input-group-outline  input-group-sm">
-                                            <!-- <label>Department:</label> -->
-
-                                            <input id="search_department" type="hidden" value="All">
-                                        </div>
-
-
-
-
                                         <div style="float: right;" class=" input-group-outline" style="margin-bottom:1rem">
 
-                                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_create_priority">
-                                                <i style="    margin-bottom: 3%;" class='bx  bx-purchase-tag'></i> <i style="    margin-bottom: 3%;" class='bx bx-plus-medical bx-flashing'></i>
+                                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_create_Category">
+                                                <i style="    margin-bottom: 3%;" class='bx  bxs-receipt'></i> <i style="    margin-bottom: 3%;" class='bx bx-plus-medical bx-flashing'></i>
                                             </button>
                                         </div>
                                     </div>
@@ -98,6 +145,9 @@
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -266,6 +316,7 @@
                                 html: "<p>Update Create Priority</p><p>Success</p>",
                                 icon: 'success',
                             })
+                            data_priority_use()
                             $('#modal_create_priority').modal('hide')
                         } else if (reply_per_user === false) {
                             Swal.fire({
@@ -315,6 +366,7 @@
                                 html: "<p>Update Priority User</p><p>Success</p>",
                                 icon: 'success',
                             })
+                            data_priority_use()
                             $('#modal_check_pri_dep').modal('hide')
                         } else if (reply_save_pri === false) {
                             Swal.fire({
@@ -358,6 +410,7 @@
                                 html: "<p>Update Priority User</p><p>Success</p>",
                                 icon: 'success',
                             })
+                            data_priority_use()
                             $('#modal_edit_pri').modal('hide')
                         } else if (reply_per_user === false) {
                             Swal.fire({
@@ -421,6 +474,7 @@
                                 html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
                                 icon: 'success',
                             })
+                            data_priority_use()
                         } else if (reply_re['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
@@ -461,6 +515,7 @@
                                 icon: 'success',
 
                             })
+                            data_priority_use()
                         } else if (reply_disable['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_disable['html'] + "</p><p>" + reply_disable['html_eng'] + "</p>",
@@ -501,6 +556,7 @@
                                 icon: 'success',
 
                             })
+                            data_priority_use()
                         } else if (reply_enable['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_enable['html'] + "</p><p>" + reply_enable['html_eng'] + "</p>",
@@ -541,6 +597,7 @@
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
                                 icon: 'success',
                             })
+                            data_priority_use()
                         } else if (reply_delete['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
@@ -584,6 +641,7 @@
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
                                 icon: 'success',
                             })
+                            data_priority_use()
                         } else if (reply_delete['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
@@ -628,6 +686,7 @@
                                 html: "<p>Update Priority Time</p><p>Success</p>",
                                 icon: 'success',
                             })
+                            data_priority_use()
                             $('#modal_update_priority_t').modal('hide')
                         } else if (reply_pri === false) {
                             Swal.fire({
@@ -644,6 +703,7 @@
 
     function modal_get_data_pri(pri_id, dep_id) {
         // alert(pri_id + '==>' + dep_id)
+        event.preventDefault()
         $.ajax({
             type: 'POST',
             dataType: 'json',
@@ -854,5 +914,55 @@
         }, 1000);
         // table.buttons().container()
         //     .appendTo('#example_wrapper .col-md-6:eq(0)');
+        data_priority_use()
     });
+
+    function data_priority_use() {
+
+        var html_re = '';
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: '<?php echo base_url(); ?>set_time/data_card_priority',
+            success: function(re_data) {
+                // console.log(re_data)
+
+                $.each(re_data, function(key_re, val_re) {
+                    // alert(val_re.dep_name) <i class='bx bx-edit'></i> <i class='bx bxs-trash' ></i>
+                    // html_re = ''<img src="" alt="profile-picture" title="Someone Famous" />
+
+                    html_re += '<li style="    padding-bottom: 20px;">'
+                    html_re += '<div style="cursor: -webkit-grab; cursor: grab;" class="box-container">'
+                    html_re += '<div  class="card card2">'
+                    html_re += '<div class="card-body">'
+                    html_re += '<div>'
+                    html_re += '<img style="    object-fit: cover;display: block;margin: auto;height: 180px;width: 180px;border-radius: 50%;" src="https://jennfortner.files.wordpress.com/2015/11/tgno7v6.gif" alt=""/>'
+                    html_re += '</div>'
+                    html_re += '<div class="content">'
+                    html_re += '<h3 class="title">' + val_re.pri_name + '</h3><span><span class="spinner-grow text-success" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span></span>'
+                    // html_re += '<p>' + val_re.dep_name + '</p>'
+                    html_re += '<p>' + val_re.date_e + ' Day ' + val_re.h_e + ' hour ' + val_re.m_e + ' minute ' + '</p>'
+                    html_re += '</div>'
+                    html_re += '<div class="button-wrapper">'
+                    html_re += '<a   onclick="modal_get_data_pri(' + val_re.pri_id + ',' + val_re.dep_id + ')" href="" style="float: left;" type="button" class="btn  btn-sm btn-primary ">'
+                    html_re += '<span class="d-none d-sm-block">Edit</span>'
+                    html_re += '<i class="bx bx-edit d-block d-sm-none"></i>'
+                    html_re += '</a>'
+                    html_re += '<a onclick="button_delete_prioroty_time(' + val_re.pri_id + ',' + val_re.dep_id + ')" href="" style="float: right;" type="button" onclick="" class="btn btn-sm btn-danger ">'
+                    html_re += '<i class="bx  bxs-trash d-block d-sm-none"></i>'
+                    html_re += '<span class="d-none d-sm-block">Delete</span>'
+                    html_re += '</a>'
+                    html_re += '</div>'
+                    html_re += '</div>'
+                    html_re += '</div>'
+                    html_re += '</div>'
+                    html_re += '</li>'
+
+                })
+
+                $("#html_re").html(html_re)
+            }
+        })
+    }
 </script>
