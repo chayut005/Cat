@@ -7,6 +7,7 @@ class Assist_backend extends CI_Model
 	}
 	public function sending_data_request($arr_img, $data)
 	{
+		$last_id = $this->sending_data_request_db($data);
 		foreach ($arr_img as $rimg) {
 			$today = date("Y-m-dHis");
 			$month = date("m");
@@ -25,10 +26,10 @@ class Assist_backend extends CI_Model
 			$tmpPath2 = $targetPathLogo;
 			$this->create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month);
 			//============================Checks whether a file or directory exists.============================//
-			$sending_data_request_db = $this->sending_data_request_db($targetFileLogo, $org, $new_img_name, $data);
+			$sending_data_request_db_img = $this->sending_data_request_db_img($targetFileLogo, $org, $new_img_name, $last_id);
 			copy($rimg['tempFileLogo'], $targetFileLogo);
 		}
-		return $sending_data_request_db;
+		return $sending_data_request_db_img;
 		exit;
 	}
 	public function create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month)
@@ -775,7 +776,7 @@ class Assist_backend extends CI_Model
 		ls.system_name,
 		llp.lp_name,
 		lui.employee AS issue_by,
-		lus.employee AS support_by 
+		lus.employee AS support_by
 		FROM
 		list_quest AS lq
 		LEFT JOIN list_department AS ld ON ld.dep_id = lq.dep_issue_id
@@ -786,8 +787,19 @@ class Assist_backend extends CI_Model
 		LEFT JOIN list_system AS ls ON ls.system_id = lq.system_id
 		LEFT JOIN list_line_production AS llp ON llp.lp_id = lq.lp_id
 		LEFT JOIN list_user AS lui ON lui.user_id = lq.issue_by_id
-		LEFT JOIN list_user AS lus ON lus.user_id = lq.support_by_id 
+		LEFT JOIN list_user AS lus ON lus.user_id = lq.support_by_id
 		WHERE lq.qu_id = '$qu_id'";
+		$excSel = $this->db->query($sqlSel);
+		$recSel = $excSel->result_array();
+		if ($excSel->num_rows() != 0) {
+			return $recSel;
+		} else {
+			return null;
+		}
+	}
+	public function data_quest_img($qu_id)
+	{
+		$sqlSel = "SELECT * FROM list_img_quest WHERE qu_id = '$qu_id'";
 		$excSel = $this->db->query($sqlSel);
 		$recSel = $excSel->result_array();
 		if ($excSel->num_rows() != 0) {
@@ -867,7 +879,7 @@ class Assist_backend extends CI_Model
 		return $send_data_request;
 		exit;
 	}
-	public function sending_quest_way($targetFileLogo, $org, $new_img_name, $data)
+	public function sending_quest_way($data)
 	{
 		$user = $this->session->userdata('sessUsr');
 		$dep_id = $this->session->userdata('sessDep');
@@ -892,6 +904,11 @@ class Assist_backend extends CI_Model
 		$send_data_request = $this->db->insert('list_quest');
 		$last_id = $this->db->insert_id();
 
+		return $last_id;
+		exit;
+	}
+	public function sending_quest_way_img($targetFileLogo, $org, $new_img_name, $last_id)
+	{
 		$this->db->set('qu_id', $last_id);
 		$this->db->set('path_img', $targetFileLogo);
 		$this->db->set('old_img', $org);
@@ -903,6 +920,7 @@ class Assist_backend extends CI_Model
 	}
 	public function sending_data_request_way($arr_img, $data)
 	{
+		$last_id = $this->sending_quest_way($data);
 		foreach ($arr_img as $rimg) {
 			$today = date("Y-m-dHis");
 			$month = date("m");
@@ -921,10 +939,10 @@ class Assist_backend extends CI_Model
 			$tmpPath2 = $targetPathLogo;
 			$this->create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month);
 			//============================Checks whether a file or directory exists.============================//
-			$sending_quest_way = $this->sending_quest_way($targetFileLogo, $org, $new_img_name, $data);
+			$sending_quest_way_img = $this->sending_quest_way_img($targetFileLogo, $org, $new_img_name, $last_id);
 			copy($rimg['tempFileLogo'], $targetFileLogo);
 		}
-		return $sending_quest_way;
+		return $sending_quest_way_img;
 		exit;
 	}
 	public function get_datatable_request_all_user($start_date, $end_date, $user_id)
@@ -1011,7 +1029,7 @@ class Assist_backend extends CI_Model
 		return $cancel_data_request;
 		exit;
 	}
-	public function reply_quest_way($targetFileLogo, $org, $new_img_name, $data)
+	public function reply_quest_way($data)
 	{
 		$user = $this->session->userdata('sessUsr');
 		$this->db->set('date_update', 'NOW()', FALSE);
@@ -1020,6 +1038,11 @@ class Assist_backend extends CI_Model
 		$this->db->where('qu_id', $data['qu_id']);
 		$cancel_data_request = $this->db->update('list_quest');
 
+		return $cancel_data_request;
+		exit;
+	}
+	public function reply_quest_way_img($targetFileLogo, $org, $new_img_name, $data)
+	{
 		$this->db->set('qu_id', $data['qu_id']);
 		$this->db->set('path_img', $targetFileLogo);
 		$this->db->set('old_img', $org);
@@ -1031,6 +1054,7 @@ class Assist_backend extends CI_Model
 	}
 	public function reply_data_request_way($arr_img, $data)
 	{
+		$sending_quest_way = $this->reply_quest_way($data);
 		foreach ($arr_img as $rimg) {
 			$today = date("Y-m-dHis");
 			$month = date("m");
@@ -1049,10 +1073,10 @@ class Assist_backend extends CI_Model
 			$tmpPath2 = $targetPathLogo;
 			$this->create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month);
 			//============================Checks whether a file or directory exists.============================//
-			$sending_quest_way = $this->reply_quest_way($targetFileLogo, $org, $new_img_name, $data);
+			$reply_quest_way_img = $this->reply_quest_way_img($targetFileLogo, $org, $new_img_name, $data);
 			copy($rimg['tempFileLogo'], $targetFileLogo);
 		}
-		return $sending_quest_way;
+		return $reply_quest_way_img;
 		exit;
 	}
 	public function reply_request($qu_id, $detail_r)
@@ -1400,7 +1424,7 @@ class Assist_backend extends CI_Model
 		}
 	}
 
-	public function sending_data_request_db($targetFileLogo, $org, $new_img_name, $data)
+	public function sending_data_request_db($data)
 	{
 		$user = $this->session->userdata('sessUsr');
 		$this->db->set('dep_issue_id', $data['re_department_issue']);
@@ -1423,7 +1447,11 @@ class Assist_backend extends CI_Model
 
 		$send_data_request = $this->db->insert('list_quest');
 		$last_id = $this->db->insert_id();
-		
+		return $last_id;
+		exit;
+	}
+	public function sending_data_request_db_img($targetFileLogo, $org, $new_img_name, $last_id)
+	{
 		$this->db->set('qu_id', $last_id);
 		$this->db->set('path_img', $targetFileLogo);
 		$this->db->set('old_img', $org);
