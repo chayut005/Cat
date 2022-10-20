@@ -98,9 +98,9 @@ class GET_API extends CI_Controller
 				if ($ta['status_system'] === '1') {
 					$data_html .= '<a onclick="edit_category_main(' . $ta['system_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-edit" ></i></a>';
 				}
-				$data_html .= '<a onclick="button_delete_category(' . $ta['system_id'] . ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>';
+				$data_html .= '<a onclick="button_delete_system(' . $ta['system_id'] . ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>';
 			} else {
-				$data_html = '<a onclick="button_re_category(' . $ta['system_id'] . ')"><i class="bx bx-redo bx-flip-horizontal" ></i></a>';
+				$data_html = '<a onclick="button_re_system(' . $ta['system_id'] . ')"><i class="bx bx-redo bx-flip-horizontal" ></i></a>';
 			}
 
 
@@ -150,9 +150,9 @@ class GET_API extends CI_Controller
 				if ($ta['status_cat'] === '1') {
 					$data_html .= '<a onclick="edit_category_main(' . $ta['cat_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-edit" ></i></a>';
 				}
-				$data_html .= '<a onclick="button_delete_category(' . $ta['cat_id'] . ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>';
+				$data_html .= '<a onclick="button_delete_cat(' . $ta['cat_id'] . ')" style="cursor: pointer;"><i class="bx bx-trash"></i></a>';
 			} else {
-				$data_html = '<a onclick="button_re_category(' . $ta['cat_id'] . ')"><i class="bx bx-redo bx-flip-horizontal" ></i></a>';
+				$data_html = '<a onclick="button_re_cat(' . $ta['cat_id'] . ')"><i class="bx bx-redo bx-flip-horizontal" ></i></a>';
 			}
 
 
