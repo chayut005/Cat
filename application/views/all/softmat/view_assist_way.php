@@ -771,6 +771,9 @@
 			},
 			success: function (data) {
 				// console.log(data)
+				$('#modal_img_way1').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
+				$('#modal_img_way2').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
+				$('#modal_img_way3').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
 				if (data['null'] != 'null') {
 					var num = 1;
 					$.each(data, function (key, val) {
