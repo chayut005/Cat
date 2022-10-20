@@ -5,27 +5,29 @@ class Assist_backend extends CI_Model
 	{
 		// $this->cmm = $this->load->database('qmdm_system', true); update_request_time save_request_time save_priority get_report_cat
 	}
-	public function sending_data_request($fileupload, $tempFileLogo, $data)
+	public function sending_data_request($arr_img, $data)
 	{
-		$today = date("Y-m-dHis");
-		$month = date("m");
-		$year = date("Y");
-		$fileName = iconv('UTF-8', 'TIS-620', $fileupload);
-		$arrStrLogo = explode(".", $fileName);
-		$fileNameLogo = $today . "_" . $arrStrLogo[0] . "." . $arrStrLogo[1];
-		$new_img_name = $fileNameLogo;
-		$org = $arrStrLogo[0] . "." . $arrStrLogo[1];
-		$fileNameLogo = preg_replace('/  \s+/', '_', $fileNameLogo);
-		$targetPathLogo = 'themes/softmat/request_img/' . $year . '/' . $month . '/';
-		$targetFileLogo = $targetPathLogo . $fileNameLogo;
-		//============================Checks whether a file or directory exists.============================//
-		$tmpPath  = 'themes/softmat/request_img/';
-		$tmpPath1 = 'themes/softmat/request_img/' . $year . '/';
-		$tmpPath2 = $targetPathLogo;
-		$this->create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month);
-		//============================Checks whether a file or directory exists.============================//
-		$sending_data_request_db = $this->sending_data_request_db($targetFileLogo, $org, $new_img_name, $data);
-		copy($tempFileLogo, $targetFileLogo);
+		foreach ($arr_img as $rimg) {
+			$today = date("Y-m-dHis");
+			$month = date("m");
+			$year = date("Y");
+			$fileName = iconv('UTF-8', 'TIS-620', $rimg['FileLogo']);
+			$arrStrLogo = explode(".", $fileName);
+			$fileNameLogo = $today . "_" . $arrStrLogo[0] . "." . $arrStrLogo[1];
+			$new_img_name = $fileNameLogo;
+			$org = $arrStrLogo[0] . "." . $arrStrLogo[1];
+			$fileNameLogo = preg_replace('/  \s+/', '_', $fileNameLogo);
+			$targetPathLogo = 'themes/softmat/request_img/' . $year . '/' . $month . '/';
+			$targetFileLogo = $targetPathLogo . $fileNameLogo;
+			//============================Checks whether a file or directory exists.============================//
+			$tmpPath  = 'themes/softmat/request_img/';
+			$tmpPath1 = 'themes/softmat/request_img/' . $year . '/';
+			$tmpPath2 = $targetPathLogo;
+			$this->create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month);
+			//============================Checks whether a file or directory exists.============================//
+			$sending_data_request_db = $this->sending_data_request_db($targetFileLogo, $org, $new_img_name, $data);
+			copy($rimg['tempFileLogo'], $targetFileLogo);
+		}
 		return $sending_data_request_db;
 		exit;
 	}
@@ -831,6 +833,50 @@ class Assist_backend extends CI_Model
 		return $cancel_data_request;
 		exit;
 	}
+	public function reply_quest_way($targetFileLogo, $org, $new_img_name, $data)
+	{
+		$user = $this->session->userdata('sessUsr');
+		$this->db->set('date_update', 'NOW()', FALSE);
+		$this->db->set('update_by',  $user);
+		$this->db->set('status_qu', '3');
+		$this->db->where('qu_id', $data['qu_id']);
+		$cancel_data_request = $this->db->update('list_quest');
+
+		$this->db->set('qu_id', $data['qu_id']);
+		$this->db->set('path_img', $targetFileLogo);
+		$this->db->set('old_img', $org);
+		$this->db->set('new_img', $new_img_name);
+		$send_img_request = $this->db->insert('list_img_support_quest');
+
+		return $send_img_request;
+		exit;
+	}
+	public function reply_data_request_way($arr_img, $data)
+	{
+		foreach ($arr_img as $rimg) {
+			$today = date("Y-m-dHis");
+			$month = date("m");
+			$year = date("Y");
+			$fileName = iconv('UTF-8', 'TIS-620', $rimg['FileLogo']);
+			$arrStrLogo = explode(".", $fileName);
+			$fileNameLogo = $today . "_" . $arrStrLogo[0] . "." . $arrStrLogo[1];
+			$new_img_name = $fileNameLogo;
+			$org = $arrStrLogo[0] . "." . $arrStrLogo[1];
+			$fileNameLogo = preg_replace('/  \s+/', '_', $fileNameLogo);
+			$targetPathLogo = 'themes/softmat/request_img/' . $year . '/' . $month . '/';
+			$targetFileLogo = $targetPathLogo . $fileNameLogo;
+			//============================Checks whether a file or directory exists.============================//
+			$tmpPath  = 'themes/softmat/request_img/';
+			$tmpPath1 = 'themes/softmat/request_img/' . $year . '/';
+			$tmpPath2 = $targetPathLogo;
+			$this->create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month);
+			//============================Checks whether a file or directory exists.============================//
+			$sending_quest_way = $this->reply_quest_way($targetFileLogo, $org, $new_img_name, $data);
+			copy($rimg['tempFileLogo'], $targetFileLogo);
+		}
+		return $sending_quest_way;
+		exit;
+	}
 	public function reply_request($qu_id, $detail_r)
 	{
 		$user = $this->session->userdata('sessUsr');
@@ -1189,9 +1235,6 @@ class Assist_backend extends CI_Model
 		$this->db->set('cat_id', $data['re_category']);
 		$this->db->set('pri_id', $data['priority_id']);
 		$this->db->set('subject', $data['re_subject']);
-		$this->db->set('path_file_re', $targetFileLogo);
-		$this->db->set('original_f_name', $org);
-		$this->db->set('new_f_name', $new_img_name);
 		$this->db->set('lp_id',  $data['re_line']);
 		$this->db->set('detail',  $data['re_detail']);
 		$this->db->set('date_create',  $data['date_create']);
@@ -1201,7 +1244,15 @@ class Assist_backend extends CI_Model
 		$this->db->set('specified_time',  $data['specified_time']);
 
 		$send_data_request = $this->db->insert('list_quest');
-		return $send_data_request;
+		$last_id = $this->db->insert_id();
+		
+		$this->db->set('qu_id', $last_id);
+		$this->db->set('path_img', $targetFileLogo);
+		$this->db->set('old_img', $org);
+		$this->db->set('new_img', $new_img_name);
+		$send_img_request = $this->db->insert('list_img_quest');
+
+		return $send_img_request;
 		exit;
 	}
 	public function sending_request($data)

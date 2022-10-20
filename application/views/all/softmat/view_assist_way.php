@@ -304,14 +304,14 @@
 											</div>
 											<!-- <div style="text-align: center; " class="column">
                      
-                        <i class='bx bx-right-arrow bx-fade-right'></i>
-                        <i class='bx bx-right-arrow bx-fade-right'></i><br>
-                        <i class='bx bx-right-arrow bx-fade-right'></i>
-                        <i class='bx bx-right-arrow bx-fade-right'></i><br>
-                        <i class='bx bx-right-arrow bx-fade-right'></i>
-                        <i class='bx bx-right-arrow bx-fade-right'></i>
+											<i class='bx bx-right-arrow bx-fade-right'></i>
+											<i class='bx bx-right-arrow bx-fade-right'></i><br>
+											<i class='bx bx-right-arrow bx-fade-right'></i>
+											<i class='bx bx-right-arrow bx-fade-right'></i><br>
+											<i class='bx bx-right-arrow bx-fade-right'></i>
+											<i class='bx bx-right-arrow bx-fade-right'></i>
 
-                      </div> -->
+										</div> -->
 											<div class="column">
 												<img id="img_recipient_name" class="setting_img" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 												<div style="text-align: center; margin-top:5px">
@@ -385,13 +385,13 @@
 													</div>
 
 													<!-- <div class="col-lg-6 col-sm-6">
-                            <div class=" input-group-sm">
-                              <label>Priority:</label>
-                              <select id="" name="" class="form-control" required>
-                                <option selected value="">--- Priority ---</option>
-                              </select>
-                            </div>
-                          </div> -->
+												<div class=" input-group-sm">
+												<label>Priority:</label>
+												<select id="" name="" class="form-control" required>
+													<option selected value="">--- Priority ---</option>
+												</select>
+												</div>
+											</div> -->
 
 													<div class="col-lg-4 col-sm-6">
 														<div class=" input-group-sm">
@@ -420,15 +420,27 @@
 
 								</div>
 								<div class="tab-pane fade" id="navs-pills-justified-file" role="tabpanel">
-									<p>
-										Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
-										cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
-										cheesecake fruitcake.
-									</p>
-									<p class="mb-0">
-										Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
-										cotton candy liquorice caramels.
-									</p>
+									<div class="col-lg-12 col-sm-12 my-2">
+										<div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
+											<span>
+												<img id="modal_img_way1" onclick="$('#modal_upload_img_way1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+												<img id="modal_img_way2" onclick="$('#modal_upload_img_way2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+												<img id="modal_img_way3" onclick="$('#modal_upload_img_way3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+											</span>
+
+											<input id="modal_upload_img_way1" onchange="modal_show_img_way1(this)" name="modal_img_way1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+											<input id="modal_upload_img_way2" onchange="modal_show_img_way2(this)" name="modal_img_way2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+											<input id="modal_upload_img_way3" onchange="modal_show_img_way3(this)" name="modal_img_way3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+										</div>
+										<div class="" style="  display: flex; justify-content: center; align-items: center;">
+											<button onclick="remove_modal_img_way()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
+										</div>
+										<div class="" style="  display: flex; justify-content: center; align-items: center;">
+											<button onclick="modal_op_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
+											<button onclick="modal_op_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
+											<button onclick="modal_op_img(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -461,6 +473,21 @@
 			$('#show_data_way1').css('display', 'none');
 			$('#show_data_way2').css('display', 'none');
 			$('#show_data_way3').css('display', 'block');
+		}
+	}
+	function modal_op_img(num) {
+		if (num == 1) {
+			$('#modal_img_way1').css('display', 'block');
+			$('#modal_img_way2').css('display', 'none');
+			$('#modal_img_way3').css('display', 'none');
+		} else if (num == 2) {
+			$('#modal_img_way1').css('display', 'none');
+			$('#modal_img_way2').css('display', 'block');
+			$('#modal_img_way3').css('display', 'none');
+		} else if (num == 3) {
+			$('#modal_img_way1').css('display', 'none');
+			$('#modal_img_way2').css('display', 'none');
+			$('#modal_img_way3').css('display', 'block');
 		}
 	}
 
@@ -881,6 +908,15 @@
 		$('#upload_img_way2').val('')
 		$('#upload_img_way3').val('')
 	}
+	function remove_modal_img_way() {
+		event.preventDefault()
+		$("#modal_img_way1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+		$("#modal_img_way2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+		$("#modal_img_way3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+		$('#modal_upload_img_way1').val('')
+		$('#modal_upload_img_way2').val('')
+		$('#modal_upload_img_way3').val('')
+	}
 
 	async function cancel_quest(qu_id) {
 		event.preventDefault();
@@ -961,7 +997,6 @@
 			$("#show_data_way1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
 		}
 	}
-
 	function show_img_way2(input_img) {
 		if (input_img.files && input_img.files[0]) {
 			// console.log(input_img.files[0]['type']);
@@ -982,7 +1017,6 @@
 			$("#show_data_way2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
 		}
 	}
-
 	function show_img_way3(input_img) {
 		if (input_img.files && input_img.files[0]) {
 			var imgType = input_img.files[0]['type'];
@@ -999,6 +1033,62 @@
 			reader.readAsDataURL(input_img.files[0]);
 		} else {
 			$("#show_data_way3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+		}
+	}
+	function modal_show_img_way1(input_img) {
+		if (input_img.files && input_img.files[0]) {
+			var imgType = input_img.files[0]['type'];
+			var chk = imgType.split("/");
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				// console.log(e)
+				if (chk[0] != "application") {
+					$("#modal_img_way1").attr("src", e.target.result)
+				} else {
+					$("#modal_img_way1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+				}
+			}
+			reader.readAsDataURL(input_img.files[0]);
+		} else {
+			$("#modal_img_way1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+		}
+	}
+	function modal_show_img_way2(input_img) {
+		if (input_img.files && input_img.files[0]) {
+			// console.log(input_img.files[0]['type']);
+			var imgType = input_img.files[0]['type'];
+			var chk = imgType.split("/");
+			// if(input_img.files[0]){}
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				// console.log(e)
+				if (chk[0] != "application") {
+					$("#modal_img_way2").attr("src", e.target.result)
+				} else {
+					$("#modal_img_way2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+				}
+			}
+			reader.readAsDataURL(input_img.files[0]);
+		} else {
+			$("#modal_img_way2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
+		}
+	}
+	function modal_show_img_way3(input_img) {
+		if (input_img.files && input_img.files[0]) {
+			var imgType = input_img.files[0]['type'];
+			var chk = imgType.split("/");
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				// console.log(e)
+				if (chk[0] != "application") {
+					$("#modal_img_way3").attr("src", e.target.result)
+				} else {
+					$("#modal_img_way3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png")
+				}
+			}
+			reader.readAsDataURL(input_img.files[0]);
+		} else {
+			$("#modal_img_way3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
 		}
 	}
 
