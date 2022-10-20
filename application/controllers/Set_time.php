@@ -480,4 +480,23 @@ class Set_time extends CI_Controller
 		$save_type = $this->assist_backend->save_type($type_id, $dep_id);
 		echo json_encode($save_type);
 	}
+	public function data_category()
+	{
+		// $pri_id = $_POST['pri_id']; disable_type
+		// $dep_id = $_POST['dep_id'];
+		$dep_id =  $this->session->userdata('sessDep');
+		$this->assist_backend->checksession();
+		$data_category = $this->assist_backend->data_category($dep_id);
+		echo json_encode($data_category);
+	}
+	public function data_category_use_table()
+	{
+		// $pri_id = $_POST['pri_id']; disable_type
+		// $dep_id = $_POST['dep_id'];
+		$dep_id =  $this->session->userdata('sessDep');
+		$this->assist_backend->checksession();
+		$data_category = $this->assist_backend->data_category($dep_id);
+		$table = array('data' => $data_category);
+		echo json_encode($table);
+	}
 }

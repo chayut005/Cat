@@ -216,6 +216,7 @@
                                 html: "<p>Save Type</p><p>Success</p>",
                                 icon: 'success',
                             })
+                            data_request_table()
                             $('#modal_check_pri_dep').modal('hide')
                         } else if (reply_save_type === false) {
                             Swal.fire({
@@ -257,6 +258,7 @@
                                 html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
                                 icon: 'success',
                             })
+                            data_request_table()
                         } else if (reply_re['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_re['html'] + "</p><p>" + reply_re['html_eng'] + "</p>",
@@ -296,6 +298,7 @@
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
                                 icon: 'success',
                             })
+                            data_request_table()
                         } else if (reply_delete['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
@@ -335,6 +338,7 @@
                                 icon: 'success',
 
                             })
+                            data_request_table()
                         } else if (reply_enable['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_enable['html'] + "</p><p>" + reply_enable['html_eng'] + "</p>",
@@ -375,6 +379,7 @@
                                 icon: 'success',
 
                             })
+                            data_request_table()
                         } else if (reply_disable['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_disable['html'] + "</p><p>" + reply_disable['html_eng'] + "</p>",
@@ -423,6 +428,7 @@
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
                                 icon: 'success',
                             })
+                            data_request_table()
                         } else if (reply_delete['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
@@ -435,7 +441,7 @@
         })
     }
     $(document).ready(function() {
-
+        data_request_table()
         var cnt = 1;
         var table = $('#table_type_use').DataTable({
             // lengthChange: false,
@@ -489,7 +495,7 @@
         // data_request_table()
         //     .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
-    setInterval(data_request_table, 1000)
+    // setInterval(data_request_table, 1000)
 
     function data_request_table() {
 

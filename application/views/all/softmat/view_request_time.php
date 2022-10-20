@@ -239,6 +239,7 @@
                                 html: "<p>Save Request Time</p><p>Success</p>",
                                 icon: 'success',
                             })
+                            data_request_table()
                             $('#modal_add_time_request').modal('hide')
                         } else if (reply_request === false) {
                             Swal.fire({
@@ -281,6 +282,7 @@
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
                                 icon: 'success',
                             })
+                            data_request_table()
                         } else if (reply_delete['reply'] === false) {
                             Swal.fire({
                                 html: "<p>" + reply_delete['html'] + "</p><p>" + reply_delete['html_eng'] + "</p>",
@@ -325,6 +327,7 @@
                                 html: "<p>Update Request Time</p><p>Success</p>",
                                 icon: 'success',
                             })
+                            data_request_table()
                             $('#modal_update_time_request').modal('hide')
                         } else if (reply_request === false) {
                             Swal.fire({
@@ -422,9 +425,9 @@
             table.ajax.reload(null, false);
             cnt = 1;
         }, 1000);
-        // data_request_table()
+        data_request_table()
     });
-    setInterval(data_request_table, 1000)
+    // setInterval(data_request_table, 1000)
 
     function data_request_table() {
 

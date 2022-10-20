@@ -59,7 +59,17 @@ class Assist_backend extends CI_Model
 
 
 
-
+	public function data_category($dep_id)
+	{
+		$sqlLoad = "SELECT lcl.*,lc.cat_name,ld.dep_name FROM list_category_list AS lcl LEFT JOIN list_department AS ld ON ld.dep_id = lcl.dep_id LEFT JOIN list_category AS lc ON lc.cat_id = lcl.cat_id WHERE ld.status_dep<>0 AND ld.del_flag<>1 AND lcl.dep_id = '$dep_id' ";
+		$excLoad = $this->db->query($sqlLoad);
+		$recLoad = $excLoad->result_array();
+		if ($excLoad->num_rows() != 0) {
+			return $recLoad;
+		} else {
+			return null;
+		}
+	}
 	public function save_type($type_id, $dep_id)
 	{
 		$sid = $this->session->userdata('sessUsr');
