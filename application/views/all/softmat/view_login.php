@@ -2,51 +2,57 @@
 	/* . {
 		background-color: #ffffffdb !important;
 	} */
+	.center_login {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 </style>
-	<!-- style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80');" -->
-	<div class="">
-	<span class="mask bg-gradient-dark opacity-6"></span>
-		<div class=" " style="    margin-top: 14% !important;">
-			<div class="row">
-				<div style="    padding-right: 3.625rem; padding-left: 3.625rem;" class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mx-auto">
-					<div class=" card z-index-0 fadeIn3 fadeInBottom">
-						<div style="    background-color: #d3d3d3;    border-radius: 20px;" class=" p-0 position-relative mt-n4 mx-3 z-index-2">
-							<div class=" border-radius-lg py-3 pe-1">
-								<img style="    width: 65%;     display: block;  margin-left: auto; margin-right: auto;" src="<?php echo base_url(); ?>./themes/softmat/img/cat.png" alt="user">
+<!-- style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80');" -->
+<div class="">
+
+	<div class=" ">
+		<div class="row">
+			<div class="col-xl-3 col-lg-5 col-md-6 col-sm-8 mx-auto center_login">
+				<div class=" card z-index-0 fadeIn3 fadeInBottom">
+					<div style="    background-color: #d3d3d3;    border-radius: 20px;" class=" p-0 position-relative mt-n4 mx-3 z-index-2">
+						<div class=" border-radius-lg py-3 pe-1">
+							<img style="    width: 65%;     display: block;  margin-left: auto; margin-right: auto;" src="<?php echo base_url(); ?>./themes/softmat/img/cat.png" alt="user">
+						</div>
+					</div>
+					<div class="card-body">
+						<form role="form" class="text-start">
+
+
+							<div class="">
+								<label class=" ">Username: <span style="color:red">*</span></label>
+								<div class="input-group">
+									<input oninput="username()" type="text" class="form-control" id="userr" name="userr" placeholder="Username" aria-label="username" aria-describedby="button-addon2" autofocus>
+								</div>
 							</div>
-						</div>
-						<div class="card-body">
-							<form role="form" class="text-start">
-					
 
-								<div class="">
-									<label class=" ">Username: <span style="color:red">*</span></label>
-									<div class="input-group">
-										<input  oninput="username()" type="text" class="form-control" id="userr" name="userr" placeholder="Username" aria-label="username" aria-describedby="button-addon2" autofocus>
-									</div>
+							<div class="form-password-toggle my-4">
+								<label for="a_pass">Password:</label>
+								<div class="input-group ">
+									<input type="password" class="form-control" id="password" name="pass" placeholder="Password........" required />
+									<span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
 								</div>
+							</div>
 
-								<div class="form-password-toggle my-4">
-									<label for="a_pass">Password:</label>
-									<div class="input-group ">
-										<input type="password" class="form-control" id="password" name="pass" placeholder="Password........" required />
-										<span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-									</div>
-								</div>
-
-								<div class="text-center">
-									<button style="font-size: 18px; margin-top: 1.5rem !important; background-color: #d3d3d3; " type="button" onclick="check_login()" class="btn  w-100 ">Login</button>
-									<!-- href="Manage/den"  -->
-								</div>
-								<!-- onclick="check_login()"  -->
-								<input type="hidden" name="action" value="<?php echo base64_encode('login'); ?>" hidden />
-							</form>
-						</div>
+							<div class="text-center">
+								<button style="font-size: 18px; margin-top: 1.5rem !important; background-color: #d3d3d3; " type="submit" onclick="check_login()" class="btn  w-100 ">Login</button>
+								<!-- href="Manage/den"  -->
+							</div>
+							<!-- onclick="check_login()"  -->
+							<input type="hidden" name="action" value="<?php echo base64_encode('login'); ?>" hidden />
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <footer class="footer position-absolute bottom-2 py-2 w-100">
+	</div>
+	<!-- <footer class="footer position-absolute bottom-2 py-2 w-100">
 			<div class="container">
 				<div class="row align-items-center justify-content-lg-between">
 					<div class="col-12 col-md-6 my-auto">
@@ -78,13 +84,13 @@
 				</div>
 			</div>
 		</footer> -->
-	</div>
-	<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
-		<div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-	</div>
-	<div class="ps__rail-y" style="top: 0px; right: 0px;">
-		<div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-	</div>
+</div>
+<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+	<div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+</div>
+<div class="ps__rail-y" style="top: 0px; right: 0px;">
+	<div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+</div>
 
 
 

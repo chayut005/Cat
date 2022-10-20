@@ -2630,23 +2630,19 @@ class Assist_backend extends CI_Model
 		if ($query->num_rows() != 0) {
 			if ($result[0]['employee'] == $username && $result[0]['pass'] == $password) {
 				// return 'suc_pass';
-				if ($result[0]['g_id'] >= 3) {
+				$per_u = 'menu_home';
+				$CheckPermissions = $this->CheckPermissions($result[0]['user_id'], $per_u);
+				if($CheckPermissions === true){
+					$this->db->set('last_login', 'NOW()', FALSE);
+					$this->db->where('user_id', $result[0]['user_id']);
+					$exc_dep = $this->db->update('list_user');
+					return array('action' => 'suc_pass_menu', $result[0]);
+					exit;
+				}else{
 					$this->db->set('last_login', 'NOW()', FALSE);
 					$this->db->where('user_id', $result[0]['user_id']);
 					$exc_dep = $this->db->update('list_user');
 					return array('action' => 'suc_pass', $result[0]);
-					exit;
-				} else if (($result[0]['g_id'] <= 2) && ($result[0]['g_id'] != 0)) {
-					$this->db->set('last_login', 'NOW()', FALSE);
-					$this->db->where('user_id', $result[0]['user_id']);
-					$exc_dep = $this->db->update('list_user');
-					return array('action' => 'suc_pass_menu', $result[0]);
-					exit;
-				} else if (($result[0]['user_id'] == 1)) {
-					$this->db->set('last_login', 'NOW()', FALSE);
-					$this->db->where('user_id', $result[0]['user_id']);
-					$exc_dep = $this->db->update('list_user');
-					return array('action' => 'suc_pass_menu', $result[0]);
 					exit;
 				}
 			}
