@@ -778,6 +778,289 @@ class Request extends CI_Controller
 			}
 		}
 	}
+	public function send_data_quest_way_modal()
+	{
+		$action = base64_decode($this->input->post('action'));
+
+
+		if ($action == 'request_way') {
+			$this->form_validation->set_error_delimiters('<p>', '</p>');
+
+			$this->form_validation->set_rules('way_department', 'Department Support', 'trim|is_natural_no_zero|required');
+			$this->form_validation->set_rules('support_way', 'Support By', 'trim|is_natural_no_zero|required');
+			$this->form_validation->set_rules('type_way', 'Type', 'trim|is_natural_no_zero|required');
+			$this->form_validation->set_rules('system_way', 'System', 'trim|is_natural_no_zero|required');
+			$this->form_validation->set_rules('subject_way', 'Subject', 'trim|required|min_length[3]|max_length[128]');
+			$this->form_validation->set_rules('detail_way', 'Detail', 'trim|required|min_length[3]|max_length[128]');
+
+			$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+			$this->form_validation->set_message('min_length', '%s ต้องมีมากว่า 3 ตัว');
+			$this->form_validation->set_message('max_length', '%s ต้องมีไม่เกิน 128 ตัว');
+			$this->form_validation->set_message('is_natural_no_zero', 'กรุณาทำการตรวจสอบ %s ด้วย');
+
+			if ($this->form_validation->run() == FALSE) {
+				echo json_encode(validation_errors());
+				exit;
+			} else {
+
+				$data['re_department'] = $this->input->post('way_department');
+				$data['re_support'] = $this->input->post('support_way');
+				$data['re_type'] = $this->input->post('type_way');
+				$data['re_system'] = $this->input->post('system_way');
+				$data['re_subject'] = $this->input->post('subject_way');
+				$data['re_detail'] = $this->input->post('detail_way');
+
+				$data['re_line'] = '';
+				$data['priority_id'] = '';
+				// line_way priority_way
+				if (empty($_FILES["file_way1"]["name"]) && empty($_FILES["file_way2"]["name"]) && empty($_FILES["file_way3"]["name"])) {
+					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
+					if ($check_type !== null && $check_type !== '') {
+						$this->form_validation->set_rules('priority_way', 'Priority', 'required');
+
+						$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+						if ($this->form_validation->run() == FALSE) {
+							echo json_encode(validation_errors());
+							exit;
+						} else {
+							$re_priority = $this->input->post('priority_way');
+							// --------------------------------------------priority_time-------------------------------------------------
+
+							$myArray = explode(' ', $re_priority);
+							$priority_id = $myArray[0];
+							$priority_time =  $myArray[1];
+
+							// --------------------------------------------end_priority_time---------------------------------------------
+
+							// --------------------------------------------department_time-----------------------------------------------
+
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
+
+							// --------------------------------------------end_department_time-------------------------------------------
+
+							// --------------------------------------------specified_time------------------------------------------------
+
+							$date = date("Y-m-d H:i:s");
+							$data['priority_id'] = $priority_id;
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
+
+							// --------------------------------------------end_specified_time--------------------------------------------
+
+							$check_system = $this->assist_backend->check_system($this->session->userdata('sessDep'), $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('line_way', 'Line', 'required');
+
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+								if ($this->form_validation->run() == FALSE) {
+									echo json_encode(validation_errors());
+									exit;
+								} else {
+									$data['re_line'] = $this->input->post('line_way');
+								}
+							}
+							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no($data);
+							echo json_encode($sending_quest_way_no);
+							exit;
+						}
+					} else {
+						$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
+						if ($time_request !== null && $time_request !== '') {
+
+							// --------------------------------------------request_time--------------------------------------------------
+
+							$time_request_dep =  $time_request[0]['set_timer_request_dep'];
+
+
+							// $data['all_m_re'] =  $all_m_re;
+
+							// --------------------------------------------end_request_time----------------------------------------------
+
+							// --------------------------------------------department_time-----------------------------------------------
+
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
+
+							// $data['all_m_dep'] =  $all_m_dep;
+							// --------------------------------------------end_department_time-------------------------------------------
+
+							// --------------------------------------------specified_time------------------------------------------------
+							$date = date("Y-m-d H:i:s");
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
+
+							// --------------------------------------------end_specified_time--------------------------------------------
+
+							$check_system = $this->assist_backend->check_system($this->session->userdata('sessDep'), $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('line_way', 'Line', 'required');
+
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+								if ($this->form_validation->run() == FALSE) {
+									echo json_encode(validation_errors());
+									exit;
+								} else {
+									$data['re_line'] = $this->input->post('line_way');
+								}
+							}
+							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no($data);
+							echo json_encode($sending_quest_way_no);
+							exit;
+						}
+					}
+				} else {
+					if ($_FILES['file_way1']['size'] > '4000000') {
+						echo json_encode('<p>image 1 ของคุณขนาดเกิน 4000000 </p>');
+						exit;
+					}
+					if ($_FILES['file_way2']['size'] > '4000000') {
+						echo json_encode('<p>image 2 ของคุณขนาดเกิน 4000000 </p>');
+						exit;
+					}
+					if ($_FILES['file_way3']['size'] > '4000000') {
+						echo json_encode('<p>image 3 ของคุณขนาดเกิน 4000000 </p>');
+						exit;
+					}
+					$arr_img = array();
+					if (!empty($_FILES["file_way1"]["name"])) {
+						array_push($arr_img, array(
+							'tempFileLogo' => $_FILES['file_way1']['tmp_name'],
+							'FileLogo' => $_FILES['file_way1']['name']
+						));
+					}
+					if (!empty($_FILES["file_way2"]["name"])) {
+						array_push($arr_img, array(
+							'tempFileLogo' => $_FILES['file_way2']['tmp_name'],
+							'FileLogo' => $_FILES['file_way2']['name']
+						));
+					}
+					if (!empty($_FILES["file_way3"]["name"])) {
+						array_push($arr_img, array(
+							'tempFileLogo' => $_FILES['file_way3']['tmp_name'],
+							'FileLogo' => $_FILES['file_way3']['name']
+						));
+					}
+					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
+					if ($check_type !== null && $check_type !== '') {
+						// echo json_encode('<p>kirby</p>');
+						// exit;
+						$this->form_validation->set_rules('priority_way', 'Priority', 'required');
+
+						$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+						if ($this->form_validation->run() == FALSE) {
+							echo json_encode(validation_errors());
+							exit;
+						} else {
+
+							$re_priority = $this->input->post('priority_way');
+							// --------------------------------------------priority_time-------------------------------------------------
+
+							$myArray = explode(' ', $re_priority);
+							$priority_id = $myArray[0];
+							$priority_time =  $myArray[1];
+
+							// --------------------------------------------end_priority_time---------------------------------------------
+
+							// --------------------------------------------department_time-----------------------------------------------
+
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
+
+							// --------------------------------------------end_department_time-------------------------------------------
+
+							// --------------------------------------------specified_time------------------------------------------------
+
+							$date = date("Y-m-d H:i:s");
+							$data['priority_id'] = $priority_id;
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $priority_time . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
+
+							// --------------------------------------------end_specified_time--------------------------------------------	echo json_encode($data);	exit;
+
+							$check_system = $this->assist_backend->check_system($this->session->userdata('sessDep'), $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('line_way', 'Line', 'required');
+
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+								if ($this->form_validation->run() == FALSE) {
+									echo json_encode(validation_errors());
+									exit;
+								} else {
+									$data['re_line'] = $this->input->post('line_way');
+								}
+							}
+							// $tempFileLogo = $_FILES['file_way1']['tmp_name'];
+							// $FileLogo = $_FILES['file_way1']['name'];
+							$sending_data_request_way = $this->assist_backend->sending_data_request_way($arr_img, $data);
+							echo json_encode($sending_data_request_way);
+							// echo json_encode($data);
+
+							exit;
+						}
+					} else {
+						$time_request = $this->assist_backend->time_request($data['re_department'], $data['re_type']);
+						if ($time_request !== null && $time_request !== '') {
+
+							// --------------------------------------------request_time--------------------------------------------------
+
+							$time_request_dep =  $time_request[0]['set_timer_request_dep'];
+
+
+							// $data['all_m_re'] =  $all_m_re;
+
+							// --------------------------------------------end_request_time----------------------------------------------
+
+							// --------------------------------------------department_time-----------------------------------------------
+
+							$time_dep = $this->assist_backend->time_department($data['re_department']);
+
+							// $data['all_m_dep'] =  $all_m_dep;
+							// --------------------------------------------end_department_time-------------------------------------------
+
+							// --------------------------------------------specified_time------------------------------------------------
+							$date = date("Y-m-d H:i:s");
+							$data['date_create'] =  $date;
+							$time_receive = date('Y-m-d H:i:s', strtotime($date . '' . $time_dep[0]['time_dep'] . ' min'));
+							$specified_time = date('Y-m-d H:i:s', strtotime($time_receive . '' . $time_request_dep . ' min'));
+							$data['time_receive'] =  $time_receive;
+							$data['specified_time'] =  $specified_time;
+
+							// --------------------------------------------end_specified_time--------------------------------------------
+
+							$check_system = $this->assist_backend->check_system($this->session->userdata('sessDep'), $data['re_system']);
+							if ($check_system !== null && $check_system !== '') {
+								$this->form_validation->set_rules('line_way', 'Line', 'required');
+
+								$this->form_validation->set_message('required', '%s ไม่มีข้อมูล กรุณาตรวจสอบ');
+
+								if ($this->form_validation->run() == FALSE) {
+									echo json_encode(validation_errors());
+									exit;
+								} else {
+									$data['re_line'] = $this->input->post('line_way');
+								}
+							}
+							$sending_data_request_way = $this->assist_backend->sending_data_request_way($arr_img, $data);
+							echo json_encode($sending_data_request_way);
+							exit;
+						}
+					}
+				}
+			}
+		}
+	}
 	public function get_data_quest()
 	{
 		$qu_id = $_POST["qu_id"];
@@ -791,6 +1074,18 @@ class Request extends CI_Controller
 		$data_quest = $this->assist_backend->data_quest($qu_id);
 		echo json_encode($data_quest);
 		exit;
+	}
+	public function data_quest_img()
+	{
+		$qu_id = $_POST["qu_id"];
+		$data_quest = $this->assist_backend->data_quest_img($qu_id);
+		if($data_quest!=null){
+			echo json_encode($data_quest);
+			exit;
+		}else{
+			echo json_encode(array('null'=>'null'));
+			exit;
+		}
 	}
 	public function timer_quest()
 	{

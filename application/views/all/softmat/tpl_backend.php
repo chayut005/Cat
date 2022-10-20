@@ -336,25 +336,6 @@
 											<div class="col-lg-12 col-sm-12">
 												<div class="row">
 													<div class="col-lg-12 col-sm-12 my-2">
-														<div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
-															<span>
-																<img id="tplshow_data_img_request1" onclick="$('#tplupload_img_request1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
-																<img id="tplshow_data_img_request2" onclick="$('#tplupload_img_request2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
-																<img id="tplshow_data_img_request3" onclick="$('#tplupload_img_request3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
-															</span>
-
-															<input id="tplupload_img_request1" onchange="tplshow_img_request1(this)" name="tplre_img1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
-															<input id="tplupload_img_request2" onchange="tplshow_img_request2(this)" name="tplre_img2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
-															<input id="tplupload_img_request3" onchange="tplshow_img_request3(this)" name="tplre_img3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
-														</div>
-														<div class="" style="  display: flex; justify-content: center; align-items: center;">
-															<button onclick="remove_img_request1()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
-														</div>
-														<div class="" style="  display: flex; justify-content: center; align-items: center;">
-															<button onclick="tplop_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
-															<button onclick="tplop_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
-															<button onclick="tplop_img(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
-														</div>
 													</div>
 												</div>
 											</div>
@@ -376,7 +357,31 @@
 															<div class=" input-group-outline input-group-sm">
 																<label>Detail Support:</label>
 																<textarea cols="30" rows="6" name="detail_support" class="form-control" placeholder="Detail........" required></textarea>
-																
+																<div class="col-lg-12 col-sm-12">
+																	<div class="row">
+																		<div class="col-lg-12 col-sm-12 my-2">
+																			<div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
+																				<span>
+																					<img id="tplshow_data_img_request1" onclick="$('#tplupload_img_request1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+																					<img id="tplshow_data_img_request2" onclick="$('#tplupload_img_request2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+																					<img id="tplshow_data_img_request3" onclick="$('#tplupload_img_request3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+																				</span>
+
+																				<input id="tplupload_img_request1" onchange="tplshow_img_request1(this)" name="tplre_img1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+																				<input id="tplupload_img_request2" onchange="tplshow_img_request2(this)" name="tplre_img2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+																				<input id="tplupload_img_request3" onchange="tplshow_img_request3(this)" name="tplre_img3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+																			</div>
+																			<div class="" style="  display: flex; justify-content: center; align-items: center;">
+																				<button onclick="remove_img_request1()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
+																			</div>
+																			<div class="" style="  display: flex; justify-content: center; align-items: center;">
+																				<button onclick="tplop_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
+																				<button onclick="tplop_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
+																				<button onclick="tplop_img(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
 															</div>
 														</div>
 													</div>
