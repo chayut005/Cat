@@ -953,35 +953,35 @@ class Request extends CI_Controller
 						}
 					}
 				} else {
-					if ($_FILES['file_way1']['size'] > '4000000') {
+					if ($_FILES['modal_img_way1']['size'] > '4000000') {
 						echo json_encode('<p>image 1 ของคุณขนาดเกิน 4000000 </p>');
 						exit;
 					}
-					if ($_FILES['file_way2']['size'] > '4000000') {
+					if ($_FILES['modal_img_way2']['size'] > '4000000') {
 						echo json_encode('<p>image 2 ของคุณขนาดเกิน 4000000 </p>');
 						exit;
 					}
-					if ($_FILES['file_way3']['size'] > '4000000') {
+					if ($_FILES['modal_img_way3']['size'] > '4000000') {
 						echo json_encode('<p>image 3 ของคุณขนาดเกิน 4000000 </p>');
 						exit;
 					}
 					$arr_img = array();
-					if (!empty($_FILES["file_way1"]["name"])) {
+					if (!empty($_FILES["modal_img_way1"]["name"])) {
 						array_push($arr_img, array(
-							'tempFileLogo' => $_FILES['file_way1']['tmp_name'],
-							'FileLogo' => $_FILES['file_way1']['name']
+							'tempFileLogo' => $_FILES['modal_img_way1']['tmp_name'],
+							'FileLogo' => $_FILES['modal_img_way1']['name']
 						));
 					}
-					if (!empty($_FILES["file_way2"]["name"])) {
+					if (!empty($_FILES["modal_img_way2"]["name"])) {
 						array_push($arr_img, array(
-							'tempFileLogo' => $_FILES['file_way2']['tmp_name'],
-							'FileLogo' => $_FILES['file_way2']['name']
+							'tempFileLogo' => $_FILES['modal_img_way2']['tmp_name'],
+							'FileLogo' => $_FILES['modal_img_way2']['name']
 						));
 					}
-					if (!empty($_FILES["file_way3"]["name"])) {
+					if (!empty($_FILES["modal_img_way3"]["name"])) {
 						array_push($arr_img, array(
-							'tempFileLogo' => $_FILES['file_way3']['tmp_name'],
-							'FileLogo' => $_FILES['file_way3']['name']
+							'tempFileLogo' => $_FILES['modal_img_way3']['tmp_name'],
+							'FileLogo' => $_FILES['modal_img_way3']['name']
 						));
 					}
 					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
