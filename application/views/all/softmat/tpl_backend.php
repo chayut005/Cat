@@ -336,6 +336,23 @@
 											<div class="col-lg-12 col-sm-12">
 												<div class="row">
 													<div class="col-lg-12 col-sm-12 my-2">
+
+														<div class="row">
+															<div class="col-lg-12 col-sm-12 my-2">
+																<div style="  height: 350px;  border-radius: 10px;border-style: dotted; border-color: blue;display: flex;text-align:center;">
+																	<span style="width: 33.33%;">
+																		<img id="tplshow_modal_img_request1" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+																	</span>
+																	<span style="width: 33.33%;">
+																		<img id="tplshow_modal_img_request2" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+																	</span>
+																	<span style="width: 33.33%;">
+																		<img id="tplshow_modal_img_request3" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+																	</span>
+																</div>
+															</div>
+														</div>
+
 													</div>
 												</div>
 											</div>
@@ -1199,6 +1216,29 @@
 
 				}
 			})
+			$.ajax({
+			url: '<?php echo base_url(); ?>Request/data_quest_img',
+			type: "POST",
+			dataType: 'json',
+			data: {
+				qu_id: qu_id,
+			},
+			success: function (data) {
+				// console.log(data)
+				$('#tplshow_modal_img_request1').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
+				$('#tplshow_modal_img_request2').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
+				$('#tplshow_modal_img_request3').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
+				if (data['null'] != 'null') {
+					var num = 1;
+					$.each(data, function (key, val) {
+						var eid = "#tplshow_modal_img_request" + num;
+						var imgpath = '<?php echo base_url(); ?>./' + val.path_img;
+						$(eid).attr("src", imgpath);
+						num++;
+					})
+				}
+			}
+		})
 
 		}
 
