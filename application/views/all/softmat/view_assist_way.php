@@ -65,19 +65,16 @@
 		width: 70px;
 		padding: 5px;
 	}
-
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
-	<img style=" min-width: 170px; width: 25%; min-height: 16px;  max-height: 30px;"
-		src="<?php echo base_url(); ?>./themes/softmat/img/rw.png" alt="user">
+	<img style=" min-width: 170px; width: 25%; min-height: 16px;  max-height: 30px;" src="<?php echo base_url(); ?>./themes/softmat/img/rw.png" alt="user">
 
 	<div class="row">
 		<div style="    display: grid;" class="col-lg-3 col-mb-3 col-sm-3 order-0 my-1">
 			<div class="card mb-4">
 				<div class="card-body">
 
-					<img id="img_user_way" class="setting_img_user border_img"
-						src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
+					<img id="img_user_way" class="setting_img_user border_img" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 					<div style="text-align: center; margin-top:10px;">
 						<h6>
 							<div>
@@ -86,13 +83,11 @@
 						</h6>
 					</div>
 					<div class="button-wrapper">
-						<a href="<?php echo base_url() . 'Manage/Home/'; ?>" style="float: left;" type="button"
-							class="btn  btn-sm btn-primary ">
+						<a href="<?php echo base_url() . 'Manage/Home/'; ?>" style="float: left;" type="button" class="btn  btn-sm btn-primary ">
 							<span class="d-none d-sm-block">Home</span>
 							<i class="bx bx-home-alt d-block d-sm-none"></i>
 						</a>
-						<a href="<?php echo site_url('manage/logout'); ?>" style="float: right;" type="button"
-							onclick="" class="btn btn-sm btn-danger ">
+						<a href="<?php echo site_url('manage/logout'); ?>" style="float: right;" type="button" onclick="" class="btn btn-sm btn-danger ">
 							<i class="bx  bx-log-in d-block d-sm-none"></i>
 							<span class="d-none d-sm-block">Logout</span>
 						</a>
@@ -111,32 +106,28 @@
 
 								<div class=" input-group-outline input-group-sm my-1">
 									<label>Department:</label>
-									<select selected onchange="open_support(value)" id="html_sup_dep_way"
-										name="way_department" class="form-control" required>
+									<select selected onchange="open_support(value)" id="html_sup_dep_way" name="way_department" class="form-control" required>
 										<option value="">--- Department ---</option>
 									</select>
 								</div>
 
 								<div class=" input-group-outline input-group-sm my-2">
 									<label>Support By:</label>
-									<select disabled selected onchange="" id="html_support_by_way" name="support_way"
-										class="form-control" required>
+									<select disabled selected onchange="" id="html_support_by_way" name="support_way" class="form-control" required>
 										<option value="">--- Support ---</option>
 									</select>
 								</div>
 
 								<div class=" input-group-outline input-group-sm my-2">
 									<label>Type:</label>
-									<select disabled selected onchange="check_data_type(value)" id="html_type_way"
-										name="type_way" class="form-control" required>
+									<select disabled selected onchange="check_data_type(value)" id="html_type_way" name="type_way" class="form-control" required>
 										<option value="">--- Type ---</option>
 									</select>
 								</div>
 
 								<div class=" input-group-outline input-group-sm my-2">
 									<label>System:</label>
-									<select selected onchange="check_data_system(value)" id="html_system_way"
-										name="system_way" class="form-control" required>
+									<select selected onchange="check_data_system(value)" id="html_system_way" name="system_way" class="form-control" required>
 										<option value="">--- System ---</option>
 									</select>
 								</div>
@@ -155,63 +146,38 @@
 
 								<div class=" input-group-outline input-group-sm my-1">
 									<label>Subject:</label>
-									<input type="text" class="form-control" placeholder="Enter Subject"
-										name="subject_way" required>
+									<input type="text" class="form-control" placeholder="Enter Subject" name="subject_way" required>
 								</div>
 
 								<div class=" input-group-outline input-group-sm my-2">
 									<label>Detail:</label>
-									<textarea name="detail_way" id="" cols="30" rows="2" class="form-control"
-										placeholder="Detail........" required></textarea>
+									<textarea name="detail_way" id="" cols="30" rows="2" class="form-control" placeholder="Detail........" required></textarea>
 
 								</div>
 							</div>
 
 							<div class="col-lg-4 col-mb-4 col-sm-4  ">
 
-								<div
-									style="  height: 170px;    border-radius: 10px;border-style: dotted; border-color: blue;">
+								<div style="  height: 170px;    border-radius: 10px;border-style: dotted; border-color: blue;">
 									<span>
-										<img id="show_data_way1" onclick="$('#upload_img_way1').click()"
-											class=" setting_img_request columnxx"
-											src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-											alt="user">
-										<img id="show_data_way2" onclick="$('#upload_img_way2').click()"
-											class=" setting_img_request columnxx"
-											src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-											alt="user" style="display: none;">
-										<img id="show_data_way3" onclick="$('#upload_img_way3').click()"
-											class=" setting_img_request columnxx"
-											src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-											alt="user" style="display: none;">
+										<img id="show_data_way1" onclick="$('#upload_img_way1').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+										<img id="show_data_way2" onclick="$('#upload_img_way2').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+										<img id="show_data_way3" onclick="$('#upload_img_way3').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
 									</span>
-									<input id="upload_img_way1" onchange="show_img_way1(this)" name="file_way1"
-										type="file"
-										accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-										hidden readonly>
-									<input id="upload_img_way2" onchange="show_img_way2(this)" name="file_way2"
-										type="file"
-										accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-										hidden readonly>
-									<input id="upload_img_way3" onchange="show_img_way3(this)" name="file_way3"
-										type="file"
-										accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-										hidden readonly>
+									<input id="upload_img_way1" onchange="show_img_way1(this)" name="file_way1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+									<input id="upload_img_way2" onchange="show_img_way2(this)" name="file_way2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+									<input id="upload_img_way3" onchange="show_img_way3(this)" name="file_way3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
 								</div>
 								<div class="" style="  display: flex; justify-content: center; align-items: center;">
-									<button type="button" onclick="remove_img_way()"
-										class=" btn  btn-sm  btn-warning my-2">
+									<button type="button" onclick="remove_img_way()" class=" btn  btn-sm  btn-warning my-2">
 										<i class='bx bx-refresh  d-block d-sm-none'></i>
 										<span class="d-none d-sm-block">Remove</span>
 									</button>
 								</div>
 								<div class="" style="  display: flex; justify-content: center; align-items: center;">
-									<button onclick="op_img_way(1)" type="button" class=" btn  btn-sm  btn-warning my-2"
-										style="margin-right: 5px;">Image 1</button>
-									<button onclick="op_img_way(2)" type="button" class=" btn  btn-sm  btn-warning my-2"
-										style="margin-right: 5px;">Image 2</button>
-									<button onclick="op_img_way(3)" type="button"
-										class=" btn  btn-sm  btn-warning my-2">Image 3</button>
+									<button onclick="op_img_way(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
+									<button onclick="op_img_way(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 2</button>
+									<button onclick="op_img_way(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
 								</div>
 							</div>
 
@@ -223,8 +189,7 @@
 								<span class="d-none d-sm-block">Clear</span>
 								<i class="bx  bx-reset  d-block d-sm-none"></i>
 							</button>
-							<button onclick="send_data_quest_way()" type="button" onclick=""
-								class="btn btn-sm btn-primary ">
+							<button onclick="send_data_quest_way()" type="button" onclick="" class="btn btn-sm btn-primary ">
 								<i class="bx  bx-send d-block d-sm-none"></i>
 								<span class="d-none d-sm-block">Sending</span>
 							</button>
@@ -241,45 +206,34 @@
 						<div class="col-lg-3 col-sm-3">
 							<div class=" input-group-outline  input-group-sm my-3">
 								<label>Start Date:</label>
-								<input type="date" name="start_date_u" id="start_date_u" class="form-control"
-									value="<?php echo date('Y-m-01') ?>">
+								<input type="date" name="start_date_u" id="start_date_u" class="form-control" value="<?php echo date('Y-m-01') ?>">
 							</div>
 						</div>
 						<div class="col-lg-3 col-sm-3">
 							<div class=" input-group-outline  input-group-sm my-3">
 								<label>End Date:</label>
-								<input type="date" name="end_date_u" id="end_date_u" class="form-control"
-									value="<?php echo date('Y-m-t') ?>">
+								<input type="date" name="end_date_u" id="end_date_u" class="form-control" value="<?php echo date('Y-m-t') ?>">
 							</div>
 						</div>
 						<div class="col-lg-6 col-sm-6">
 							<div style=" float: right;  text-align: center;">
-								<div class="colstra"> <span class="spinner-grow text-success"
-										style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;"
-										role="status"><span class="visually-hidden">Loading...</span></span>
+								<div class="colstra"> <span class="spinner-grow text-success" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span>
 									<div>Normal</div>
 								</div>
-								<div class="colstra"> <span class="spinner-grow text-warning"
-										style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;"
-										role="status"><span class="visually-hidden">Loading...</span></span>
+								<div class="colstra"> <span class="spinner-grow text-warning" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span>
 									<div>Over A</div>
 								</div>
-								<div class="colstra"> <span class="spinner-grow text-danger"
-										style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;"
-										role="status"><span class="visually-hidden">Loading...</span></span>
+								<div class="colstra"> <span class="spinner-grow text-danger" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span>
 									<div>Over S</div>
 								</div>
-								<div class="colstra"> <span class="spinner-grow text-dark"
-										style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;"
-										role="status"><span class="visually-hidden">Loading...</span></span>
+								<div class="colstra"> <span class="spinner-grow text-dark" style="height:13px; width:13px;     animation: 1.45s linear infinite spinner-grow;" role="status"><span class="visually-hidden">Loading...</span></span>
 									<div>discount</div>
 								</div>
 							</div>
 
 						</div>
 					</div>
-					<table id="datatable_request_user" class="table table-striped display nowrap"
-						style="width:100%; text-align:center; font-size:12px;">
+					<table id="datatable_request_user" class="table table-striped display nowrap" style="width:100%; text-align:center; font-size:12px;">
 						<thead>
 							<tr>
 								<th style="text-align:center;">No</th>
@@ -307,8 +261,7 @@
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 
-<div class="modal fade" id="modal_edit_request" aria-hidden="true" data-bs-backdrop="static"
-	aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+<div class="modal fade" id="modal_edit_request" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
 	<div class="modal-dialog modal-dialog-centered modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -321,16 +274,12 @@
 						<div class="nav-align-top mb-4">
 							<ul class="nav nav-pills mb-3" role="tablist">
 								<li class="nav-item">
-									<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-										data-bs-target="#navs-pills-justified-data"
-										aria-controls="navs-pills-justified-data" aria-selected="true">
+									<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-data" aria-controls="navs-pills-justified-data" aria-selected="true">
 										Data
 									</button>
 								</li>
 								<li class="nav-item">
-									<button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-										data-bs-target="#navs-pills-justified-file"
-										aria-controls="navs-pills-justified-file" aria-selected="false">
+									<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-justified-file" aria-controls="navs-pills-justified-file" aria-selected="false">
 										File
 									</button>
 								</li>
@@ -344,9 +293,7 @@
 
 										<div class="col-lg-12 col-sm-12">
 											<div class="column">
-												<img id="img_sender_name" class="setting_img"
-													src="<?php echo base_url(); ?>./themes/softmat/img/user.png"
-													alt="user">
+												<img id="img_sender_name" class="setting_img" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 												<div style="text-align: center;margin-top:5px">
 													<h6>
 														<span id="issue_name">
@@ -366,9 +313,7 @@
 
 											</div> -->
 											<div class="column">
-												<img id="img_recipient_name" class="setting_img"
-													src="<?php echo base_url(); ?>./themes/softmat/img/user.png"
-													alt="user">
+												<img id="img_recipient_name" class="setting_img" src="<?php echo base_url(); ?>./themes/softmat/img/user.png" alt="user">
 												<div style="text-align: center; margin-top:5px">
 													<h6>
 														<span id="support_name">
@@ -385,16 +330,14 @@
 												<div class="col-lg-6 col-sm-6">
 													<div class=" input-group-sm">
 														<label>Department Issue:</label>
-														<select disabled id="edit_dep_issue_way" name=""
-															class="form-control" required>
+														<select disabled id="edit_dep_issue_way" name="" class="form-control" required>
 															<option selected value="">--- Department ---</option>
 														</select>
 													</div>
 
 													<div class=" input-group-sm">
 														<label>Issue By:</label>
-														<select disabled id="edit_issue_by_way" name=""
-															class="form-control" required>
+														<select disabled id="edit_issue_by_way" name="" class="form-control" required>
 															<option selected value="">--- Issue ---</option>
 														</select>
 													</div>
@@ -403,17 +346,13 @@
 												<div class="col-lg-6 col-sm-6">
 													<div class=" input-group-sm">
 														<label>Department Support:</label>
-														<select onchange="data_support_way(value),data_type_way(value)"
-															id="html_support_dep_way" name="html_support_dep_way"
-															class="form-control" required>
+														<select onchange="data_support_way(value),data_type_way(value)" id="html_support_dep_way" name="html_support_dep_way" class="form-control" required>
 															<option selected value="">--- Department ---</option>
 														</select>
 
 														<div class=" input-group-sm">
 															<label>Support By:</label>
-															<select id="edit_html_support_by_way"
-																name="edit_html_support_by_way" class="form-control"
-																required>
+															<select onchange="" id="edit_html_support_by_way" name="edit_html_support_by_way" class="form-control" required>
 																<option selected value="">--- Support ---</option>
 															</select>
 														</div>
@@ -430,8 +369,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<div class="input-group-sm">
 															<label>Type:</label>
-															<select id="data_html_type_way" name="data_html_type_way"
-																class="form-control" required>
+															<select id="data_html_type_way" name="data_html_type_way" class="form-control" required>
 																<option selected value="">--- Type ---</option>
 															</select>
 														</div>
@@ -440,9 +378,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<div class=" input-group-sm">
 															<label>System:</label>
-															<select id="data_html_system_way"
-																name="data_html_system_way" class="form-control"
-																required>
+															<select id="data_html_system_way" name="data_html_system_way" class="form-control" required>
 																<option selected value="">--- System ---</option>
 															</select>
 														</div>
@@ -460,9 +396,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<div class=" input-group-sm">
 															<label>Subject:</label>
-															<input type="text" class="form-control"
-																id="edit_subject_way" name="edit_subject_way"
-																placeholder="Subject....." required>
+															<input type="text" class="form-control" id="edit_subject_way" name="edit_subject_way" placeholder="Subject....." required>
 														</div>
 													</div>
 
@@ -470,9 +404,7 @@
 														<div class="  input-group-sm ">
 															<div class=" input-group-outline input-group-sm">
 																<label>Detail:</label>
-																<textarea name="edit_detail_way" id="edit_detail_way"
-																	cols="30" rows="3" class="form-control"
-																	placeholder="Detail........" required></textarea>
+																<textarea name="edit_detail_way" id="edit_detail_way" cols="30" rows="3" class="form-control" placeholder="Detail........" required></textarea>
 															</div>
 														</div>
 													</div>
@@ -483,58 +415,32 @@
 
 										</div>
 
-										<input type="hidden" name="action"
-											value="<?php echo base64_encode('request'); ?>">
+										<input type="hidden" name="action" value="<?php echo base64_encode('request'); ?>">
 									</div>
 
 								</div>
 								<div class="tab-pane fade" id="navs-pills-justified-file" role="tabpanel">
 									<div class="col-lg-12 col-sm-12 my-2">
-										<div
-											style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
+										<div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
 											<span>
-												<img id="modal_img_way1" onclick="$('#modal_upload_img_way1').click()"
-													class=" setting_img_request "
-													src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-													alt="user">
-												<img id="modal_img_way2" onclick="$('#modal_upload_img_way2').click()"
-													class=" setting_img_request "
-													src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-													alt="user" style="display: none;">
-												<img id="modal_img_way3" onclick="$('#modal_upload_img_way3').click()"
-													class=" setting_img_request "
-													src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png"
-													alt="user" style="display: none;">
+												<img id="modal_img_way1" onclick="$('#modal_upload_img_way1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+												<img id="modal_img_way2" onclick="$('#modal_upload_img_way2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+												<img id="modal_img_way3" onclick="$('#modal_upload_img_way3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
 											</span>
 
-											<input id="modal_upload_img_way1" onchange="modal_show_img_way1(this)"
-												name="modal_img_way1" type="file"
-												accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-												hidden readonly>
-											<input id="modal_upload_img_way2" onchange="modal_show_img_way2(this)"
-												name="modal_img_way2" type="file"
-												accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-												hidden readonly>
-											<input id="modal_upload_img_way3" onchange="modal_show_img_way3(this)"
-												name="modal_img_way3" type="file"
-												accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf"
-												hidden readonly>
+											<input id="modal_upload_img_way1" onchange="modal_show_img_way1(this)" name="modal_img_way1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+											<input id="modal_upload_img_way2" onchange="modal_show_img_way2(this)" name="modal_img_way2" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
+											<input id="modal_upload_img_way3" onchange="modal_show_img_way3(this)" name="modal_img_way3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
 										</div>
-										<div class=""
-											style="  display: flex; justify-content: center; align-items: center;">
-											<button onclick="remove_modal_img_way()"
-												class=" btn  btn-sm  btn-warning my-2">Remove</button>
+										<div class="" style="  display: flex; justify-content: center; align-items: center;">
+											<button onclick="remove_modal_img_way()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
 										</div>
-										<div class=""
-											style="  display: flex; justify-content: center; align-items: center;">
-											<button onclick="modal_op_img(1)" type="button"
-												class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image
+										<div class="" style="  display: flex; justify-content: center; align-items: center;">
+											<button onclick="modal_op_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image
 												1</button>
-											<button onclick="modal_op_img(2)" type="button"
-												class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image
+											<button onclick="modal_op_img(2)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image
 												2</button>
-											<button onclick="modal_op_img(3)" type="button"
-												class=" btn  btn-sm  btn-warning my-2">Image 3</button>
+											<button onclick="modal_op_img(3)" type="button" class=" btn  btn-sm  btn-warning my-2">Image 3</button>
 										</div>
 									</div>
 								</div>
@@ -603,9 +509,9 @@
 			data: {
 				qu_id: qu_id,
 			},
-			success: function (data) {
+			success: function(data) {
 				// console.log(data)
-				$.each(data, function (key, val) {
+				$.each(data, function(key, val) {
 					edit_dep_issue_way = ''
 					edit_dep_issue_way = '<option selected value="' + val.dep_issue_id + '">' + val
 						.dep_issue +
@@ -624,11 +530,11 @@
 						type: 'POST',
 						dataType: 'json',
 						url: '<?php echo base_url(); ?>GET_API/department_data',
-						success: function (department_data) {
+						success: function(department_data) {
 							html_support_dep_way = '';
 							html_support_dep_way +=
 								'<option selected value="">--- Department ---</option>';
-							$.each(department_data, function (key_dep, val_dep) {
+							$.each(department_data, function(key_dep, val_dep) {
 								if (val_dep.dep_id === val.dep_support_id) {
 									html_support_dep_way_check = 'selected'
 								}
@@ -651,7 +557,7 @@
 						data: {
 							dep_id: val.dep_support_id,
 						},
-						success: function (reply_support) {
+						success: function(reply_support) {
 							// console.log(reply_support)
 							if (reply_support !== null && reply_support !== '') {
 								$("#edit_html_support_by_way").removeAttr("disabled")
@@ -660,7 +566,7 @@
 								var html_check_way = '';
 								html_support_by_way +=
 									'<option selected value="">--- Support ---</option>';
-								$.each(reply_support, function (key_support, val_support) {
+								$.each(reply_support, function(key_support, val_support) {
 
 									if (val_support.user_id === val
 										.support_by_id) {
@@ -696,14 +602,14 @@
 						data: {
 							dep_id: val.dep_support_id,
 						},
-						success: function (reply_type) {
+						success: function(reply_type) {
 							// console.log(reply_type)
 							if (reply_type !== null && reply_type !== '') {
 								$("#data_html_type_way").removeAttr("disabled")
 								html_type_way = '';
 								html_type_way +=
 									'<option selected value="">--- Type ---</option>';
-								$.each(reply_type, function (key_type, val_type) {
+								$.each(reply_type, function(key_type, val_type) {
 									if (val_type.type_id === val.type_id) {
 										html_type_way_check = 'selected'
 									}
@@ -732,14 +638,14 @@
 						data: {
 							dep_id: val.dep_issue_id,
 						},
-						success: function (reply_sys) {
+						success: function(reply_sys) {
 							// console.log(reply_sys)
 							if (reply_sys !== null && reply_sys !== '') {
 								$("#html_system_way").removeAttr("disabled")
 								html_system_way = '';
 								html_system_way +=
 									'<option selected value="">--- System ---</option>';
-								$.each(reply_sys, function (key_sys, val_sys) {
+								$.each(reply_sys, function(key_sys, val_sys) {
 									// alert(val_sys.system_id)
 									if (val_sys.system_id === val.system_id) {
 										html_type_way_check = 'selected'
@@ -769,14 +675,14 @@
 			data: {
 				qu_id: qu_id,
 			},
-			success: function (data) {
+			success: function(data) {
 				// console.log(data)
 				$('#modal_img_way1').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
 				$('#modal_img_way2').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
 				$('#modal_img_way3').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/upload_file.png');
 				if (data['null'] != 'null') {
 					var num = 1;
-					$.each(data, function (key, val) {
+					$.each(data, function(key, val) {
 						var eid = "#modal_img_way" + num;
 						var imgpath = '<?php echo base_url(); ?>./' + val.path_img;
 						$(eid).attr("src", imgpath);
@@ -799,13 +705,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_type) {
+				success: function(reply_type) {
 					console.log(reply_type)
 					if (reply_type !== null && reply_type !== '') {
 						$("#data_html_type_way").removeAttr("disabled")
 						html_type_way = '';
 						html_type_way += '<option selected value="">--- Type ---</option>';
-						$.each(reply_type, function (key_type, val_type) {
+						$.each(reply_type, function(key_type, val_type) {
 							html_type_way += '<option  value="' + val_type.type_id + '">' + val_type
 								.type_name + '</option>'
 						})
@@ -831,13 +737,13 @@
 			data: {
 				dep_id: dep_support_id,
 			},
-			success: function (reply_support) {
+			success: function(reply_support) {
 				// console.log(reply_support)
 				if (reply_support !== null && reply_support !== '') {
 					$("#edit_html_support_by_way").removeAttr("disabled")
 					var html_support_by_way = '';
 					html_support_by_way += '<option selected value="">--- Support ---</option>';
-					$.each(reply_support, function (key_support, val_support) {
+					$.each(reply_support, function(key_support, val_support) {
 						html_support_by_way += '<option   value="' + val_support.user_id + '">' +
 							val_support.f_name +
 							' ' + val_support.l_name + ' (' + val_support.employee + ')</option>'
@@ -862,8 +768,8 @@
 			data: {
 				qu_id: qu_id
 			},
-			success: function (data_quest) {
-				$.each(data_quest, function (key_q, val_q) {
+			success: function(data_quest) {
+				$.each(data_quest, function(key_q, val_q) {
 					// alert(val_q.support_by_id )
 					if (val_q.support_by_id !== '' || val_q.support_by_id !== null) {
 						$.ajax({
@@ -873,16 +779,16 @@
 							data: {
 								user_id: val_q.support_by_id
 							},
-							beforeSend: function () {
+							beforeSend: function() {
 								$("#img_name_u_alert").attr("src",
 									"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif"
-									)
+								)
 							},
-							complete: function () {
+							complete: function() {
 								$("#img_name_u_alert").attr('style', 'display');
 							},
-							success: function (data_user) {
-								$.each(data_user, function (key_user, val_user) {
+							success: function(data_user) {
+								$.each(data_user, function(key_user, val_user) {
 									if (val_user.path_img_user !== null && val_user
 										.path_img_user !== '') {
 										Swal.fire({
@@ -926,8 +832,8 @@
 			data: {
 				qu_id: qu_id
 			},
-			success: function (data_quest) {
-				$.each(data_quest, function (key_q, val_q) {
+			success: function(data_quest) {
+				$.each(data_quest, function(key_q, val_q) {
 					if (val_q.issue_text === '' || val_q.issue_text === null) {
 						$.ajax({
 							type: 'POST',
@@ -936,16 +842,16 @@
 							data: {
 								user_id: val_q.issue_by_id
 							},
-							beforeSend: function () {
+							beforeSend: function() {
 								$("#img_name_u_alert").attr("src",
 									"<?php echo base_url(); ?>./themes/softmat/img/loading3.gif"
-									)
+								)
 							},
-							complete: function () {
+							complete: function() {
 								$("#img_name_u_alert").attr('style', 'display');
 							},
-							success: function (data_user) {
-								$.each(data_user, function (key_user, val_user) {
+							success: function(data_user) {
+								$.each(data_user, function(key_user, val_user) {
 									if (val_user.path_img_user !== null && val_user
 										.path_img_user !== '') {
 										Swal.fire({
@@ -1004,7 +910,7 @@
 					cache: false,
 					processData: false,
 					contentType: false,
-					success: function (reply_request) {
+					success: function(reply_request) {
 						console.log(reply_request)
 						if (reply_request !== true && reply_request !== false) {
 							Swal.fire({
@@ -1029,6 +935,7 @@
 			}
 		})
 	}
+
 	function send_data_quest_way_modal() {
 		event.preventDefault()
 		Swal.fire({
@@ -1051,7 +958,7 @@
 					cache: false,
 					processData: false,
 					contentType: false,
-					success: function (reply_request) {
+					success: function(reply_request) {
 						console.log(reply_request)
 						if (reply_request !== true && reply_request !== false) {
 							Swal.fire({
@@ -1152,7 +1059,7 @@
 						qu_id: qu_id,
 						detail_c: text
 					},
-					success: function (reply_cancel) {
+					success: function(reply_cancel) {
 						// console.log(reply_cancel)
 						if (reply_cancel['reply'] !== true && reply_cancel['reply'] !== false) {
 							Swal.fire({
@@ -1187,7 +1094,7 @@
 			var imgType = input_img.files[0]['type'];
 			var chk = imgType.split("/");
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
 				if (chk[0] != "application") {
 					$("#show_data_way1").attr("src", e.target.result)
@@ -1209,7 +1116,7 @@
 			var chk = imgType.split("/");
 			// if(input_img.files[0]){}
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
 				if (chk[0] != "application") {
 					$("#show_data_way2").attr("src", e.target.result)
@@ -1229,7 +1136,7 @@
 			var imgType = input_img.files[0]['type'];
 			var chk = imgType.split("/");
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
 				if (chk[0] != "application") {
 					$("#show_data_way3").attr("src", e.target.result)
@@ -1249,7 +1156,7 @@
 			var imgType = input_img.files[0]['type'];
 			var chk = imgType.split("/");
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
 				if (chk[0] != "application") {
 					$("#modal_img_way1").attr("src", e.target.result)
@@ -1271,7 +1178,7 @@
 			var chk = imgType.split("/");
 			// if(input_img.files[0]){}
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
 				if (chk[0] != "application") {
 					$("#modal_img_way2").attr("src", e.target.result)
@@ -1291,7 +1198,7 @@
 			var imgType = input_img.files[0]['type'];
 			var chk = imgType.split("/");
 			var reader = new FileReader();
-			reader.onload = function (e) {
+			reader.onload = function(e) {
 				// console.log(e)
 				if (chk[0] != "application") {
 					$("#modal_img_way3").attr("src", e.target.result)
@@ -1308,7 +1215,7 @@
 
 	function check_data_system(system_id) {
 		var html_line = '';
-		var dep_issue_id = <?php echo $this -> session -> userdata('sessDep') ?> ;
+		var dep_issue_id = <?php echo $this->session->userdata('sessDep') ?>;
 		if (dep_issue_id !== '') {
 			$.ajax({
 				type: 'POST',
@@ -1318,7 +1225,7 @@
 					dep_issue_id: dep_issue_id,
 					system_id: system_id
 				},
-				success: function (reply_check) {
+				success: function(reply_check) {
 					// console.log(reply_check)
 					if (reply_check !== null && reply_check !== '') {
 						html_line = '';
@@ -1326,7 +1233,7 @@
 						html_line += '<label>Line:</label>';
 						html_line += '<select name="line_way" class="form-control" required>';
 						html_line += '<option selected value="">--- line ---</option>';
-						$.each(reply_check, function (key_lp, val_lp) {
+						$.each(reply_check, function(key_lp, val_lp) {
 							html_line += '<option  value="' + val_lp.lp_id + '">' + val_lp.lp_name +
 								'</option>'
 						})
@@ -1355,14 +1262,14 @@
 					dep_sup_id: dep_sup_id,
 					type_id: type_id
 				},
-				success: function (reply_check) {
+				success: function(reply_check) {
 					if (reply_check !== null && reply_check !== '') {
 						html_priority_way = '';
 						html_priority_way += '<div class=" input-group-outline input-group-sm">';
 						html_priority_way += '<label>Priority:</label>';
 						html_priority_way += '<select name="priority_way" class="form-control" required>';
 						html_priority_way += '<option selected value="">--- Priority ---</option>';
-						$.each(reply_check, function (key_pri, val_pri) {
+						$.each(reply_check, function(key_pri, val_pri) {
 							html_priority_way += '<option  value="' + val_pri.pri_id + ' ' + val_pri
 								.time_priority + '">' +
 								val_pri.pri_name + '</option>'
@@ -1380,7 +1287,7 @@
 
 	function open_system() {
 		var html_system_way = '';
-		var dep_id = <?php echo $this -> session -> userdata('sessDep') ?>;
+		var dep_id = <?php echo $this->session->userdata('sessDep') ?>;
 		if (dep_id !== '') {
 			$.ajax({
 				type: 'POST',
@@ -1389,13 +1296,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_sys) {
+				success: function(reply_sys) {
 					// console.log(reply_sys)
 					if (reply_sys !== null && reply_sys !== '') {
 						$("#html_system_way").removeAttr("disabled")
 						html_system_way = '';
 						html_system_way += '<option selected value="">--- System ---</option>';
-						$.each(reply_sys, function (key_sys, val_sys) {
+						$.each(reply_sys, function(key_sys, val_sys) {
 							// alert(val_sys.system_id)
 							html_system_way += '<option  value="' + val_sys.system_id + '">' + val_sys
 								.system_name +
@@ -1427,13 +1334,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_type) {
+				success: function(reply_type) {
 					// console.log(reply_type)
 					if (reply_type !== null && reply_type !== '') {
 						$("#html_type_way").removeAttr("disabled")
 						html_type_way = '';
 						html_type_way += '<option selected value="">--- Type ---</option>';
-						$.each(reply_type, function (key_type, val_type) {
+						$.each(reply_type, function(key_type, val_type) {
 							html_type_way += '<option  value="' + val_type.type_id + '">' + val_type
 								.type_name + '</option>'
 						})
@@ -1469,13 +1376,13 @@
 				data: {
 					dep_id: dep_id,
 				},
-				success: function (reply_support) {
+				success: function(reply_support) {
 					// console.log(reply_support)
 					if (reply_support !== null && reply_support !== '') {
 						$("#html_support_by_way").removeAttr("disabled")
 						html_support_by_way = '';
 						html_support_by_way += '<option selected value="">--- Support ---</option>';
-						$.each(reply_support, function (key_support, val_support) {
+						$.each(reply_support, function(key_support, val_support) {
 							html_support_by_way += '<option  value="' + val_support.user_id + '">' +
 								val_support.f_name +
 								' ' + val_support.l_name + ' (' + val_support.employee + ')</option>'
@@ -1507,10 +1414,10 @@
 			type: 'POST',
 			dataType: 'json',
 			url: '<?php echo base_url(); ?>GET_API/department_data',
-			success: function (department_data) {
+			success: function(department_data) {
 				html_support_dep = '';
 				html_support_dep += '<option selected value="">--- Department ---</option>';
-				$.each(department_data, function (key_dep, val_dep) {
+				$.each(department_data, function(key_dep, val_dep) {
 					html_support_dep += '<option  value="' + val_dep.dep_id + '">' + val_dep.dep_name +
 						'</option>'
 				})
@@ -1520,7 +1427,7 @@
 		})
 	}
 
-	$(document).ready(function () {
+	$(document).ready(function() {
 		department_support()
 		open_system()
 		var cnt = 1;
@@ -1536,14 +1443,14 @@
 				url: '<?php echo base_url(); ?>Request/get_datatable_request_user',
 				type: 'post',
 				dataType: 'json',
-				data: function (data) {
+				data: function(data) {
 					data.start_date = $('#start_date_u').val();
 					data.end_date = $('#end_date_u').val()
 				}
 			},
 			columns: [{
 					data: "qu_id",
-					"render": function (data, type, row) {
+					"render": function(data, type, row) {
 						return cnt++;
 					}
 				},
@@ -1558,7 +1465,7 @@
 				},
 				{
 					data: "qu_id",
-					"render": function (data, type, row, meta) {
+					"render": function(data, type, row, meta) {
 						if (type === 'display') {
 							if (row.pri_name === null || row.pri_name === '') {
 								html_cat = '-'
@@ -1578,7 +1485,7 @@
 				},
 				{
 					data: "qu_id",
-					"render": function (data, type, row, meta) {
+					"render": function(data, type, row, meta) {
 						if (type === 'display') {
 							if (row.status_qu !== '0') {
 								if (row.status_qu !== '4') {
@@ -1615,7 +1522,7 @@
 				},
 				{
 					data: "qu_id",
-					"render": function (data, type, row, meta) {
+					"render": function(data, type, row, meta) {
 						if (type === 'display') {
 							if (row.status_qu === '1') {
 								data =
@@ -1646,7 +1553,7 @@
 				}
 			]
 		});
-		setInterval(function () {
+		setInterval(function() {
 			table.ajax.reload(null, false);
 			cnt = 1;
 			// table.clear().draw();
@@ -1654,5 +1561,4 @@
 		// table.buttons().container()
 		//     .appendTo('#example_wrapper .col-md-6:eq(0)');
 	});
-
 </script>

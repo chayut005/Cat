@@ -5,13 +5,15 @@
 
 
     .setting_img_user {
+        max-width: 100px;
         height: 100px;
-        width: 100px;
+        width: 100%;
+        min-width: 100px;
         object-fit: cover;
-
         display: block;
         margin-left: auto;
         margin-right: auto;
+
     }
 
     .margin_top_fig {
@@ -92,7 +94,7 @@
                                 <div class="form-password-toggle">
                                     <label for="new_pass">New Password:</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="password" class="form-control" id="new_pass" name="new_pass" placeholder="New Password"  required />
+                                        <input type="password" class="form-control" id="new_pass" name="new_pass" placeholder="New Password" required />
                                         <span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
@@ -102,7 +104,7 @@
                                 <div class="form-password-toggle">
                                     <label for="con_pass">Confirm Password:</label>
                                     <div class="input-group input-group-sm">
-                                        <input type="password" class="form-control" id="con_pass" name="con_pass" placeholder="Confirm Password"  required />
+                                        <input type="password" class="form-control" id="con_pass" name="con_pass" placeholder="Confirm Password" required />
                                         <span id="basic-default-password2" class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
