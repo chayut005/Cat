@@ -851,6 +851,11 @@
 					$.each(data, function(key, val) {
 						var eid = "#modal_img_way" + num;
 						var imgpath = '<?php echo base_url(); ?>./' + val.path_img;
+						var surname = val.path_img;
+						var myArray = surname.split(".");
+						if(myArray[1]=='xls'||myArray[1]=='pdf'||myArray[1]=='xlsx'){
+							imgpath = '<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png';
+						}
 						$(eid).attr("src", imgpath);
 						num++;
 					})
