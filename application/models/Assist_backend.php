@@ -1000,6 +1000,7 @@ class Assist_backend extends CI_Model
 		$this->db->set('detail_up_time_sup', $data['datail_up']);
 		$this->db->set('over_success_flag', '0');
 		$this->db->set('specified_time', $data['date_up']);
+		$this->db->set('support_by_id', $data['sup_by']);
 		$this->db->set('cat_id', $data['cat_id']);
 		$this->db->where('qu_id', $data['qu_id']);
 		$cancel_data_request = $this->db->update('list_quest');
@@ -1012,6 +1013,7 @@ class Assist_backend extends CI_Model
 		$this->db->set('date_update', 'NOW()', FALSE);
 		$this->db->set('update_by',  $user);
 		$this->db->set('status_qu', '2');
+		$this->db->set('support_by_id', $data['sup_by']);
 		$this->db->set('cat_id', $data['cat_id']);
 		$this->db->where('qu_id', $data['qu_id']);
 		$cancel_data_request = $this->db->update('list_quest');
