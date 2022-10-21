@@ -461,7 +461,6 @@
 						<button type="button" onclick="send_data_quest_way_modal()" class="btn  btn-sm  btn-primary">Update</button>
 					</div>
 					<input type="hidden" name="action" value="<?php echo base64_encode('request_way_edit'); ?>">
-					<input type="hidden" name="qu_id" id="quid">
 				</form>
 			</div>
 		</div>

@@ -49,10 +49,10 @@ class Assist_backend extends CI_Model
 		$this->db->where('qu_id', $last_id);
 		$send_img_delete = $this->db->delete('list_img_quest');
 
+		$this->db->set('qu_id', $last_id);
 		$this->db->set('path_img', $targetFileLogo);
 		$this->db->set('old_img', $org);
 		$this->db->set('new_img', $new_img_name);
-		$this->db->where('qu_id', $last_id);
 		$send_img_request = $this->db->insert('list_img_quest');
 
 		return $send_img_request;
