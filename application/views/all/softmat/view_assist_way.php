@@ -4,15 +4,14 @@
 	}
 
 	.setting_img {
-		max-width: 25%;
-		min-width: 70px;
+		height: 100px;
+		width: 100px;
+		object-fit: cover;
 
-		/* height: 8%; */
-		object-fit: scale-down;
 		display: block;
-		border-radius: 10%;
 		margin-left: auto;
 		margin-right: auto;
+		border-radius: 50%;
 	}
 
 	.setting_img_user {
@@ -352,7 +351,7 @@
 
 														<div class=" input-group-sm">
 															<label>Support By:</label>
-															<select onchange="" id="edit_html_support_by_way" name="edit_html_support_by_way" class="form-control" required>
+															<select onchange="img_and_name(value)" id="edit_html_support_by_way" name="edit_html_support_by_way" class="form-control" required>
 																<option selected value="">--- Support ---</option>
 															</select>
 														</div>
@@ -369,7 +368,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<div class="input-group-sm">
 															<label>Type:</label>
-															<select id="data_html_type_way" name="data_html_type_way" class="form-control" required>
+															<select onchange="check_data_type_way(value)" id="data_html_type_way" name="data_html_type_way" class="form-control" required>
 																<option selected value="">--- Type ---</option>
 															</select>
 														</div>
@@ -378,7 +377,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<div class=" input-group-sm">
 															<label>System:</label>
-															<select id="data_html_system_way" name="data_html_system_way" class="form-control" required>
+															<select onchange="check_data_system_way(value)" id="data_html_system_way" name="data_html_system_way" class="form-control" required>
 																<option selected value="">--- System ---</option>
 															</select>
 														</div>
@@ -392,15 +391,22 @@
 												</select>
 												</div>
 											</div> -->
+													<div id="show_priority" hidden class="col-lg-4 col-mb-6 ">
 
-													<div class="col-lg-4 col-sm-6">
+													</div>
+
+													<div id="show_line_p_way" hidden class="col-lg-4 col-mb-6">
+
+													</div>
+
+													<div id="col_priority_subject" class="col-lg-4 col-sm-6">
 														<div class=" input-group-sm">
 															<label>Subject:</label>
 															<input type="text" class="form-control" id="edit_subject_way" name="edit_subject_way" placeholder="Subject....." required>
 														</div>
 													</div>
 
-													<div class="col-lg-12 col-sm-6">
+													<div class="col-lg-12 col-sm-12">
 														<div class="  input-group-sm ">
 															<div class=" input-group-outline input-group-sm">
 																<label>Detail:</label>
@@ -461,6 +467,7 @@
 		</div>
 	</div>
 </div>
+<input type="hidden" id="dep_sup_id">
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
 <script>
 	function op_img_way(num) {
@@ -549,6 +556,62 @@
 
 						}
 					})
+					// ---------------------------------------------------------------------------------------------------------------------------------
+					$.ajax({
+						type: 'POST',
+						dataType: 'json',
+						url: '<?php echo base_url(); ?>Manage_user/get_data_edit_user',
+						data: {
+							user_id: val.support_by_id
+						},
+						beforeSend: function() {
+							$("#img_recipient_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
+						},
+						complete: function() {
+							$("#img_recipient_name").attr('style', 'display');
+						},
+						success: function(data_user) {
+							// console.log(data_user)
+
+							$.each(data_user, function(key_u, val_u) {
+								if (val_u.path_img_user !== '' && val_u.path_img_user !== null) {
+									$("#img_recipient_name").attr("src", "<?php echo base_url(); ?>" + val_u.path_img_user + "")
+									$('#support_name').html('<span>' + val_u.employee + '</span>')
+								} else {
+									$("#img_recipient_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/user.png")
+									$('#support_name').html('<span>?????</span>')
+								}
+							})
+						}
+					})
+					// ---------------------------------------------------------------------------------------------------------------------------------
+					$.ajax({
+						type: 'POST',
+						dataType: 'json',
+						url: '<?php echo base_url(); ?>Manage_user/get_data_edit_user',
+						data: {
+							user_id: val.issue_by_id
+						},
+						beforeSend: function() {
+							$("#img_sender_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
+						},
+						complete: function() {
+							$("#img_sender_name").attr('style', 'display');
+						},
+						success: function(data_user) {
+							// console.log(data_user)
+
+							$.each(data_user, function(key_u, val_u) {
+								if (val_u.path_img_user !== '' && val_u.path_img_user !== null) {
+									$("#img_sender_name").attr("src", "<?php echo base_url(); ?>" + val_u.path_img_user + "")
+									$('#issue_name').html('<span>' + val_u.employee + '</span>')
+								} else {
+									$("#img_sender_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/user.png")
+									$('#issue_name').html('<span>?????</span>')
+								}
+							})
+						}
+					})
 					// --------------------------------------------------------------------------------------------------------------------------
 					$.ajax({
 						type: 'POST',
@@ -591,7 +654,7 @@
 						}
 					})
 					// --------------------------------------------------------------------------------------------------------------------------
-
+					$('#dep_sup_id').val(val.dep_support_id)
 					var html_type_way = '';
 					var html_type_way_check = '';
 
@@ -664,6 +727,109 @@
 							$("#data_html_system_way").html(html_system_way)
 						}
 					})
+					// ------------------------------------------------------------------------------------------------------------------------------------
+					var html_line = '';
+					var html_line_check = '';
+
+					$.ajax({
+						type: 'POST',
+						dataType: 'json',
+						url: '<?php echo base_url(); ?>GET_API/check_data_system',
+						data: {
+							dep_issue_id: val.dep_issue_id,
+							system_id: val.system_id
+						},
+						success: function(reply_check) {
+							// console.log(reply_check)
+							if (reply_check !== null && reply_check !== '') {
+								$('#show_line_p_way').attr('hidden', false)
+								$("#col_priority_subject").removeClass("col-lg-4 col-sm-6 col-lg-12 col-sm-12").addClass("col-lg-12 col-sm-12");
+								$("#show_line_p_way").removeClass("col-lg-4 col-sm-6").addClass("col-lg-4 col-sm-6");
+
+								html_line = '';
+								html_line += '<div class=" input-group-outline input-group-sm">';
+								html_line += '<label>Line:</label>';
+								html_line += '<select id="html_line" name="re_line" class="form-control" required>';
+								html_line += '<option selected value="">--- line ---</option>';
+								$.each(reply_check, function(key_lp, val_lp) {
+									if (val_lp.lp_id == val.lp_id) {
+										html_line_check = 'selected'
+									}
+									html_line += '<option ' + html_line_check + '  value="' + val_lp.lp_id + '">' + val_lp.lp_name +
+										'</option>'
+									html_line_check = ''
+								})
+								html_line += '</select>';
+								html_line += '</div>';
+							} else {
+								// $("#col_priority_subject").removeClass("col-lg-6").addClass("col-lg-12");
+								$('#show_line_p_way').attr('hidden', true)
+
+								html_line = '';
+								// Swal.fire({
+								//     html: "<p>No Data</p><p>Warning</p>",
+								//     icon: 'warning',
+								// })
+							}
+							// console.log(html_line)
+							$("#show_line_p_way").html(html_line)
+						}
+					})
+					// -----------------------------------------------------------------------------------------------------------------------------------
+					var html_priority = '';
+					var priority_check = '';
+					$.ajax({
+						type: 'POST',
+						dataType: 'json',
+						url: '<?php echo base_url(); ?>GET_API/check_data_type',
+						data: {
+							dep_sup_id: val.dep_support_id,
+							type_id: val.type_id
+						},
+						success: function(reply_check) {
+							// console.log(reply_check)
+							if (reply_check !== null && reply_check !== '') {
+
+								$('#show_priority').attr('hidden', false)
+								$("#col_priority_subject").removeClass("col-lg-4 col-sm-6").addClass("col-lg-12 col-sm-12");
+								$("#show_line_p_way").removeClass("col-lg-4 col-sm-6").addClass("col-lg-12 col-sm-12");
+
+								html_priority = '';
+								html_priority += '<div class=" input-group-outline input-group-sm">';
+								html_priority += '<label>Priority:</label>';
+								html_priority +=
+									'<select id="html_priority" name="re_priority" class="form-control" required>';
+								html_priority += '<option selected value="">--- Priority ---</option>';
+								$.each(reply_check, function(key_pri, val_pri) {
+									// alert(val.pri_id)
+									if (val.pri_id == val_pri.pri_id) {
+										priority_check = 'selected'
+									}
+									html_priority += '<option  ' + priority_check + ' value="' + val_pri.pri_id + ' ' + val_pri
+										.time_priority + '">' + val_pri.pri_name + '</option>'
+									priority_check = ''
+								})
+								html_priority += '</select>';
+								html_priority += '</div>';
+							} else {
+								$("#col_priority_subject").removeClass("col-lg-12 col-sm-12 col-lg-4 col-sm-6 col-lg-6 col-sm-6").addClass("col-lg-12 col-sm-12");
+								$("#show_line_p_way").removeClass("col-lg-12 col-sm-12 col-lg-4 col-sm-6 col-lg-6 col-sm-6").addClass("col-lg-4 col-sm-6");
+
+								$('#show_priority').attr('hidden', true)
+								html_priority = '';
+								// Swal.fire({
+								//     html: "<p>No Data</p><p>Warning</p>",
+								//     icon: 'warning',
+								// })
+							}
+							$("#show_priority").html(html_priority)
+						}
+					})
+
+
+
+
+
 
 				})
 			}
@@ -693,6 +859,145 @@
 		})
 		// alert(qu_id)
 		$('#modal_edit_request').modal('show')
+	}
+
+	function img_and_name(user_id) {
+		if (user_id !== '' && user_id !== null) {
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '<?php echo base_url(); ?>Manage_user/get_data_edit_user',
+				data: {
+					user_id: user_id
+				},
+				beforeSend: function() {
+					$("#img_recipient_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/loading3.gif")
+				},
+				complete: function() {
+					$("#img_recipient_name").attr('style', 'display');
+				},
+				success: function(data_user) {
+					// console.log(data_user)
+
+					$.each(data_user, function(key_u, val_u) {
+						if (val_u.path_img_user !== '' && val_u.path_img_user !== null) {
+							$("#img_recipient_name").attr("src", "<?php echo base_url(); ?>" + val_u.path_img_user + "")
+							$('#support_name').html('<span>' + val_u.employee + '</span>')
+						} else {
+							$("#img_recipient_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/user.png")
+							$('#support_name').html('<span>?????</span>')
+						}
+					})
+				}
+			})
+		} else {
+			$("#img_recipient_name").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/user.png")
+			$('#support_name').html('<span>?????</span>')
+		}
+
+	}
+
+	function check_data_system_way(system_id) {
+		var html_line = '';
+		var dep_issue_id = $('#dep_sup_id').val()
+
+		if (dep_issue_id !== '') {
+			// alert(dep_issue_id + '==>' + system_id)
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '<?php echo base_url(); ?>GET_API/check_data_system',
+				data: {
+					dep_issue_id: dep_issue_id,
+					system_id: system_id
+				},
+				success: function(reply_check) {
+					console.log(reply_check)
+					if (reply_check !== null && reply_check !== '') {
+						$('#show_line_p_way').attr('hidden', false)
+						$("#col_priority_subject").removeClass("col-lg-4 col-sm-6 col-lg-12 col-sm-12").addClass("col-lg-12 col-sm-12");
+						$("#show_line_p_way").removeClass("col-lg-4 col-sm-6").addClass("col-lg-4 col-sm-6");
+
+						html_line = '';
+						html_line += '<div class=" input-group-outline input-group-sm">';
+						html_line += '<label>Line:</label>';
+						html_line += '<select id="html_line" name="re_line" class="form-control" required>';
+						html_line += '<option selected value="">--- line ---</option>';
+						$.each(reply_check, function(key_lp, val_lp) {
+
+							html_line += '<option  value="' + val_lp.lp_id + '">' + val_lp.lp_name +
+								'</option>'
+
+						})
+						html_line += '</select>';
+						html_line += '</div>';
+					} else {
+						// $("#col_priority_subject").removeClass("col-lg-6").addClass("col-lg-12");
+						$('#show_line_p_way').attr('hidden', true)
+
+						html_line = '';
+						// Swal.fire({
+						//     html: "<p>No Data</p><p>Warning</p>",
+						//     icon: 'warning',
+						// })
+					}
+					console.log(html_line)
+					$("#show_line_p_way").html(html_line)
+				}
+			})
+		}
+
+
+	}
+
+	function check_data_type_way(type_id) {
+		var html_priority = '';
+		var dep_sup_id = $('#dep_sup_id').val()
+		if (dep_sup_id !== '') {
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: '<?php echo base_url(); ?>GET_API/check_data_type',
+				data: {
+					dep_sup_id: dep_sup_id,
+					type_id: type_id
+				},
+				success: function(reply_check) {
+					console.log(reply_check)
+					if (reply_check !== null && reply_check !== '') {
+						$('#show_priority').attr('hidden', false)
+						$("#col_priority_subject").removeClass("col-lg-4 col-sm-6 col-lg-12 col-sm-12").addClass("col-lg-12 col-sm-12");
+						$("#show_line_p_way").removeClass("col-lg-4 col-sm-6").addClass("col-lg-12 col-sm-12");
+						html_priority = '';
+						html_priority += '<div class=" input-group-outline input-group-sm">';
+						html_priority += '<label>Priority:</label>';
+						html_priority +=
+							'<select id="html_priority" name="re_priority" class="form-control" required>';
+						html_priority += '<option selected value="">--- Priority ---</option>';
+						$.each(reply_check, function(key_pri, val_pri) {
+							html_priority += '<option  value="' + val_pri.pri_id + ' ' + val_pri
+								.time_priority + '">' + val_pri.pri_name + '</option>'
+						})
+						html_priority += '</select>';
+						html_priority += '</div>';
+					} else {
+						$("#col_priority_subject").removeClass("col-lg-12 col-sm-12").addClass("col-lg-12 col-sm-12");
+						$("#show_line_p_way").removeClass("col-lg-12 col-sm-12 col-lg-4 col-sm-6 col-lg-6 col-sm-6").addClass("col-lg-4 col-sm-6");
+
+						$('#show_priority').attr('hidden', true)
+						html_priority = '';
+						// Swal.fire({
+						//     html: "<p>No Data</p><p>Warning</p>",
+						//     icon: 'warning',
+						// })
+					}
+					// console.log(html_priority)
+					$("#show_priority").html(html_priority)
+				}
+			})
+		}
+
+
 	}
 
 	function data_type_way(dep_id) {
