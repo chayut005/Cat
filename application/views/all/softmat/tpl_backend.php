@@ -1233,6 +1233,11 @@
 					$.each(data, function (key, val) {
 						var eid = "#tplshow_modal_img_request" + num;
 						var imgpath = '<?php echo base_url(); ?>./' + val.path_img;
+						var surname = val.path_img;
+						var myArray = surname.split(".");
+						if(myArray[1]=='xls'||myArray[1]=='pdf'){
+							imgpath = '<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png';
+						}
 						$(eid).attr("src", imgpath);
 						num++;
 					})
