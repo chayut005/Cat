@@ -899,7 +899,8 @@ class Request extends CI_Controller
 									$data['re_line'] = $this->input->post('line_way');
 								}
 							}
-							
+							// echo json_encode($data);
+							// exit;
 							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no_edit($data);
 							echo json_encode($sending_quest_way_no);
 							exit;
@@ -947,6 +948,8 @@ class Request extends CI_Controller
 									$data['re_line'] = $this->input->post('line_way');
 								}
 							}
+							echo json_encode($data);
+
 							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no_edit($data);
 							echo json_encode($sending_quest_way_no);
 							exit;
@@ -985,6 +988,7 @@ class Request extends CI_Controller
 							'FileLogo' => $_FILES['modal_img_way3']['name']
 						));
 					}
+					// $data['img'] = $arr_img;
 					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
 					if ($check_type !== null && $check_type !== '') {
 						// echo json_encode('<p>kirby</p>');
@@ -1040,6 +1044,8 @@ class Request extends CI_Controller
 							}
 							// $tempFileLogo = $_FILES['file_way1']['tmp_name'];
 							// $FileLogo = $_FILES['file_way1']['name'];
+							// echo json_encode($data);
+
 							$sending_data_request_way = $this->assist_backend->sending_data_request_way_edit($arr_img, $data);
 							echo json_encode($sending_data_request_way);
 							// echo json_encode($data);
@@ -1089,6 +1095,9 @@ class Request extends CI_Controller
 									$data['re_line'] = $this->input->post('line_way');
 								}
 							}
+							$data['img'] = $arr_img;
+							// echo json_encode($data);
+						
 							$sending_data_request_way = $this->assist_backend->sending_data_request_way_edit($arr_img, $data);
 							echo json_encode($sending_data_request_way);
 							exit;
