@@ -46,9 +46,6 @@ class Assist_backend extends CI_Model
 
 	public function sending_quest_way_img_edit($targetFileLogo, $org, $new_img_name, $last_id)
 	{
-		$this->db->where('qu_id', $last_id);
-		$send_img_delete = $this->db->delete('list_img_quest');
-
 		$this->db->set('qu_id', $last_id);
 		$this->db->set('path_img', $targetFileLogo);
 		$this->db->set('old_img', $org);
@@ -61,6 +58,8 @@ class Assist_backend extends CI_Model
 	public function sending_data_request_way_edit($arr_img, $data)
 	{
 		$last_id = $this->sending_quest_way_edit($data);
+		$this->db->where('qu_id', $last_id);
+		$send_img_delete = $this->db->delete('list_img_quest');
 		foreach ($arr_img as $rimg) {
 			$today = date("Y-m-dHis");
 			$month = date("m");
@@ -128,7 +127,7 @@ class Assist_backend extends CI_Model
 		$this->db->set('status_qu', '1');
 		$this->db->set('receive_time',  $data['time_receive']);
 		$this->db->set('specified_time',  $data['specified_time']);
-		$this->db->where('qu_id', $$data['qu_id']);
+		$this->db->where('qu_id', $data['qu_id']);
 		$send_data_request = $this->db->update('list_quest');
 		return $send_data_request;
 		exit;

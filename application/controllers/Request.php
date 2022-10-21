@@ -848,7 +848,7 @@ class Request extends CI_Controller
 				$data['priority_id'] = '';
 				// line_way priority_way
 		
-				if (empty($_FILES["file_way1"]["name"]) && empty($_FILES["file_way2"]["name"]) && empty($_FILES["file_way3"]["name"])) {
+				if (empty($_FILES["modal_img_way1"]["name"]) && empty($_FILES["modal_img_way2"]["name"]) && empty($_FILES["modal_img_way3"]["name"])) {
 					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
 					if ($check_type !== null && $check_type !== '') {
 						$this->form_validation->set_rules('priority_way', 'Priority', 'required');
@@ -953,6 +953,7 @@ class Request extends CI_Controller
 						}
 					}
 				} else {
+					// echo json_encode($data);
 					if ($_FILES['modal_img_way1']['size'] > '4000000') {
 						echo json_encode('<p>image 1 ของคุณขนาดเกิน 4000000 </p>');
 						exit;
