@@ -1276,6 +1276,7 @@
 								html: "<p>Update Requset</p><p>Success</p>",
 								icon: 'success',
 							})
+							$('#modal_edit_request').modal('hide')
 							$('#clear_form_re').click()
 						} else if (reply_request === false) {
 							Swal.fire({
