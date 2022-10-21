@@ -44,9 +44,95 @@ class Assist_backend extends CI_Model
 
 
 
+	public function sending_quest_way_img_edit($targetFileLogo, $org, $new_img_name, $last_id)
+	{
+		$this->db->where('qu_id', $last_id);
+		$send_img_delete = $this->db->delete('list_img_quest');
 
+		$this->db->set('path_img', $targetFileLogo);
+		$this->db->set('old_img', $org);
+		$this->db->set('new_img', $new_img_name);
+		$this->db->where('qu_id', $last_id);
+		$send_img_request = $this->db->insert('list_img_quest');
 
+		return $send_img_request;
+		exit;
+	}
+	public function sending_data_request_way_edit($arr_img, $data)
+	{
+		$last_id = $this->sending_quest_way_edit($data);
+		foreach ($arr_img as $rimg) {
+			$today = date("Y-m-dHis");
+			$month = date("m");
+			$year = date("Y");
+			$fileName = iconv('UTF-8', 'TIS-620', $rimg['FileLogo']);
+			$arrStrLogo = explode(".", $fileName);
+			$fileNameLogo = $today . "_" . $arrStrLogo[0] . "." . $arrStrLogo[1];
+			$new_img_name = $fileNameLogo;
+			$org = $arrStrLogo[0] . "." . $arrStrLogo[1];
+			$fileNameLogo = preg_replace('/  \s+/', '_', $fileNameLogo);
+			$targetPathLogo = 'themes/softmat/request_img/' . $year . '/' . $month . '/';
+			$targetFileLogo = $targetPathLogo . $fileNameLogo;
+			//============================Checks whether a file or directory exists.============================//
+			$tmpPath  = 'themes/softmat/request_img/';
+			$tmpPath1 = 'themes/softmat/request_img/' . $year . '/';
+			$tmpPath2 = $targetPathLogo;
+			$this->create_folder_img($tmpPath, $tmpPath1, $tmpPath2, $year, $month);
+			//============================Checks whether a file or directory exists.============================//
+			$sending_quest_way_img = $this->sending_quest_way_img_edit($targetFileLogo, $org, $new_img_name, $last_id);
+			copy($rimg['tempFileLogo'], $targetFileLogo);
+		}
+		return $sending_quest_way_img;
+		exit;
+	}
+	public function sending_quest_way_edit($data)
+	{
+		$user = $this->session->userdata('sessUsr');
+		$dep_id = $this->session->userdata('sessDep');
+		$user_id = $this->session->userdata('sessUsrId');
 
+		$this->db->set('dep_support_id', $data['re_department']);
+		$this->db->set('support_by_id', $data['re_support']);
+		$this->db->set('type_id', $data['re_type']);
+		$this->db->set('system_id', $data['re_system']);
+		$this->db->set('pri_id', $data['priority_id']);
+		$this->db->set('subject', $data['re_subject']);
+		$this->db->set('lp_id',  $data['re_line']);
+		$this->db->set('detail',  $data['re_detail']);
+		$this->db->set('date_create',  $data['date_create']);
+		$this->db->set('create_by',  $user);
+		$this->db->set('receive_time',  $data['time_receive']);
+		$this->db->set('specified_time',  $data['specified_time']);
+		$this->db->where('qu_id', $data['qu_id']);
+
+		$send_data_request = $this->db->insert('list_quest');
+		$last_id = $data['qu_id'];
+
+		return $last_id;
+		exit;
+	}
+	public function sending_quest_way_no_edit($data)
+	{
+		$user = $this->session->userdata('sessUsr');
+
+		$this->db->set('dep_support_id', $data['re_department']);
+		$this->db->set('support_by_id', $data['re_support']);
+		$this->db->set('type_id', $data['re_type']);
+		$this->db->set('system_id', $data['re_system']);
+		$this->db->set('pri_id', $data['priority_id']);
+		$this->db->set('subject', $data['re_subject']);
+		$this->db->set('lp_id',  $data['re_line']);
+		$this->db->set('detail',  $data['re_detail']);
+		$this->db->set('date_update',  $data['date_create']);
+		$this->db->set('update_by',  $user);
+		$this->db->set('status_qu', '1');
+		$this->db->set('receive_time',  $data['time_receive']);
+		$this->db->set('specified_time',  $data['specified_time']);
+		$this->db->where('qu_id', $$data['qu_id']);
+		$send_data_request = $this->db->update('list_quest');
+		return $send_data_request;
+		exit;
+	}
 	public function re_system($system_id)
 	{
 		$sid = $this->session->userdata('sessUsr');
@@ -2662,13 +2748,13 @@ class Assist_backend extends CI_Model
 				// return 'suc_pass';
 				$per_u = 'menu_home';
 				$CheckPermissions = $this->CheckPermissions($result[0]['user_id'], $per_u);
-				if($CheckPermissions === true){
+				if ($CheckPermissions === true) {
 					$this->db->set('last_login', 'NOW()', FALSE);
 					$this->db->where('user_id', $result[0]['user_id']);
 					$exc_dep = $this->db->update('list_user');
 					return array('action' => 'suc_pass_menu', $result[0]);
 					exit;
-				}else{
+				} else {
 					$this->db->set('last_login', 'NOW()', FALSE);
 					$this->db->where('user_id', $result[0]['user_id']);
 					$exc_dep = $this->db->update('list_user');

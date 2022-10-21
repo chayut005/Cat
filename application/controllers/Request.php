@@ -186,7 +186,7 @@ class Request extends CI_Controller
 							exit;
 						}
 					}
-				}else{
+				} else {
 					if ($_FILES['re_img1']['size'] > '4000000') {
 						echo json_encode('<p>image 1 ของคุณขนาดเกิน 4000000 </p>');
 						exit;
@@ -778,12 +778,44 @@ class Request extends CI_Controller
 			}
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function send_data_quest_way_modal()
 	{
 		$action = base64_decode($this->input->post('action'));
 
 
-		if ($action == 'request_way') {
+		if ($action == 'request_way_edit') {
 			$this->form_validation->set_error_delimiters('<p>', '</p>');
 
 			$this->form_validation->set_rules('way_department', 'Department Support', 'trim|is_natural_no_zero|required');
@@ -809,10 +841,13 @@ class Request extends CI_Controller
 				$data['re_system'] = $this->input->post('system_way');
 				$data['re_subject'] = $this->input->post('subject_way');
 				$data['re_detail'] = $this->input->post('detail_way');
+				$data['qu_id'] = $this->input->post('qu_id_update');
 
+				
 				$data['re_line'] = '';
 				$data['priority_id'] = '';
 				// line_way priority_way
+		
 				if (empty($_FILES["file_way1"]["name"]) && empty($_FILES["file_way2"]["name"]) && empty($_FILES["file_way3"]["name"])) {
 					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
 					if ($check_type !== null && $check_type !== '') {
@@ -864,7 +899,8 @@ class Request extends CI_Controller
 									$data['re_line'] = $this->input->post('line_way');
 								}
 							}
-							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no($data);
+							
+							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no_edit($data);
 							echo json_encode($sending_quest_way_no);
 							exit;
 						}
@@ -911,7 +947,7 @@ class Request extends CI_Controller
 									$data['re_line'] = $this->input->post('line_way');
 								}
 							}
-							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no($data);
+							$sending_quest_way_no =  $this->assist_backend->sending_quest_way_no_edit($data);
 							echo json_encode($sending_quest_way_no);
 							exit;
 						}
@@ -1003,7 +1039,7 @@ class Request extends CI_Controller
 							}
 							// $tempFileLogo = $_FILES['file_way1']['tmp_name'];
 							// $FileLogo = $_FILES['file_way1']['name'];
-							$sending_data_request_way = $this->assist_backend->sending_data_request_way($arr_img, $data);
+							$sending_data_request_way = $this->assist_backend->sending_data_request_way_edit($arr_img, $data);
 							echo json_encode($sending_data_request_way);
 							// echo json_encode($data);
 
@@ -1052,7 +1088,7 @@ class Request extends CI_Controller
 									$data['re_line'] = $this->input->post('line_way');
 								}
 							}
-							$sending_data_request_way = $this->assist_backend->sending_data_request_way($arr_img, $data);
+							$sending_data_request_way = $this->assist_backend->sending_data_request_way_edit($arr_img, $data);
 							echo json_encode($sending_data_request_way);
 							exit;
 						}
@@ -1079,11 +1115,11 @@ class Request extends CI_Controller
 	{
 		$qu_id = $_POST["qu_id"];
 		$data_quest = $this->assist_backend->data_quest_img($qu_id);
-		if($data_quest!=null){
+		if ($data_quest != null) {
 			echo json_encode($data_quest);
 			exit;
-		}else{
-			echo json_encode(array('null'=>'null'));
+		} else {
+			echo json_encode(array('null' => 'null'));
 			exit;
 		}
 	}

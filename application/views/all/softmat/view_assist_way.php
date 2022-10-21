@@ -325,7 +325,7 @@
 
 										<div class="col-lg-12 col-sm-12">
 											<div class="row">
-
+												<input type="hidden" id="qu_id_update" name="qu_id_update">
 												<div class="col-lg-6 col-sm-6">
 													<div class=" input-group-sm">
 														<label>Department Issue:</label>
@@ -345,13 +345,13 @@
 												<div class="col-lg-6 col-sm-6">
 													<div class=" input-group-sm">
 														<label>Department Support:</label>
-														<select onchange="data_support_way(value),data_type_way(value)" id="html_support_dep_way" name="html_support_dep_way" class="form-control" required>
+														<select onchange="data_support_way(value),data_type_way(value)" id="html_support_dep_way" name="way_department" class="form-control" required>
 															<option selected value="">--- Department ---</option>
 														</select>
 
 														<div class=" input-group-sm">
 															<label>Support By:</label>
-															<select onchange="img_and_name(value)" id="edit_html_support_by_way" name="edit_html_support_by_way" class="form-control" required>
+															<select onchange="img_and_name(value)" id="edit_html_support_by_way" name="support_way" class="form-control" required>
 																<option selected value="">--- Support ---</option>
 															</select>
 														</div>
@@ -368,7 +368,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<div class="input-group-sm">
 															<label>Type:</label>
-															<select onchange="check_data_type_way(value)" id="data_html_type_way" name="data_html_type_way" class="form-control" required>
+															<select onchange="check_data_type_way(value)" id="data_html_type_way" name="type_way" class="form-control" required>
 																<option selected value="">--- Type ---</option>
 															</select>
 														</div>
@@ -377,7 +377,7 @@
 													<div class="col-lg-4 col-sm-6">
 														<div class=" input-group-sm">
 															<label>System:</label>
-															<select onchange="check_data_system_way(value)" id="data_html_system_way" name="data_html_system_way" class="form-control" required>
+															<select onchange="check_data_system_way(value)" id="data_html_system_way" name="system_way" class="form-control" required>
 																<option selected value="">--- System ---</option>
 															</select>
 														</div>
@@ -402,7 +402,7 @@
 													<div id="col_priority_subject" class="col-lg-4 col-sm-6">
 														<div class=" input-group-sm">
 															<label>Subject:</label>
-															<input type="text" class="form-control" id="edit_subject_way" name="edit_subject_way" placeholder="Subject....." required>
+															<input type="text" class="form-control" id="edit_subject_way" name="subject_way" placeholder="Subject....." required>
 														</div>
 													</div>
 
@@ -410,7 +410,7 @@
 														<div class="  input-group-sm ">
 															<div class=" input-group-outline input-group-sm">
 																<label>Detail:</label>
-																<textarea name="edit_detail_way" id="edit_detail_way" cols="30" rows="3" class="form-control" placeholder="Detail........" required></textarea>
+																<textarea name="detail_way" id="edit_detail_way" cols="30" rows="3" class="form-control" placeholder="Detail........" required></textarea>
 															</div>
 														</div>
 													</div>
@@ -460,7 +460,7 @@
 						<button type="reset" class="btn  btn-sm  btn-primary">Clear</button>
 						<button type="button" onclick="send_data_quest_way_modal()" class="btn  btn-sm  btn-primary">Update</button>
 					</div>
-					<input type="hidden" name="action" value="<?php echo base64_encode('edit_permission'); ?>">
+					<input type="hidden" name="action" value="<?php echo base64_encode('request_way_edit'); ?>">
 					<input type="hidden" name="qu_id" id="quid">
 				</form>
 			</div>
@@ -533,6 +533,7 @@
 					$('#edit_subject_way').val(val.subject)
 					$('#edit_detail_way').val(val.detail)
 					$('#support_name').html('<span>' + val.support_by + '</span>')
+					$('#qu_id_update').val(val.qu_id)
 					$.ajax({
 						type: 'POST',
 						dataType: 'json',
@@ -749,7 +750,7 @@
 								html_line = '';
 								html_line += '<div class=" input-group-outline input-group-sm">';
 								html_line += '<label>Line:</label>';
-								html_line += '<select id="html_line" name="re_line" class="form-control" required>';
+								html_line += '<select id="html_line" name="line_way" class="form-control" required>';
 								html_line += '<option selected value="">--- line ---</option>';
 								$.each(reply_check, function(key_lp, val_lp) {
 									if (val_lp.lp_id == val.lp_id) {
@@ -798,7 +799,7 @@
 								html_priority += '<div class=" input-group-outline input-group-sm">';
 								html_priority += '<label>Priority:</label>';
 								html_priority +=
-									'<select id="html_priority" name="re_priority" class="form-control" required>';
+									'<select id="html_priority" name="priority_way" class="form-control" required>';
 								html_priority += '<option selected value="">--- Priority ---</option>';
 								$.each(reply_check, function(key_pri, val_pri) {
 									// alert(val.pri_id)
@@ -921,7 +922,7 @@
 						html_line = '';
 						html_line += '<div class=" input-group-outline input-group-sm">';
 						html_line += '<label>Line:</label>';
-						html_line += '<select id="html_line" name="re_line" class="form-control" required>';
+						html_line += '<select id="html_line" name="line_way" class="form-control" required>';
 						html_line += '<option selected value="">--- line ---</option>';
 						$.each(reply_check, function(key_lp, val_lp) {
 
@@ -972,7 +973,7 @@
 						html_priority += '<div class=" input-group-outline input-group-sm">';
 						html_priority += '<label>Priority:</label>';
 						html_priority +=
-							'<select id="html_priority" name="re_priority" class="form-control" required>';
+							'<select id="html_priority" name="priority_way" class="form-control" required>';
 						html_priority += '<option selected value="">--- Priority ---</option>';
 						$.each(reply_check, function(key_pri, val_pri) {
 							html_priority += '<option  value="' + val_pri.pri_id + ' ' + val_pri
@@ -1273,13 +1274,13 @@
 
 						} else if (reply_request === true) {
 							Swal.fire({
-								html: "<p>Create Requset</p><p>Success</p>",
+								html: "<p>Update Requset</p><p>Success</p>",
 								icon: 'success',
 							})
 							$('#clear_form_re').click()
 						} else if (reply_request === false) {
 							Swal.fire({
-								html: "<p>Create Requset</p><p>Error</p>",
+								html: "<p>Update Requset</p><p>Error</p>",
 								icon: 'Error',
 							})
 						}
@@ -1287,7 +1288,7 @@
 				})
 			}
 		})
-		alert(form_data)
+		// alert(form_data)
 
 	}
 
