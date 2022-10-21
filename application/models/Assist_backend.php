@@ -105,7 +105,7 @@ class Assist_backend extends CI_Model
 		$this->db->set('specified_time',  $data['specified_time']);
 		$this->db->where('qu_id', $data['qu_id']);
 
-		$send_data_request = $this->db->insert('list_quest');
+		$send_data_request = $this->db->update('list_quest');
 		$last_id = $data['qu_id'];
 
 		return $last_id;
