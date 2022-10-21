@@ -560,6 +560,7 @@
 									icon: 'success',
 
 								})
+								report_tabCatSta()
 							} else if (reply_cancel['reply'] === false) {
 								Swal.fire({
 									html: "<p>" + reply_cancel['html'] + "</p><p>" + reply_cancel['html_eng'] + "</p>",
@@ -727,6 +728,7 @@
 									html: "<p>Accept Quest</p><p>Success</p>",
 									icon: 'success',
 								})
+								report_tabCatSta()
 								$('#modal_data_quest_show').modal('hide')
 							} else if (data_accept === false) {
 								Swal.fire({
@@ -773,6 +775,7 @@
 									html: "<p>Finish Quest</p><p>Success</p>",
 									icon: 'success',
 								})
+								report_tabCatSta()
 								$('#modal_data_quest_show').modal('hide')
 							} else if (data_finish === false) {
 								Swal.fire({
@@ -1290,6 +1293,7 @@
 									icon: 'success',
 
 								})
+								report_tabCatSta()
 							} else if (reply_cancel['reply'] === false) {
 								Swal.fire({
 									html: "<p>" + reply_cancel['html'] + "</p><p>" + reply_cancel['html_eng'] + "</p>",
