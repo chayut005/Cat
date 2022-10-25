@@ -482,7 +482,7 @@ class Request extends CI_Controller
 			} else if ($ta['status_qu'] === '2') {
 				$data_html .= '<a onclick="modal_data_quest_accept(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-hourglass bx-tada" ></i></a>';
 			} else if ($ta['status_qu'] === '3') {
-				$data_html .= '<a onclick="modal_data_quest_success(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
+				$data_html .= '<a onclick="modal_data_quest_success_way(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
 			} else if ($ta['status_qu'] === '4') {
 				$data_html .= '<a onclick="text_box_detail_reply(' . $ta['qu_id'] . ')" style="padding-right: 0.8em;" ><i class="bx bx-message-rounded-dots bx-tada"></i></a>';
 			} else if ($ta['status_qu'] === '0') {

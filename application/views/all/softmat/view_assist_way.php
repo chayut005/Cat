@@ -481,7 +481,116 @@
 			</div>
 			<div class="modal-body">
 
-				<h1  style="text-align: center;">Finish</h1>
+				<!-- <input id="target" type="range" value="10" min="0" max="100" step="1"> -->
+				<div class="nav-align-top mb-4">
+					<ul class="nav nav-pills mb-3" role="tablist">
+						<li class="nav-item">
+							<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-quest" aria-controls="navs-pills-top-quest" aria-selected="true">
+								Quest
+							</button>
+						</li>
+						<li class="nav-item">
+							<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-file_q" aria-controls="navs-pills-top-file_q" aria-selected="false">
+								File Quest
+							</button>
+						</li>
+						<li class="nav-item">
+							<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-file_sup" aria-controls="navs-pills-top-file_sup" aria-selected="false">
+								File Support
+							</button>
+						</li>
+					</ul>
+					<div class="tab-content tab-content2">
+						<div class="tab-pane fade show active" id="navs-pills-top-quest" role="tabpanel">
+							<div class="row">
+								<div class="col-lg-6">
+									<div style="    text-align: center;" class="row">
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<p>
+											<div id="Dep_Issue">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="Issue_By">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="System">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="Type">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="Line_P">xxxxx:xxxxx</div>
+											</p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-12">
+											<p>
+											<div id="Dep_Support">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="Support_By">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="Category">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="Priority">xxxxx:xxxxx</div>
+											</p>
+											<p>
+											<div id="Subject">xxxxx:xxxxx</div>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<section id="chart">
+
+
+									</section>
+								</div>
+								<div style="    text-align: center;" class="col-lg-12 col-md-12 col-sm-12">
+									<p>Detail</p>
+									<p id="Detail">xxxxx</p>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="navs-pills-top-file_q" role="tabpanel">
+							<div class="row">
+								<div class="col-lg-12 col-sm-12 my-2">
+									<div style="  height: 350px;  border-radius: 10px;border-style: dotted; border-color: blue;display: flex;text-align:center;">
+										<span style="width: 33.33%;">
+											<img id="suc_img_request1" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/no_img.png" alt="user">
+										</span>
+										<span style="width: 33.33%;">
+											<img id="suc_img_request2" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/no_img.png" alt="user">
+										</span>
+										<span style="width: 33.33%;">
+											<img id="suc_img_request3" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/no_img.png" alt="user">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="navs-pills-top-file_sup" role="tabpanel">
+
+							<div class="row">
+								<div class="col-lg-12 col-sm-12 my-2">
+									<div style="  height: 350px;  border-radius: 10px;border-style: dotted; border-color: blue;display: flex;text-align:center;">
+										<span style="width: 33.33%;">
+											<img id="suc_sup_img_request1" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/no_img.png" alt="user">
+										</span>
+										<span style="width: 33.33%;">
+											<img id="suc_sup_img_request2" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/no_img.png" alt="user">
+										</span>
+										<span style="width: 33.33%;">
+											<img id="suc_sup_img_request3" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/no_img.png" alt="user">
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 
 			</div>
 		</div>
@@ -501,7 +610,7 @@
 			</div>
 			<div class="modal-body">
 
-				<h1  style="text-align: center;">Running</h1>
+				<h1 style="text-align: center;">Running</h1>
 
 			</div>
 		</div>
@@ -512,12 +621,210 @@
 
 
 <script>
-	function modal_data_quest_accept(){
+	function modal_data_quest_accept() {
 		$('#modal_data_quest_accept').modal('show')
 
 	}
-	function modal_data_quest_success(qu_id) {
-		$('#modal_data_quest_success').modal('show')
+
+	function modal_data_quest_success_way(qu_id) {
+		var html = '<div class="pie" data-pie=\'{ "lineargradient": ["#a7a9ff","#696cff"], "round": true, "percent": 0, "colorCircle": "#e6e6e6" }\'></div><span style="text-align:center;    display: block;">Completed on Schedule</span>';
+		$('#qu_id_quest').val(qu_id)
+		$('#chart').html(html)
+		$.ajax({
+			type: 'POST',
+			dataType: 'json',
+			url: '<?php echo base_url(); ?>request/get_data_quest',
+			data: {
+				qu_id: qu_id
+			},
+			success: function(data_quest) {
+				console.log(data_quest)
+				$.each(data_quest, function(key, val) {
+					if (val.dep_issue !== '' && val.dep_issue !== null) {
+						$('#Dep_Issue').html('<div>Dep Issue: ' + val.dep_issue + '</div>')
+					} else {
+						$('#Dep_Issue').html('<div>Dep Issue: -</div>')
+
+					}
+
+					if (val.issue_by !== '' && val.issue_by !== null) {
+						$('#Issue_By').html('<div>Issue By: ' + val.issue_by + '</div>')
+					} else {
+						$('#Issue_By').html('<div>Issue_By: -</div>')
+
+					}
+
+					if (val.system_name !== '' && val.system_name !== null) {
+						$('#System').html('<div>System: ' + val.system_name + '</div>')
+					} else {
+						$('#System').html('<div>System: -</div>')
+
+					}
+
+					if (val.type_name !== '' && val.type_name !== null) {
+						$('#Type').html('<div>Type: ' + val.type_name + '</div>')
+					} else {
+						$('#Type').html('<div>Type: -</div>')
+
+					}
+
+					if (val.lp_name !== '' && val.lp_name !== null) {
+						$('#Line_P').html('<div>Line: ' + val.lp_name + '</div>')
+					} else {
+						$('#Line_P').html('<div>Line_P: -</div>')
+
+					}
+
+					if (val.dep_support !== '' && val.dep_support !== null) {
+						$('#Dep_Support').html('<div>Dep Support: ' + val.dep_support + '</div>')
+					} else {
+						$('#Dep_Support').html('<div>Dep_Support: -</div>')
+
+					}
+
+					if (val.support_by !== '' && val.support_by !== null) {
+						$('#Support_By').html('<div>Support By: ' + val.support_by + '</div>')
+					} else {
+						$('#Support_By').html('<div>Support_By: -</div>')
+
+					}
+
+					if (val.cat_name !== '' && val.cat_name !== null) {
+						$('#Category').html('<div>Category: ' + val.cat_name + '</div>')
+					} else {
+						$('#Category').html('<div>Category: -</div>')
+
+					}
+
+					if (val.pri_name !== '' && val.pri_name !== null) {
+						$('#Priority').html('<div>Priority: ' + val.pri_name + '</div>')
+					} else {
+						$('#Priority').html('<div>Priority: -</div>')
+
+					}
+
+					if (val.subject !== '' && val.subject !== null) {
+						$('#Subject').html('<div>Subject: ' + val.subject + '</div>')
+					} else {
+						$('#Subject').html('<div>Subject: -</div>')
+
+					}
+
+					if (val.detail !== '' && val.detail !== null) {
+						$('#Detail').html('<div>' + val.detail + '</div>')
+					} else {
+						$('#Detail').html('<div>Detail: -</div>')
+
+					}
+
+					$.ajax({
+						url: '<?php echo base_url(); ?>Request/data_quest_img',
+						type: "POST",
+						dataType: 'json',
+						data: {
+							qu_id: qu_id,
+						},
+						success: function(data) {
+							// console.log(data)
+							$('#suc_img_request1').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/no_img.png');
+							$('#suc_img_request2').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/no_img.png');
+							$('#suc_img_request3').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/no_img.png');
+							if (data['null'] != 'null') {
+								var num = 1;
+								$.each(data, function(key, val) {
+									var eid = "#suc_img_request" + num;
+									var imgpath = '<?php echo base_url(); ?>./' + val.path_img;
+									var surname = val.path_img;
+									var myArray = surname.split(".");
+									if (myArray[1] == 'xls' || myArray[1] == 'pdf' || myArray[1] == 'xlsx') {
+										imgpath = '<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png';
+									}
+									$(eid).attr("src", imgpath);
+									num++;
+								})
+							}
+						}
+					})
+					$.ajax({
+						url: '<?php echo base_url(); ?>Request/data_quest_img_sup',
+						type: "POST",
+						dataType: 'json',
+						data: {
+							qu_id: qu_id,
+						},
+						success: function(data) {
+							console.log(data)
+							$('#suc_sup_img_request1').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/no_img.png');
+							$('#suc_sup_img_request2').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/no_img.png');
+							$('#suc_sup_img_request3').attr("src", '<?php echo base_url(); ?>./themes/softmat/img/no_img.png');
+							if (data['null'] != 'null') {
+								var num = 1;
+								$.each(data, function(key, val) {
+									var eid = "#suc_sup_img_request" + num;
+									var imgpath = '<?php echo base_url(); ?>./' + val.path_img;
+									var surname = val.path_img;
+									var myArray = surname.split(".");
+									if (myArray[1] == 'xls' || myArray[1] == 'pdf' || myArray[1] == 'xlsx') {
+										imgpath = '<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png';
+									}
+									$(eid).attr("src", imgpath);
+									num++;
+								})
+							}
+						}
+					})
+
+
+
+
+
+
+
+
+					// console.log(val.over_accept_flag + '====' + val.over_success_flag + '====' + val.status_qu)
+					var box_per
+					if (val.over_accept_flag == '0' && val.over_success_flag == '0') {
+						box_per = 100
+					} else if (val.over_accept_flag == '1' && val.over_success_flag == '0') {
+						if (val.status_qu == '3') {
+							box_per = 80
+						} else {
+							box_per = 50
+						}
+
+					} else if (val.over_accept_flag == '0' && val.over_success_flag == '1') {
+						if (val.status_qu == '3') {
+							box_per = 80
+						} else {
+							box_per = 50
+						}
+					} else if (val.over_accept_flag == '1' && val.over_success_flag == '1') {
+						if (val.status_qu == '3') {
+							box_per = 30
+						} else {
+							box_per = 5
+						}
+					}
+					$(document).ready(function() {
+						const pie = document.querySelectorAll(".pie");
+						pie.forEach((el, index) => {
+							const options = {
+								index: index + 1,
+								percent: box_per
+							};
+							circle.animationTo(options);
+						});
+					})
+					const elements = [].slice.call(document.querySelectorAll(".pie"));
+					const circle = new CircularProgressBar("pie");
+					// console.log(circle)
+					elements.map((element) => {
+						circle.initial(element);
+					});
+				})
+				$('#modal_data_quest_success').modal('show')
+			}
+		})
 	}
 
 	function op_img_way(num) {

@@ -427,10 +427,10 @@
 									<i class='bx bx-reset  d-block d-sm-none'></i>
 									<span class="d-none d-sm-block">Clear</span>
 								</button>
-								<button type="button" onclick="" class=" btn  btn-sm  btn-warning ">
+								<!-- <button type="button" onclick="" class=" btn  btn-sm  btn-warning ">
 									<i class='bx bx-time-five  d-block d-sm-none'></i>
 									<span class="d-none d-sm-block">Delay</span>
-								</button>
+								</button> -->
 								<button type="button" onclick="finish_quest()" class=" btn  btn-sm  btn-success ">
 									<i class='bx bx-check  d-block d-sm-none'></i>
 									<span class="d-none d-sm-block">Finish</span>
@@ -599,7 +599,6 @@
 			var html = '<div class="pie" data-pie=\'{ "lineargradient": ["#a7a9ff","#696cff"], "round": true, "percent": 0, "colorCircle": "#e6e6e6" }\'></div><span style="text-align:center;    display: block;">Completed on Schedule</span>';
 			$('#qu_id_quest').val(qu_id)
 			$('#chart').html(html)
-			update_s_time('')
 			$.ajax({
 				type: 'POST',
 				dataType: 'json',
