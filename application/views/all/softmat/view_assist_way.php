@@ -4,8 +4,8 @@
 	}
 
 	.setting_img {
-		height: 100px;
-		width: 100px;
+		height: 80px;
+		width: 80px;
 		object-fit: cover;
 
 		display: block;
@@ -23,6 +23,8 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
+
+
 
 	.margin_top_fig {
 		margin-top: 6.5px;
@@ -286,7 +288,7 @@
 
 							</ul>
 
-							<div class="tab-content">
+							<div class="tab-content tab-content2">
 								<div class="tab-pane fade show active" id="navs-pills-justified-data" role="tabpanel">
 									<div class="row">
 
@@ -429,9 +431,9 @@
 									<div class="col-lg-12 col-sm-12 my-2">
 										<div style="  height: 350px;    border-radius: 10px;border-style: dotted; border-color: blue;">
 											<span>
-												<img id="modal_img_way1" onclick="$('#modal_upload_img_way1').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
-												<img id="modal_img_way2" onclick="$('#modal_upload_img_way2').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
-												<img id="modal_img_way3" onclick="$('#modal_upload_img_way3').click()" class=" setting_img_request " src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+												<img id="modal_img_way1" onclick="$('#modal_upload_img_way1').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user">
+												<img id="modal_img_way2" onclick="$('#modal_upload_img_way2').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
+												<img id="modal_img_way3" onclick="$('#modal_upload_img_way3').click()" class=" setting_img_request columnxx" src="<?php echo base_url(); ?>./themes/softmat/img/upload_file.png" alt="user" style="display: none;">
 											</span>
 
 											<input id="modal_upload_img_way1" onchange="modal_show_img_way1(this)" name="modal_img_way1" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
@@ -467,8 +469,57 @@
 	</div>
 </div>
 <input type="hidden" id="dep_sup_id">
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<div class="modal fade  bd-example-modal-xl" id="modal_data_quest_success" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered  modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title" id="modalCenterTitle">QUEST</h6>
+
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+				<h1  style="text-align: center;">Finish</h1>
+
+			</div>
+		</div>
+	</div>
+</div>
+
 <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+<div class="modal fade  bd-example-modal-xl" id="modal_data_quest_accept" aria-hidden="true" data-bs-backdrop="static" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+	<div class="modal-dialog modal-dialog-centered  modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title" id="modalCenterTitle">QUEST</h6>
+
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+
+				<h1  style="text-align: center;">Running</h1>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+
+
 <script>
+	function modal_data_quest_accept(){
+		$('#modal_data_quest_accept').modal('show')
+
+	}
+	function modal_data_quest_success(qu_id) {
+		$('#modal_data_quest_success').modal('show')
+	}
+
 	function op_img_way(num) {
 		if (num == 1) {
 			$('#show_data_way1').css('display', 'block');
@@ -853,7 +904,7 @@
 						var imgpath = '<?php echo base_url(); ?>./' + val.path_img;
 						var surname = val.path_img;
 						var myArray = surname.split(".");
-						if(myArray[1]=='xls'||myArray[1]=='pdf'||myArray[1]=='xlsx'){
+						if (myArray[1] == 'xls' || myArray[1] == 'pdf' || myArray[1] == 'xlsx') {
 							imgpath = '<?php echo base_url(); ?>./themes/softmat/img/upload_file_icon.png';
 						}
 						$(eid).attr("src", imgpath);
@@ -1739,6 +1790,7 @@
 	}
 
 	$(document).ready(function() {
+		$.fn.DataTable.ext.pager.numbers_length = 5;
 		department_support()
 		open_system()
 		var cnt = 1;

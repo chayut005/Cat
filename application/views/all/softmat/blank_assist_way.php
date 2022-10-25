@@ -13,7 +13,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 
-
+<style>
+  .tab-content2 {
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 

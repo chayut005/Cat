@@ -89,7 +89,7 @@
                                         </li>
 
                                     </ul>
-                                    <div class="tab-content">
+                                    <div class="tab-content tab-content2">
                                         <div class="tab-pane fade show active" id="navs-pills-card" role="tabpanel">
                                             <div class="tab-pane fade show active" id="navs-pills-justified-card" role="tabpanel">
                                                 <div uk-slider="center: true">
@@ -441,6 +441,7 @@
         })
     }
     $(document).ready(function() {
+        $.fn.DataTable.ext.pager.numbers_length = 5;
         data_request_table()
         var cnt = 1;
         var table = $('#table_type_use').DataTable({
@@ -541,6 +542,7 @@
         })
     }
     $(document).ready(function() {
+        $.fn.DataTable.ext.pager.numbers_length = 5;
 
         var cnt = 1;
         var table = $('#main_type').DataTable({
@@ -598,7 +600,7 @@
         //     .appendTo('#example_wrapper .col-md-6:eq(0)');
     });
     $(document).ready(function() {
-
+        $.fn.DataTable.ext.pager.numbers_length = 5;
         var cnt = 1;
         var table = $('#data_insert_type').DataTable({
             // lengthChange: false,

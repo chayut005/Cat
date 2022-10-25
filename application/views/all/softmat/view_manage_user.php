@@ -1142,7 +1142,7 @@
         get_department();
         department_data();
         group_data();
-
+        $.fn.DataTable.ext.pager.numbers_length = 5;
         var cnt = 1;
         var table = $('#datatable_user').DataTable({
             // lengthChange: false,
