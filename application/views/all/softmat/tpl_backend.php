@@ -389,7 +389,7 @@
 																				<input id="tplupload_img_request3" onchange="tplshow_img_request3(this)" name="tplre_img3" type="file" accept="image/png, image/gif, image/jpeg, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,application/pdf" hidden readonly>
 																			</div>
 																			<div class="" style="  display: flex; justify-content: center; align-items: center;">
-																				<button onclick="remove_img_request1()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
+																				<button onclick="remove_img_request()" class=" btn  btn-sm  btn-warning my-2">Remove</button>
 																			</div>
 																			<div class="" style="  display: flex; justify-content: center; align-items: center;">
 																				<button onclick="tplop_img(1)" type="button" class=" btn  btn-sm  btn-warning my-2" style="margin-right: 5px;">Image 1</button>
@@ -527,6 +527,15 @@
 			} else {
 				$("#tplshow_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_img.png")
 			}
+		}
+		function remove_img_request() {
+			event.preventDefault()
+			$("#tplshow_data_img_request1").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+			$("#tplshow_data_img_request2").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+			$("#tplshow_data_img_request3").attr("src", "<?php echo base_url(); ?>./themes/softmat/img/upload_file.png")
+			$('#tplupload_img_request1').val('')
+			$('#tplupload_img_request2').val('')
+			$('#tplupload_img_request3').val('')
 		}
 		async function reply_deny(qu_id) {
 			// alert(qu_id)
@@ -772,15 +781,20 @@
 				confirmButtonText: 'Yes!'
 			}).then((result) => {
 				if (result.isConfirmed) {
+					const form = document.getElementById('form_quest_manage_quest');
+					var form_data = new FormData(form);
 					// alert($('#form_quest_manage_quest').serialize())
 					$.ajax({
 						url: '<?php echo base_url(); ?>Request/finish_quest',
 						type: "POST",
 						dataType: 'json',
-						data: $('#form_quest_manage_quest').serialize(),
+						data: form_data,
+						cache: false,
+						processData: false,
+						contentType: false,
 						success: function(data_finish) {
 							// alert()
-							// console.log(data_finish)
+							console.log(data_finish);
 							if (data_finish !== true && data_finish !== false) {
 								Swal.fire({
 									html: "<p>" + data_finish + "</p>",
