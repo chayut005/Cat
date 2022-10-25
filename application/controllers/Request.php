@@ -373,7 +373,7 @@ class Request extends CI_Controller
 				} else if ($ta['status_qu'] === '2') {
 					$data_html .= '<a onclick="show_data_request(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-hourglass bx-tada" ></i></a>';
 				} else if ($ta['status_qu'] === '3') {
-					$data_html .= '<a onclick="" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
+					$data_html .= '<a onclick="modal_data_quest_success(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
 				} else if ($ta['status_qu'] === '4') {
 					$data_html .= '<a onclick="text_box_detail_reply(' . $ta['qu_id'] . ')" style="padding-right: 0.8em;" ><i class="bx bx-message-rounded-dots bx-tada"></i></a>';
 				} else if ($ta['status_qu'] === '0') {
@@ -391,7 +391,7 @@ class Request extends CI_Controller
 				} else if ($ta['status_qu'] === '2') {
 					$data_html .= '<a onclick="" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-hourglass bx-tada" ></i></a>';
 				} else if ($ta['status_qu'] === '3') {
-					$data_html .= '<a onclick="" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
+					$data_html .= '<a onclick="modal_data_quest_success(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
 				} else if ($ta['status_qu'] === '4') {
 					$data_html .= '<a onclick="text_box_detail_reply(' . $ta['qu_id'] . ')" style="padding-right: 0.8em;" ><i class="bx bx-message-rounded-dots bx-tada"></i></a>';
 				} else if ($ta['status_qu'] === '0') {
@@ -480,9 +480,9 @@ class Request extends CI_Controller
 			if ($ta['status_qu'] === '1') {
 				$data_html .= '<a onclick="edit_data_request(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-edit" ></i></a><a onclick="cancel_quest(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-task-x"></i></a>';
 			} else if ($ta['status_qu'] === '2') {
-				$data_html .= '<a onclick="" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-hourglass bx-tada" ></i></a>';
+				$data_html .= '<a onclick="modal_data_quest_accept(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-hourglass bx-tada" ></i></a>';
 			} else if ($ta['status_qu'] === '3') {
-				$data_html .= '<a onclick="" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
+				$data_html .= '<a onclick="modal_data_quest_success_way(' . $ta['qu_id'] . ')" style="cursor: pointer;padding-right: 0.8em;" ><i class="bx bx-file-find"></i></a>';
 			} else if ($ta['status_qu'] === '4') {
 				$data_html .= '<a onclick="text_box_detail_reply(' . $ta['qu_id'] . ')" style="padding-right: 0.8em;" ><i class="bx bx-message-rounded-dots bx-tada"></i></a>';
 			} else if ($ta['status_qu'] === '0') {
@@ -843,11 +843,11 @@ class Request extends CI_Controller
 				$data['re_detail'] = $this->input->post('detail_way');
 				$data['qu_id'] = $this->input->post('qu_id_update');
 
-				
+
 				$data['re_line'] = '';
 				$data['priority_id'] = '';
 				// line_way priority_way
-		
+
 				if (empty($_FILES["modal_img_way1"]["name"]) && empty($_FILES["modal_img_way2"]["name"]) && empty($_FILES["modal_img_way3"]["name"])) {
 					$check_type = $this->assist_backend->check_type($data['re_department'], $data['re_type']);
 					if ($check_type !== null && $check_type !== '') {
@@ -1097,7 +1097,7 @@ class Request extends CI_Controller
 							}
 							$data['img'] = $arr_img;
 							// echo json_encode($data);
-						
+
 							$sending_data_request_way = $this->assist_backend->sending_data_request_way_edit($arr_img, $data);
 							echo json_encode($sending_data_request_way);
 							exit;
@@ -1125,6 +1125,18 @@ class Request extends CI_Controller
 	{
 		$qu_id = $_POST["qu_id"];
 		$data_quest = $this->assist_backend->data_quest_img($qu_id);
+		if ($data_quest != null) {
+			echo json_encode($data_quest);
+			exit;
+		} else {
+			echo json_encode(array('null' => 'null'));
+			exit;
+		}
+	}
+	public function data_quest_img_sup()
+	{
+		$qu_id = $_POST["qu_id"];
+		$data_quest = $this->assist_backend->data_quest_img_sup($qu_id);
 		if ($data_quest != null) {
 			echo json_encode($data_quest);
 			exit;

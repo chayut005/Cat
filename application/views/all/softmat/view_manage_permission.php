@@ -472,7 +472,7 @@
 
     $(document).ready(function() {
 
-
+        $.fn.DataTable.ext.pager.numbers_length = 5;
         var cnt = 1;
         var table = $('#datatable_permission').DataTable({
             // lengthChange: false,

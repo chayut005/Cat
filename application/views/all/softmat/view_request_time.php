@@ -72,7 +72,7 @@
 
                                 </ul>
 
-                                <div class="tab-content">
+                                <div class="tab-content  tab-content2">
                                     <div class="tab-pane fade show active" id="navs-pills-justified-card" role="tabpanel">
                                         <div uk-slider="center: true">
                                             <div class="uk-position-relative " tabindex="-1">
@@ -371,6 +371,7 @@
 
     $(document).ready(function() {
         department()
+        $.fn.DataTable.ext.pager.numbers_length = 5;
         var cnt = 1;
         var table = $('#data_request_time').DataTable({
             // lengthChange: false,

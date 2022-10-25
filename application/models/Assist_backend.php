@@ -882,6 +882,17 @@ class Assist_backend extends CI_Model
 			return null;
 		}
 	}
+	public function data_quest_img_sup($qu_id)
+	{
+		$sqlSel = "SELECT * FROM list_img_support_quest WHERE qu_id = '$qu_id'";
+		$excSel = $this->db->query($sqlSel);
+		$recSel = $excSel->result_array();
+		if ($excSel->num_rows() != 0) {
+			return $recSel;
+		} else {
+			return null;
+		}
+	}
 	public function data_quest_img($qu_id)
 	{
 		$sqlSel = "SELECT * FROM list_img_quest WHERE qu_id = '$qu_id'";

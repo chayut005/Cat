@@ -630,7 +630,7 @@
         })
     }
     $(document).ready(function() {
-
+        $.fn.DataTable.ext.pager.numbers_length = 5;
         addTask();
         var cnt = 1;
         var table = $('#datatable_group').DataTable({

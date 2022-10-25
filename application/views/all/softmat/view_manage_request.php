@@ -233,7 +233,7 @@
         var dep = $('#show_department_report').val()
         // alert(dep)
         var myarray = dep.split(" ")
-        $('#name_department').html('<span>'+ myarray[1] +'</span>')
+        $('#name_department').html('<span>' + myarray[1] + '</span>')
         $('#dayStartToEnd').html(' <th colspan="7" >' + st + '</th> <th>To</th><th colspan="7" >' + lt + '</th>')
         // alert(st + '==' + lt + '==' + dep)
 
@@ -359,8 +359,11 @@
             }
         })
     }
-    $(document).ready(function() {
 
+
+
+    $(document).ready(function() {
+        $.fn.DataTable.ext.pager.numbers_length = 5;
         get_department_report()
         report_tabCatSta()
         var cnt = 1;
@@ -371,6 +374,7 @@
                 [10, 25, 50, 100],
                 [10, 25, 50, 'All'],
             ],
+            DisplayLength: 5,
             scrollX: true,
             ajax: {
                 url: '<?php echo base_url(); ?>Request/get_datatable_request',
